@@ -55,18 +55,19 @@ export default function Hero() {
           </video>
         </div>
 
-        {/* CTA centralizado */}
+        {/* CTA — barra horizontal */}
         <div style={{
           flexShrink: 0,
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
-          gap: '16px',
-          padding: '28px 0',
+          justifyContent: 'space-between',
+          padding: '28px 96px',
           background: 'rgba(14,16,17,0.6)',
           backdropFilter: 'blur(8px)',
           WebkitBackdropFilter: 'blur(8px)',
-        }}>
+        }}
+        className="hero-cta-bar"
+        >
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontWeight: 600,
@@ -74,6 +75,7 @@ export default function Hero() {
             color: '#FFFFFF',
             margin: 0,
             letterSpacing: '-0.5px',
+            whiteSpace: 'nowrap',
           }}>
             O marketing que vive seu negócio
           </p>
@@ -86,6 +88,8 @@ export default function Hero() {
             borderBottom: '2px solid rgba(255,255,255,0.6)',
             paddingBottom: '4px',
             transition: 'opacity 0.2s ease',
+            whiteSpace: 'nowrap',
+            flexShrink: 0,
           }}
           onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
@@ -161,68 +165,64 @@ export default function Hero() {
         }}
       >
         <div ref={refContent} className="hero-content reveal">
-          <h1 className="hero-name">O marketing que vive seu negócio</h1>
+          <div className="hero-text-col">
+            <h1 className="hero-name">
+              O marketing<br />
+              que vive<br />
+              seu negócio
+            </h1>
 
-          <div style={{
-            width: '100%', height: '1px',
-            background: 'rgba(14,16,17,0.12)',
-            margin: '48px 0',
-          }} />
+            <div style={{
+              width: '100%', height: '1px',
+              background: 'rgba(14,16,17,0.12)',
+              margin: '32px 0',
+            }} />
 
-          <p className="hero-tagline" style={{ marginBottom: '64px' }}>
-            Construímos mecanismos de marketing baseados no estudo profundo de cada negócio.
-          </p>
+            <p className="hero-tagline" style={{ marginBottom: '40px' }}>
+              Construímos mecanismos de marketing baseados no estudo profundo de cada negócio.
+            </p>
 
-          {/* ── CTAs ── */}
-          <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
-            <a href="#contato" style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '22px',
-              fontWeight: 600,
-              textDecoration: 'none',
-              color: '#0E1011',
-              borderBottom: '2px solid #0E1011',
-              paddingBottom: '4px'
-            }}>
-              Agendar uma conversa
-            </a>
-            <a href="#servicos" style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '22px',
-              fontWeight: 600,
-              textDecoration: 'none',
-              color: 'rgba(14,16,17,0.6)',
-              borderBottom: '2px solid rgba(14,16,17,0.3)',
-              paddingBottom: '4px'
-            }}>
-              Ver como funciona
-            </a>
+            {/* ── CTAs ── */}
+            <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
+              <a href="#contato" style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '22px',
+                fontWeight: 600,
+                textDecoration: 'none',
+                color: '#0E1011',
+                borderBottom: '2px solid #0E1011',
+                paddingBottom: '4px'
+              }}>
+                Agendar uma conversa
+              </a>
+              <a href="#servicos" style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '22px',
+                fontWeight: 600,
+                textDecoration: 'none',
+                color: 'rgba(14,16,17,0.6)',
+                borderBottom: '2px solid rgba(14,16,17,0.3)',
+                paddingBottom: '4px'
+              }}>
+                Ver como funciona
+              </a>
+            </div>
+          </div>
+
+          <div className="hero-image-wrapper">
+            <img
+              src="/images/hero_brand_image.png"
+              alt="Ticker Marketing"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            />
           </div>
         </div>
       </section>
 
-      {/* ─── CSS ────────────────────────────────────────────────────────── */}
-      <style>{`
-        @keyframes hero-logos-scroll {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-33.333%); }
-        }
-        .hero-logos-track {
-          animation: hero-logos-scroll 25s linear infinite;
-        }
-        .hero-content {
-          padding: 120px 96px 96px;
-          max-width: 1400px;
-        }
-        @media (max-width: 767px) {
-          .hero-content {
-            padding: 64px 24px;
-          }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .hero-logos-track { animation: none; }
-        }
-      `}</style>
     </>
   )
 }

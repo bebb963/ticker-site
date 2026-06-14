@@ -9,13 +9,13 @@ const TEAM = [
     name: 'Priscila Lima',
     role: 'Comunicação e marca',
     desc: 'O olhar que dá sentido e voz às marcas. Transforma intenção em percepção e narrativa.',
-    image: null, 
+    image: '/images/Priscila.png', 
   },
   {
     name: 'Bruno Barroso',
     role: 'Growth e Performance',
     desc: 'O método que garante resultado. Conecta dados, sistemas e inteligência para aceleração previsível.',
-    image: null, 
+    image: '/images/Bruno.JPG', 
   }
 ]
 
@@ -70,14 +70,14 @@ export default function QuemSomos() {
             } as React.CSSProperties}
           >
             <div style={{
-              aspectRatio: '3/4',
+              aspectRatio: '4/5',
               background: '#0E1011',
               position: 'relative',
               marginBottom: '48px',
               overflow: 'hidden'
             }}>
               {member.image ? (
-                <Image src={member.image} alt={member.name} fill style={{ objectFit: 'cover' }} />
+                <Image src={member.image} alt={member.name} fill style={{ objectFit: 'cover', objectPosition: 'top' }} />
               ) : (
                 <div style={{
                   position: 'absolute', inset: 0,

@@ -349,20 +349,6 @@ export default function Services() {
         </div>
       </div>
 
-      {/* ─── CSS ────────────────────────────────────────────────────────── */}
-      <style>{`
-        @keyframes marquee-scroll {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-33.333%); }
-        }
-        .marquee-track {
-          animation: marquee-scroll 30s linear infinite;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .marquee-track { animation: none; }
-        }
-      `}</style>
-
     </section>
   )
 }

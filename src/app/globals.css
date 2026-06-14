@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── HEADER CONTAINER ────────────────────────────────────────────── */
+.header-inner-container {
+  padding-left: 96px;
+  padding-right: 96px;
+}
+@media (max-width: 767px) {
+  .header-inner-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
 /* ── CSS CUSTOM PROPERTIES ───────────────────────────────────────── */
 :root {
   /* Colors */
@@ -98,7 +110,7 @@ body {
 
 /* Novas seções padrões (alto espaçamento) */
 .section-massive {
-  padding: 160px 96px;
+  padding: 96px 96px;
 }
 .section-pad-96 {
   padding: 96px;
@@ -131,7 +143,7 @@ body {
     gap: 56px;
   }
   .section-massive {
-    padding: 80px 24px;
+    padding: 56px 24px;
   }
   .section-pad-96 {
     padding: 64px 24px;
@@ -404,7 +416,7 @@ body {
 }
 .hero-name {
   font-family: 'Anton SC', sans-serif;
-  font-size: 160px;
+  font-size: clamp(48px, 8vw, 120px);
   font-weight: 400;
   text-transform: uppercase;
   line-height: 1;
@@ -418,7 +430,7 @@ body {
   line-height: 1.3;
   letter-spacing: -0.5px;
   color: #0E1011;
-  max-width: 580px;
+  max-width: 800px;
   margin: 0;
 }
 .hero-part2 {
@@ -451,6 +463,75 @@ body {
   .hero-partners-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 32px; }
 }
 
+/* ── HERO — Animations & Extra ───────────────────────────────────── */
+@keyframes hero-logos-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+.hero-logos-track {
+  animation: hero-logos-scroll 25s linear infinite;
+}
+.hero-content {
+  padding: 120px 96px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 80px;
+  align-items: center;
+}
+.hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -15px rgba(0,0,0,0.15);
+}
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 80px 48px;
+  }
+  .hero-image-wrapper {
+    aspect-ratio: 4 / 3;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 767px) {
+  .hero-content {
+    padding: 64px 24px;
+  }
+  .hero-image-wrapper {
+    aspect-ratio: 1 / 1;
+  }
+  .hero-cta-bar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 24px !important;
+  }
+  .hero-cta-bar p {
+    white-space: normal !important;
+    font-size: 18px !important;
+    text-align: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-logos-track { animation: none; }
+}
+
+/* ── SERVICES — Marquee Animation ────────────────────────────────── */
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+.marquee-track {
+  animation: marquee-scroll 30s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
 /* ── PROJECTS GRID ───────────────────────────────────────────────── */
 .projects-grid {
   display: grid;
@@ -480,11 +561,11 @@ body {
 
 /* ── SERVICES ────────────────────────────────────────────────────── */
 .services-header {
-  padding: 96px 96px 80px;
+  padding: 64px 96px 48px;
 }
 .services-title-display {
   font-family: 'Anton SC', sans-serif;
-  font-size: clamp(60px, 18vw, 320px);
+  font-size: clamp(48px, 8vw, 120px);
   font-weight: 400;
   text-transform: uppercase;
   line-height: 0.85;
@@ -539,10 +620,11 @@ body {
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  padding: 0 96px 80px;
 }
 @media (max-width: 767px) {
   .testimonials-header-wrap { padding: 64px 24px 48px !important; }
-  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; padding: 0 24px; }
   .testimonials-grid > * { border-right: none !important; }
 }
 @media (min-width: 768px) and (max-width: 1280px) {
@@ -552,12 +634,17 @@ body {
 
 /* ── FOOTER ──────────────────────────────────────────────────────── */
 .footer-root {
-  padding: 96px;
+  padding: 80px 96px 48px;
 }
-.footer-nav-grid {
+.footer-main-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
 }
 .footer-bottom {
   display: flex;
@@ -565,12 +652,445 @@ body {
   align-items: center;
 }
 @media (max-width: 767px) {
-  .footer-root { padding: 48px 24px; }
-  .footer-nav-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
+  .footer-root { padding: 48px 24px 32px; }
+  .footer-main-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
 }
-@media (min-width: 768px) and (max-width: 1280px) {
-  .footer-nav-grid { grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 768px) and (max-width: 1024px) {
+  .footer-root { padding: 64px 48px 40px; }
+  .footer-main-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  .footer-brand-col {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ── MARKETING INSTINTIVO V2 ─────────────────────────────────────── */
+.mi-v2-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 64px;
+}
+.mi-v2-pilares-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.mi-v2-perguntas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.mi-v2-perguntas-grid > div {
+  border-right: 1px solid rgba(14,16,17,0.06);
+  border-bottom: 1px solid rgba(14,16,17,0.06);
+}
+.mi-v2-perguntas-grid > div:nth-child(4n) {
+  border-right: none;
+}
+.mi-v2-perguntas-grid > div:nth-child(n+5):nth-child(-n+8) {
+  border-bottom: none;
+}
+@media (max-width: 1024px) {
+  .mi-v2-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+  .mi-v2-pilares-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mi-v2-perguntas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mi-v2-perguntas-grid > div:nth-child(4n) {
+    border-right: 1px solid rgba(14,16,17,0.06);
+  }
+  .mi-v2-perguntas-grid > div:nth-child(2n) {
+    border-right: none;
+  }
+  .mi-v2-perguntas-grid > div:nth-child(n+5):nth-child(-n+8) {
+    border-bottom: 1px solid rgba(14,16,17,0.06);
+  }
+  .mi-v2-perguntas-grid > div:nth-child(n+7) {
+    border-bottom: none;
+  }
+}
+@media (max-width: 767px) {
+  .mi-v2-header-row { gap: 24px; }
+  .mi-v2-pilares-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .mi-v2-perguntas-grid { grid-template-columns: 1fr; }
+  .mi-v2-perguntas-grid > div {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(14,16,17,0.06) !important;
+  }
+  .mi-v2-perguntas-grid > div:last-child {
+    border-bottom: none !important;
+  }
+  section[id="marketing-instintivo"] > div {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+/* ── MARKETING INSTINTIVO V3 ─────────────────────────────────────── */
+.mi-v3-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 64px;
+}
+.mi-v3-pilares-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.mi-v3-perguntas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+.mi-v3-pergunta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 40px 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.3s ease;
+}
+.mi-v3-pergunta-item:hover {
+  background: rgba(255,255,255,0.03);
+}
+.mi-v3-pergunta-item:nth-child(odd) {
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.mi-v3-pergunta-item:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+.mi-v3-pergunta-num {
+  font-family: 'DM Serif Text', serif;
+  font-style: italic;
+  font-size: 48px;
+  line-height: 1;
+  color: rgba(255,255,255,0.08);
+  flex-shrink: 0;
+  width: 60px;
+  transition: color 0.3s ease;
+}
+.mi-v3-pergunta-item:hover .mi-v3-pergunta-num {
+  color: rgba(255,255,255,0.15);
+}
+
+@media (max-width: 1024px) {
+  .mi-v3-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+  .mi-v3-pilares-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .mi-v3-header-row { gap: 24px; }
+  .mi-v3-pilares-grid { grid-template-columns: 1fr 1fr; }
+  .mi-v3-perguntas-grid { grid-template-columns: 1fr; }
+  .mi-v3-pergunta-item {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+  }
+  .mi-v3-pergunta-item:last-child {
+    border-bottom: none !important;
+  }
+  .mi-v3-pergunta-num {
+    font-size: 36px;
+    width: 44px;
+  }
+  section[id="marketing-instintivo"] > div {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+/* ── MARKETING INSTINTIVO V4 (Light) ─────────────────────────────── */
+.mi-v4-pilares-row {
+  display: flex;
+  gap: 0;
+}
+.mi-v4-pilar {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 24px 24px 0;
+  border-right: 1px solid rgba(14,16,17,0.08);
+}
+.mi-v4-pilar:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+.mi-v4-pilar:first-child {
+  padding-left: 0;
+}
+.mi-v4-pilar-num {
+  font-family: 'DM Serif Text', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(14,16,17,0.25);
+  flex-shrink: 0;
+  width: 24px;
+  padding-top: 2px;
+}
+
+/* Perguntas — lista editorial 2 colunas */
+.mi-v4-perguntas-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+.mi-v4-pergunta {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 16px;
+  padding: 32px 40px 32px 0;
+  border-bottom: 1px solid rgba(14,16,17,0.06);
+  transition: background 0.3s ease;
+}
+.mi-v4-pergunta:hover {
+  background: rgba(14,16,17,0.02);
+}
+.mi-v4-pergunta:nth-child(odd) {
+  border-right: 1px solid rgba(14,16,17,0.06);
+  padding-right: 40px;
+  padding-left: 0;
+}
+.mi-v4-pergunta:nth-child(even) {
+  padding-left: 40px;
+}
+.mi-v4-pergunta:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+.mi-v4-pergunta-num {
+  grid-row: 1 / 3;
+  font-family: 'DM Serif Text', serif;
+  font-style: italic;
+  font-size: 36px;
+  line-height: 1;
+  color: rgba(14,16,17,0.08);
+  padding-top: 4px;
+  transition: color 0.3s ease;
+}
+.mi-v4-pergunta:hover .mi-v4-pergunta-num {
+  color: rgba(14,16,17,0.15);
+}
+.mi-v4-pergunta-titulo {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: clamp(18px, 1.8vw, 24px);
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  color: #0E1011;
+  margin: 0 0 8px;
+}
+.mi-v4-pergunta-texto {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(14,16,17,0.45);
+  margin: 0;
+  max-width: 400px;
+}
+
+@media (max-width: 1024px) {
+  .mi-v4-pilares-row {
+    flex-wrap: wrap;
+  }
+  .mi-v4-pilar {
+    flex: 1 1 45%;
+    border-right: none;
+    border-bottom: 1px solid rgba(14,16,17,0.06);
+    padding: 20px 0;
+  }
+  .mi-v4-pilar:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+}
+@media (max-width: 767px) {
+  .mi-v4-pilares-row {
+    flex-direction: column;
+  }
+  .mi-v4-pilar {
+    flex: 1 1 100%;
+    padding: 16px 0;
+  }
+  .mi-v4-pilar:last-child { border-bottom: none; }
+  .mi-v4-perguntas-list {
+    grid-template-columns: 1fr;
+  }
+  .mi-v4-pergunta {
+    padding: 24px 0 !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(14,16,17,0.06) !important;
+  }
+  .mi-v4-pergunta:last-child {
+    border-bottom: none !important;
+  }
+  section[id="marketing-instintivo"] > div {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+/* ── MARKETING INSTINTIVO V5 (Bold Editorial) ────────────────────── */
+.mi-v5-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 64px;
+}
+.mi-v5-title {
+  font-family: 'Anton SC', sans-serif;
+  font-size: clamp(48px, 8vw, 120px);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: -2px;
+  color: #0E1011;
+  margin: 0;
+}
+
+/* Pilares — compact tags */
+.mi-v5-pilares {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.mi-v5-pilar-tag {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(14,16,17,0.5);
+  padding: 10px 20px;
+  border: 1px solid rgba(14,16,17,0.1);
+  border-radius: 100px;
+  transition: all 0.25s ease;
+  cursor: default;
+}
+.mi-v5-pilar-tag:hover {
+  background: #0E1011;
+  color: #FFFFFF;
+  border-color: #0E1011;
+}
+
+/* Question rows — full width */
+.mi-v5-row {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 28px 32px;
+  border-bottom: 1px solid rgba(14,16,17,0.06);
+  cursor: default;
+  transition: background 0.35s ease, padding 0.35s ease;
+  margin: 0 -32px;
+  border-radius: 4px;
+}
+.mi-v5-row:first-child {
+  border-top: 1px solid rgba(14,16,17,0.06);
+  margin-top: 16px;
+}
+.mi-v5-row-num {
+  font-family: 'DM Serif Text', serif;
+  font-style: italic;
+  font-size: 42px;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 56px;
+  text-align: right;
+  transition: color 0.35s ease;
+}
+.mi-v5-row-titulo {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: clamp(20px, 2vw, 28px);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  flex-shrink: 0;
+  min-width: 240px;
+  transition: color 0.35s ease;
+}
+.mi-v5-row-texto {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.5;
+  flex: 1;
+  transition: color 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+}
+.mi-v5-row-arrow {
+  font-size: 24px;
+  flex-shrink: 0;
+  transition: color 0.35s ease, transform 0.35s ease;
+}
+
+/* CTA */
+.mi-v5-cta {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #FFFFFF;
+  background: #0E1011;
+  padding: 18px 48px;
+  border-radius: 100px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+.mi-v5-cta:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1024px) {
+  .mi-v5-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .mi-v5-row-texto {
+    display: none;
+  }
+  .mi-v5-row-titulo {
+    min-width: unset;
+    flex: 1;
+  }
+}
+@media (max-width: 767px) {
+  .mi-v5-row {
+    gap: 16px;
+    padding: 20px 16px;
+    margin: 0 -16px;
+  }
+  .mi-v5-row-num {
+    font-size: 28px;
+    width: 36px;
+  }
+  .mi-v5-row-arrow { display: none; }
+  section[id="marketing-instintivo"] > div {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
 }
 
 /* ── SCROLL REVEAL ───────────────────────────────────────────────── */

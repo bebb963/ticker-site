@@ -50,12 +50,7 @@ export default function Header({ variant = 'small' }: HeaderProps) {
           color: '#FFFFFF'
         }}
       >
-        <div className="container-content pointer-events-auto" style={{ paddingLeft: 'var(--px-val, 96px)', paddingRight: 'var(--px-val, 96px)' }}>
-          <style dangerouslySetInnerHTML={{ __html: `
-            @media (max-width: 767px) {
-              header > div { --px-val: 24px; }
-            }
-          ` }} />
+        <div className="container-content pointer-events-auto header-inner-container">
           
           {/* ── DESKTOP ───────────────────────────────────────────────────── */}
           <div className="hidden lg:flex items-center justify-between w-full">
