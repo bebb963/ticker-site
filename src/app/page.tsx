@@ -25,7 +25,6 @@ export default function Home() {
       <Hero />
       {/* <Partners /> */}
       {/* <Manifesto /> */}
-      <ManifestoV2 />
       {/* <MarketingInstintivo /> */}
       {/* <MarketingInstintivoV2 /> */}
       {/* <MarketingInstintivoV3 /> */}
@@ -37,6 +36,7 @@ export default function Home() {
       {/* <TrabalheConosco /> */}
       {/* <OQueNaoFaz /> */}
       <QuemSomos />
+      <ManifestoV2 />
       {/* <Testimonials /> */}
       <Contato />
       <Footer variant="dark" />

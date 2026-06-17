@@ -36,8 +36,8 @@ export default function Hero() {
           flexDirection: 'column',
         }}
       >
-        {/* Vídeo de fundo */}
-        <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
+        {/* Vídeo de fundo — Desktop (horizontal) */}
+        <div className="hero-video-desktop" style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
           <video
             autoPlay
             loop
@@ -49,9 +49,30 @@ export default function Hero() {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
+              objectPosition: 'center',
             }}
           >
-            <source src="/images/TICKER vertical (1).mp4" type="video/mp4" />
+            <source src="/videos/hero-desktop.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        {/* Vídeo de fundo — Mobile (vertical) */}
+        <div className="hero-video-mobile" style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+          >
+            <source src="/videos/hero-mobile.mp4" type="video/mp4" />
           </video>
         </div>
 
@@ -211,8 +232,8 @@ export default function Hero() {
 
           <div className="hero-image-wrapper">
             <img
-              src="/images/hero_brand_image.png"
-              alt="Ticker Marketing"
+              src="/images/captação.jpg"
+              alt="Ticker Marketing — Captação"
               style={{
                 width: '100%',
                 height: '100%',

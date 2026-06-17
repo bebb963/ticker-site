@@ -60,7 +60,7 @@ interface FooterProps {
 
 const TOKENS = {
   dark: {
-    bg:           '#0E1011',
+    bg:           '#000000',
     separator:    'rgba(255,255,255,0.08)',
     label:        'rgba(255,255,255,0.4)',
     link:         'rgba(255,255,255,0.7)',

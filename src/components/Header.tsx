@@ -55,15 +55,10 @@ export default function Header({ variant = 'small' }: HeaderProps) {
           {/* ── DESKTOP ───────────────────────────────────────────────────── */}
           <div className="hidden lg:flex items-center justify-between w-full">
 
-            {/* Variante "full" → logo à esquerda */}
-            {variant === 'full' && (
-              <Link href="/" aria-label="Ticker — Home" style={{ color: '#FFFFFF' }}>
-                <Logo variant="dark" />
-              </Link>
-            )}
-
-            {/* Variante "small" → espaço vazio à esquerda */}
-            {variant === 'small' && <div />}
+            {/* Logo — esquerda */}
+            <Link href="/" aria-label="Ticker — Home" style={{ color: '#FFFFFF' }}>
+              <Logo variant="dark" />
+            </Link>
 
             {/* Links de nav — centro */}
             <nav

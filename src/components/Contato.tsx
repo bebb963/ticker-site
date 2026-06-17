@@ -12,8 +12,8 @@ export default function Contato() {
       aria-label="Contato" 
       className="section-massive"
       style={{ 
-        background: '#0E1011', 
-        color: '#FFFFFF'
+        background: '#F8F8F8', 
+        color: '#0E1011'
       }}
     >
       <div className="grid-split">
@@ -24,7 +24,7 @@ export default function Contato() {
             fontStyle: 'italic',
             fontSize: '32px',
             lineHeight: 1,
-            color: 'rgba(255,255,255,0.4)',
+            color: 'rgba(14,16,17,0.35)',
             display: 'block',
             marginBottom: '32px',
           }}>
@@ -37,7 +37,7 @@ export default function Contato() {
             textTransform: 'uppercase',
             lineHeight: 1,
             letterSpacing: '-1px',
-            color: '#FFFFFF',
+            color: '#0E1011',
             margin: '0 0 32px'
           }}>
             Vamos<br/>conversar.
@@ -47,7 +47,7 @@ export default function Contato() {
             fontWeight: 400,
             fontSize: '22px',
             lineHeight: 1.7,
-            color: 'rgba(255,255,255,0.7)',
+            color: 'rgba(14,16,17,0.55)',
             maxWidth: '600px',
             marginBottom: '48px'
           }}>
@@ -59,7 +59,7 @@ export default function Contato() {
               fontFamily: "'Inter', sans-serif",
               fontWeight: 600,
               fontSize: '16px',
-              color: '#FFFFFF',
+              color: '#0E1011',
               display: 'block',
               marginBottom: '8px'
             }}>
@@ -69,7 +69,7 @@ export default function Contato() {
               fontFamily: "'DM Serif Text', serif",
               fontStyle: 'italic',
               fontSize: '24px',
-              color: 'rgba(255,255,255,0.6)',
+              color: 'rgba(14,16,17,0.5)',
               textDecoration: 'none'
             }}>
               bruno@tickermkt.com.br
@@ -88,15 +88,15 @@ export default function Contato() {
                 width: '100%',
                 background: 'transparent',
                 border: 'none',
-                borderBottom: '1px solid rgba(255,255,255,0.2)',
+                borderBottom: '1px solid rgba(14,16,17,0.15)',
                 padding: '16px 0',
                 fontFamily: "'Inter', sans-serif",
                 fontSize: '24px',
-                color: '#FFFFFF',
+                color: '#0E1011',
                 outline: 'none',
               }}
-              onFocus={(e) => (e.target.style.borderBottom = '1px solid #FFFFFF')}
-              onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(255,255,255,0.2)')}
+              onFocus={(e) => (e.target.style.borderBottom = '1px solid #0E1011')}
+              onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(14,16,17,0.15)')}
             />
           </div>
 
@@ -109,15 +109,15 @@ export default function Contato() {
                 width: '100%',
                 background: 'transparent',
                 border: 'none',
-                borderBottom: '1px solid rgba(255,255,255,0.2)',
+                borderBottom: '1px solid rgba(14,16,17,0.15)',
                 padding: '16px 0',
                 fontFamily: "'Inter', sans-serif",
                 fontSize: '24px',
-                color: '#FFFFFF',
+                color: '#0E1011',
                 outline: 'none',
               }}
-              onFocus={(e) => (e.target.style.borderBottom = '1px solid #FFFFFF')}
-              onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(255,255,255,0.2)')}
+              onFocus={(e) => (e.target.style.borderBottom = '1px solid #0E1011')}
+              onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(14,16,17,0.15)')}
             />
           </div>
 
@@ -130,15 +130,15 @@ export default function Contato() {
                 width: '100%',
                 background: 'transparent',
                 border: 'none',
-                borderBottom: '1px solid rgba(255,255,255,0.2)',
+                borderBottom: '1px solid rgba(14,16,17,0.15)',
                 padding: '16px 0',
                 fontFamily: "'Inter', sans-serif",
                 fontSize: '24px',
-                color: '#FFFFFF',
+                color: '#0E1011',
                 outline: 'none',
               }}
-              onFocus={(e) => (e.target.style.borderBottom = '1px solid #FFFFFF')}
-              onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(255,255,255,0.2)')}
+              onFocus={(e) => (e.target.style.borderBottom = '1px solid #0E1011')}
+              onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(14,16,17,0.15)')}
             />
           </div>
 
@@ -151,16 +151,16 @@ export default function Contato() {
                 width: '100%',
                 background: 'transparent',
                 border: 'none',
-                borderBottom: '1px solid rgba(255,255,255,0.2)',
+                borderBottom: '1px solid rgba(14,16,17,0.15)',
                 padding: '16px 0',
                 fontFamily: "'Inter', sans-serif",
                 fontSize: '24px',
-                color: '#FFFFFF',
+                color: '#0E1011',
                 outline: 'none',
                 resize: 'none'
               }}
-              onFocus={(e) => (e.target.style.borderBottom = '1px solid #FFFFFF')}
-              onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(255,255,255,0.2)')}
+              onFocus={(e) => (e.target.style.borderBottom = '1px solid #0E1011')}
+              onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(14,16,17,0.15)')}
             />
           </div>
 
@@ -169,10 +169,10 @@ export default function Contato() {
               fontFamily: "'Inter', sans-serif",
               fontSize: '22px',
               fontWeight: 600,
-              color: '#FFFFFF',
+              color: '#0E1011',
               background: 'transparent',
               border: 'none',
-              borderBottom: '2px solid #FFFFFF',
+              borderBottom: '2px solid #0E1011',
               padding: '0 0 4px',
               cursor: 'pointer',
               display: 'inline-block',

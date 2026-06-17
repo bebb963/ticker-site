@@ -463,6 +463,14 @@ body {
   .hero-partners-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 32px; }
 }
 
+/* ── HERO — Responsive Video Toggle ──────────────────────────────── */
+.hero-video-mobile  { display: none; }
+.hero-video-desktop { display: flex; }
+@media (max-width: 767px) {
+  .hero-video-desktop { display: none; }
+  .hero-video-mobile  { display: flex; }
+}
+
 /* ── HERO — Animations & Extra ───────────────────────────────────── */
 @keyframes hero-logos-scroll {
   0%   { transform: translateX(0); }
@@ -953,155 +961,372 @@ body {
   }
 }
 
-/* ── MARKETING INSTINTIVO V5 (Bold Editorial) ────────────────────── */
-.mi-v5-header {
+/* ── MARKETING INSTINTIVO (Instinto + Metodologia — Kajo DS) ──────── */
+.mi-section {
+  background: #0E1011;
+  overflow: hidden;
+}
+.mi-header {
+  padding: 96px 96px 0;
+}
+.mi-eyebrow {
+  font-family: 'DM Serif Text', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: rgba(255,255,255,0.35);
+  display: block;
+  margin-bottom: 32px;
+}
+.mi-header-row {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 64px;
 }
-.mi-v5-title {
+.mi-title {
   font-family: 'Anton SC', sans-serif;
   font-size: clamp(48px, 8vw, 120px);
   font-weight: 400;
   text-transform: uppercase;
   line-height: 0.95;
   letter-spacing: -2px;
-  color: #0E1011;
+  color: #FFFFFF;
+  margin: 0;
+}
+.mi-intro {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.7;
+  color: rgba(255,255,255,0.5);
+  max-width: 400px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* Block wrapper */
+.mi-block {
+  padding: 48px 96px 0;
+}
+.mi-block-bottom {
+  padding-bottom: 96px;
+}
+.mi-sublabel {
+  font-family: 'DM Serif Text', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: rgba(255,255,255,0.4);
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ── Instinto: Compact horizontal flow ────────────────────────── */
+.mi-instinto-row {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 32px;
+}
+.mi-pilares-flow {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+.mi-pilar {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  cursor: default;
+}
+.mi-pilar-num {
+  font-family: 'DM Serif Text', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: rgba(255,255,255,0.25);
+}
+.mi-pilar-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: clamp(22px, 2vw, 28px);
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+.mi-pilar:hover .mi-pilar-title {
+  color: rgba(255,255,255,0.6);
+}
+.mi-instinto-desc {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: clamp(18px, 1.5vw, 24px);
+  line-height: 1.7;
+  color: rgba(255,255,255,0.45);
+  max-width: 780px;
+  margin: 32px 0 0;
+}
+
+/* ── Metodologia: Editorial numbered list ─────────────────────── */
+.mi-metodo-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.mi-metodo-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 36px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.3s ease;
+}
+.mi-metodo-item:nth-child(odd) {
+  padding-right: 48px;
+}
+.mi-metodo-item:nth-child(even) {
+  padding-left: 48px;
+  border-left: 1px solid rgba(255,255,255,0.06);
+}
+.mi-metodo-item:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+.mi-metodo-num {
+  font-family: 'DM Serif Text', serif;
+  font-style: italic;
+  font-size: clamp(36px, 4vw, 48px);
+  color: rgba(255,255,255,0.12);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 44px;
+}
+.mi-metodo-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+.mi-metodo-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: clamp(20px, 1.8vw, 24px);
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+.mi-metodo-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.7;
+  color: rgba(255,255,255,0.4);
   margin: 0;
 }
 
-/* Pilares — compact tags */
-.mi-v5-pilares {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.mi-v5-pilar-tag {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  color: rgba(14,16,17,0.5);
-  padding: 10px 20px;
-  border: 1px solid rgba(14,16,17,0.1);
-  border-radius: 100px;
-  transition: all 0.25s ease;
-  cursor: default;
-}
-.mi-v5-pilar-tag:hover {
-  background: #0E1011;
-  color: #FFFFFF;
-  border-color: #0E1011;
-}
-
-/* Question rows — full width */
-.mi-v5-row {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  padding: 28px 32px;
-  border-bottom: 1px solid rgba(14,16,17,0.06);
-  cursor: default;
-  transition: background 0.35s ease, padding 0.35s ease;
-  margin: 0 -32px;
-  border-radius: 4px;
-}
-.mi-v5-row:first-child {
-  border-top: 1px solid rgba(14,16,17,0.06);
-  margin-top: 16px;
-}
-.mi-v5-row-num {
-  font-family: 'DM Serif Text', serif;
-  font-style: italic;
-  font-size: 42px;
-  line-height: 1;
-  flex-shrink: 0;
-  width: 56px;
-  text-align: right;
-  transition: color 0.35s ease;
-}
-.mi-v5-row-titulo {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: clamp(20px, 2vw, 28px);
-  letter-spacing: -0.5px;
-  line-height: 1.2;
-  flex-shrink: 0;
-  min-width: 240px;
-  transition: color 0.35s ease;
-}
-.mi-v5-row-texto {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 1.5;
-  flex: 1;
-  transition: color 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
-}
-.mi-v5-row-arrow {
-  font-size: 24px;
-  flex-shrink: 0;
-  transition: color 0.35s ease, transform 0.35s ease;
-}
-
-/* CTA */
-.mi-v5-cta {
-  font-family: 'Inter', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  text-decoration: none;
-  color: #FFFFFF;
-  background: #0E1011;
-  padding: 18px 48px;
-  border-radius: 100px;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  display: inline-block;
-}
-.mi-v5-cta:hover {
-  opacity: 0.85;
-  transform: translateY(-1px);
-}
-
+/* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .mi-v5-header {
+  .mi-header-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
   }
-  .mi-v5-row-texto {
-    display: none;
+  .mi-instinto-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
   }
-  .mi-v5-row-titulo {
-    min-width: unset;
-    flex: 1;
+  .mi-pilares-flow {
+    flex-wrap: wrap;
+    gap: 24px 40px;
+  }
+  .mi-metodo-item:nth-child(odd) {
+    padding-right: 32px;
+  }
+  .mi-metodo-item:nth-child(even) {
+    padding-left: 32px;
   }
 }
 @media (max-width: 767px) {
-  .mi-v5-row {
+  .mi-header {
+    padding: 64px 24px 0;
+  }
+  .mi-block {
+    padding: 32px 24px 0;
+  }
+  .mi-block-bottom {
+    padding-bottom: 64px;
+  }
+  .mi-pilares-flow {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 16px;
-    padding: 20px 16px;
-    margin: 0 -16px;
   }
-  .mi-v5-row-num {
-    font-size: 28px;
-    width: 36px;
+  .mi-metodo-list {
+    grid-template-columns: 1fr;
   }
-  .mi-v5-row-arrow { display: none; }
-  section[id="marketing-instintivo"] > div {
-    padding-left: 24px !important;
-    padding-right: 24px !important;
+  .mi-metodo-item:nth-child(odd) {
+    padding-right: 0;
+  }
+  .mi-metodo-item:nth-child(even) {
+    padding-left: 0;
+    border-left: none;
+  }
+  .mi-metodo-item:nth-last-child(-n+2) {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .mi-metodo-item:last-child {
+    border-bottom: none;
   }
 }
 
+
+/* ── QUEM SOMOS (Os Sócios — 50/50 Grid — Kajo DS) ──────────────── */
+.qs-section {
+  background: #F8F8F8;
+  color: #0E1011;
+  overflow: hidden;
+}
+.qs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+.qs-image-col {
+  position: relative;
+  overflow: hidden;
+}
+.qs-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Content column */
+.qs-content-col {
+  padding: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+.qs-eyebrow {
+  font-family: 'DM Serif Text', serif;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1;
+  color: rgba(14,16,17,0.3);
+  display: block;
+  margin-bottom: 32px;
+}
+.qs-title {
+  font-family: 'Anton SC', sans-serif;
+  font-size: clamp(48px, 7vw, 120px);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -2px;
+  color: #0E1011;
+  margin: 0 0 24px;
+}
+.qs-intro {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.7;
+  color: rgba(14,16,17,0.5);
+  max-width: 480px;
+  margin: 0 0 48px;
+}
+
+/* Partner cards */
+.qs-card {
+  border-top: 1px solid rgba(14,16,17,0.12);
+  padding: 32px 0;
+}
+.qs-card:last-child {
+  padding-bottom: 0;
+}
+.qs-card-label {
+  font-family: 'DM Serif Text', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(14,16,17,0.35);
+  display: block;
+  margin-bottom: 12px;
+}
+.qs-card-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: clamp(24px, 2.5vw, 36px);
+  letter-spacing: -0.5px;
+  color: #0E1011;
+  margin: 0 0 12px;
+}
+.qs-card-desc {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: clamp(14px, 1.1vw, 17px);
+  line-height: 1.7;
+  color: rgba(14,16,17,0.5);
+  margin: 0;
+  max-width: 480px;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .qs-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .qs-image-col {
+    max-height: 500px;
+  }
+  .qs-content-col {
+    padding: 64px 96px;
+  }
+}
+@media (max-width: 767px) {
+  .qs-image-col {
+    max-height: 400px;
+  }
+  .qs-content-col {
+    padding: 48px 24px 64px;
+  }
+}
+
+
+
 /* ── SCROLL REVEAL ───────────────────────────────────────────────── */
+/*
+ * FALLBACK DE SEGURANÇA:
+ * O .reveal começa invisível (opacity:0). O JS (useScrollReveal) deve
+ * adicionar .in-view para mostrar. Mas se o JS falhar, a animação CSS
+ * "reveal-fallback" garante que o conteúdo apareça após 2s.
+ *
+ * Quando .in-view é adicionado, a animação é cancelada pelo
+ * animation: none, e as propriedades reais do .in-view assumem.
+ */
+@keyframes reveal-fallback {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .reveal {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  /* Safety net: se o JS não disparar, o CSS garante a exibição */
+  animation: reveal-fallback 0.6s ease-out 2s forwards;
 }
 .reveal.in-view {
   opacity: 1;
   transform: translateY(0);
+  /* Cancela o fallback — o JS disparou corretamente */
+  animation: none;
 }
 /* stagger: aplica style={{ '--index': i } em cada filho */
 .stagger > * {
@@ -1113,5 +1338,6 @@ body {
     opacity: 1;
     transform: none;
     transition: none;
+    animation: none;
   }
 }

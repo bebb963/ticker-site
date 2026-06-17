@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kajo Studio — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Inter:wght@400;500;600&family=DM+Serif+Text:ital@1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ds-black: #0E1011;
+    --ds-muted-bg: #F8F8F8;
+    --ds-white: #FFFFFF;
+    --ds-text-muted: rgba(14, 16, 17, 0.6);
+    --ds-border: rgba(14, 16, 17, 0.12);
+    --ds-border-strong: rgba(14, 16, 17, 0.25);
+
+    --font-display: 'Anton SC', 'Impact', sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-meta: 'DM Serif Text', 'Georgia', serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: #fff;
+    color: var(--ds-black);
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; }
+    .cover { min-height: 100vh; }
+    body { font-size: 11pt; }
+  }
+
+  /* ── LAYOUT ── */
+  .page-wrap { max-width: 1100px; margin: 0 auto; }
+
+  /* ── STICKY NAV ── */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    border-bottom: 1px solid var(--ds-border);
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .sticky-nav a {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ds-text-muted);
+    text-decoration: none;
+    padding: 14px 20px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .sticky-nav a:hover { color: var(--ds-black); border-bottom-color: var(--ds-black); }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--ds-black);
+    color: #fff;
+    padding: 80px 72px 72px;
+    position: relative;
+    overflow: hidden;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .cover-badge {
+    font-family: var(--font-meta);
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(255,255,255,0.4);
+  }
+  .cover-version {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+  .cover-title {
+    font-family: var(--font-display);
+    font-size: clamp(72px, 10vw, 140px);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 0.92;
+    color: #fff;
+    letter-spacing: -2px;
+    margin: 40px 0 48px;
+  }
+  .cover-title span { color: rgba(255,255,255,0.2); }
+  .cover-bottom {
+    display: flex;
+    gap: 48px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+  }
+  .cover-stat { display: flex; flex-direction: column; gap: 4px; }
+  .cover-stat-label { font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.08em; }
+  .cover-stat-val { font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 500; }
+  .cover-bg {
+    font-family: var(--font-display);
+    font-size: 320px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.03);
+    position: absolute;
+    bottom: -60px;
+    right: -20px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ── SECTION ── */
+  .ds-section {
+    padding: 72px;
+    border-bottom: 1px solid var(--ds-border);
+  }
+  .ds-section:nth-child(odd) { background: #fff; }
+  .ds-section:nth-child(even) { background: var(--ds-muted-bg); }
+  .section-eyebrow {
+    font-family: var(--font-meta);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ds-text-muted);
+    margin-bottom: 8px;
+  }
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: 52px;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: var(--ds-black);
+    margin-bottom: 48px;
+  }
+  .section-intro {
+    font-size: 15px;
+    color: var(--ds-text-muted);
+    line-height: 1.7;
+    max-width: 680px;
+    margin-bottom: 40px;
+  }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 56px; }
+  .subsection-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ds-text-muted);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ds-border);
+  }
+
+  /* ── COLORS ── */
+  .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+  .swatch {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--ds-border);
+  }
+  .swatch-color { height: 88px; }
+  .swatch-info { padding: 12px 14px; background: #fff; }
+  .swatch-name { font-size: 12px; font-weight: 600; color: var(--ds-black); }
+  .swatch-hex { font-size: 11px; color: var(--ds-text-muted); font-family: monospace; margin-top: 2px; }
+  .swatch-use { font-size: 10px; color: var(--ds-text-muted); font-style: italic; margin-top: 4px; border-top: 1px solid var(--ds-border); padding-top: 6px; margin-top: 8px; }
+
+  .color-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .css-block {
+    background: var(--ds-black);
+    color: rgba(255,255,255,0.7);
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 2;
+    padding: 24px 28px;
+    border-radius: 12px;
+    margin-top: 24px;
+  }
+  .css-comment { color: rgba(255,255,255,0.25); }
+  .css-prop { color: #7dd3fc; }
+  .css-val { color: #86efac; }
+
+  /* ── TYPOGRAPHY ── */
+  .type-specimen {
+    border: 1px solid var(--ds-border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .type-preview {
+    padding: 36px 40px;
+    background: var(--ds-muted-bg);
+    border-bottom: 1px solid var(--ds-border);
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+  }
+  .type-preview.dark-prev { background: var(--ds-black); }
+  .type-meta-row {
+    display: flex;
+    gap: 32px;
+    padding: 14px 24px;
+    background: #fff;
+    flex-wrap: wrap;
+  }
+  .type-meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .type-meta-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-text-muted); }
+  .type-meta-val { font-size: 12px; font-family: monospace; color: var(--ds-black); }
+
+  /* Actual type styles */
+  .t-xxlarge {
+    font-family: var(--font-display);
+    font-size: clamp(60px, 8vw, 100px);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--ds-black);
+  }
+  .t-hero {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 6vw, 80px);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1;
+    color: #fff;
+  }
+  .t-h2-display {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: var(--ds-black);
+  }
+  .t-heading-alt {
+    font-family: var(--font-body);
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -1.5px;
+    color: var(--ds-black);
+  }
+  .t-heading-h3 {
+    font-family: var(--font-body);
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.8px;
+    color: var(--ds-black);
+  }
+  .t-body-text {
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--ds-text-muted);
+    max-width: 580px;
+  }
+  .t-meta-label {
+    font-family: var(--font-meta);
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ds-text-muted);
+  }
+  .t-nav-item {
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ds-black);
+  }
+
+  /* Scale table */
+  .ds-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .ds-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ds-text-muted);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--ds-border);
+  }
+  .ds-table td {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--ds-border);
+    vertical-align: middle;
+  }
+  .ds-table tr:last-child td { border-bottom: none; }
+  .ds-table td:first-child { font-weight: 500; color: var(--ds-black); }
+  .ds-table td:not(:first-child) { color: var(--ds-text-muted); font-family: monospace; font-size: 12px; }
+  .ds-table td .tag {
+    display: inline-block;
+    font-family: monospace;
+    font-size: 10px;
+    background: var(--ds-black);
+    color: #fff;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-right: 6px;
+  }
+
+  /* ── SPACING ── */
+  .spacing-list { display: flex; flex-direction: column; gap: 0; }
+  .spacing-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 60px;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--ds-border);
+  }
+  .spacing-row:first-child { border-top: 1px solid var(--ds-border); }
+  .spacing-token { font-family: monospace; font-size: 12px; color: var(--ds-text-muted); }
+  .spacing-bar-outer { background: var(--ds-border); border-radius: 3px; height: 10px; overflow: hidden; }
+  .spacing-bar-inner { height: 100%; background: var(--ds-black); border-radius: 3px; }
+  .spacing-px { font-size: 12px; font-weight: 500; color: var(--ds-black); text-align: right; }
+
+  /* ── COMPONENTS ── */
+  .comp-showcase {
+    border: 1px solid var(--ds-border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .comp-preview-area {
+    padding: 48px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--ds-border);
+    min-height: 140px;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .comp-preview-area.bg-dark { background: var(--ds-black); }
+  .comp-preview-area.bg-muted { background: var(--ds-muted-bg); }
+  .comp-preview-area.bg-white { background: #fff; }
+  .comp-spec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #fff;
+  }
+  .comp-spec-item {
+    padding: 14px 20px;
+    border-right: 1px solid var(--ds-border);
+    border-bottom: 1px solid var(--ds-border);
+  }
+  .comp-spec-item:nth-child(even) { border-right: none; }
+  .comp-spec-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ds-text-muted); margin-bottom: 4px; }
+  .comp-spec-val { font-size: 12px; font-family: monospace; color: var(--ds-black); }
+
+  /* Demo: Header */
+  .demo-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 24px; background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+    width: 100%; max-width: 700px;
+  }
+  .demo-header-brand { font-family: var(--font-display); font-size: 22px; text-transform: uppercase; color: #fff; }
+  .demo-nav-links { display: flex; gap: 24px; }
+  .demo-nav-link { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.7); }
+  .demo-cta-link { font-size: 14px; font-weight: 600; color: #fff; border-bottom: 2px solid #fff; padding-bottom: 1px; }
+
+  /* Demo: Hero */
+  .demo-hero { display: flex; width: 100%; max-width: 680px; height: 200px; border-radius: 8px; overflow: hidden; }
+  .demo-hero-left { flex: 1; background: #0E1011; display: flex; align-items: center; justify-content: center; }
+  .demo-hero-img-hint { font-size: 10px; color: rgba(255,255,255,0.2); font-style: italic; }
+  .demo-hero-right { flex: 1; background: var(--ds-muted-bg); padding: 20px; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+  .demo-hero-name { font-family: var(--font-display); font-size: 28px; text-transform: uppercase; color: var(--ds-black); line-height: 1; }
+  .demo-hero-loc { font-family: var(--font-meta); font-style: italic; font-size: 12px; color: var(--ds-text-muted); }
+  .demo-hero-tag { font-size: 13px; font-weight: 600; color: var(--ds-black); letter-spacing: -0.3px; line-height: 1.3; }
+
+  /* Demo: Project Card */
+  .demo-project-card {
+    width: 170px; border-radius: 8px; overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  }
+  .demo-project-img {
+    height: 120px; background: #0E1011;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .demo-project-img::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.3); }
+  .demo-project-logo { font-family: var(--font-display); font-size: 22px; text-transform: uppercase; color: rgba(255,255,255,0.85); position: relative; z-index: 1; letter-spacing: 1px; }
+  .demo-project-footer { background: var(--ds-muted-bg); padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .demo-project-name { font-size: 14px; font-weight: 600; color: var(--ds-black); letter-spacing: -0.4px; }
+  .demo-project-year { font-family: var(--font-meta); font-style: italic; font-size: 12px; color: var(--ds-text-muted); }
+
+  /* Demo: Service Item */
+  .demo-service { padding: 24px 0; border-top: 1px solid var(--ds-border); max-width: 600px; width: 100%; }
+  .demo-service-title { font-size: 22px; font-weight: 600; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .demo-service-desc { font-size: 13px; color: var(--ds-text-muted); margin-bottom: 12px; }
+  .demo-service-label { font-family: var(--font-meta); font-style: italic; font-size: 14px; color: var(--ds-text-muted); margin-bottom: 10px; display: block; }
+  .demo-service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; }
+  .demo-service-item { font-size: 13px; font-weight: 600; color: var(--ds-black); }
+
+  /* Demo: Testimonial */
+  .demo-testimonial {
+    background: #fff; border: 1px solid var(--ds-border); border-radius: 10px;
+    padding: 20px 22px; max-width: 240px;
+  }
+  .demo-quote { font-family: var(--font-display); font-size: 40px; color: var(--ds-black); line-height: 0.8; margin-bottom: 12px; }
+  .demo-quote-title { font-size: 12px; font-weight: 600; color: var(--ds-black); margin-bottom: 6px; line-height: 1.3; }
+  .demo-quote-body { font-size: 11px; line-height: 1.6; color: var(--ds-text-muted); margin-bottom: 14px; }
+  .demo-quote-author { font-size: 11px; font-weight: 600; color: var(--ds-black); }
+  .demo-quote-company { font-family: var(--font-meta); font-style: italic; font-size: 11px; color: var(--ds-text-muted); }
+
+  /* Demo: Button */
+  .demo-btn-text {
+    font-family: var(--font-body); font-size: 17px; font-weight: 600;
+    color: var(--ds-black); border: none; background: none;
+    border-bottom: 2px solid var(--ds-black); padding-bottom: 2px;
+    cursor: pointer; display: inline-block;
+  }
+  .demo-btn-text.on-dark { color: #fff; border-bottom-color: #fff; }
+
+  /* Demo: Section Label */
+  .demo-section-label { font-family: var(--font-meta); font-style: italic; font-size: 22px; color: var(--ds-text-muted); }
+
+  /* ── LAYOUT SECTION ── */
+  .layout-grid { display: grid; gap: 16px; }
+  .layout-diagram {
+    border: 1px solid var(--ds-border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .layout-title-bar {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--ds-text-muted);
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--ds-border);
+    background: #fff;
+  }
+  .layout-viz { display: flex; }
+  .layout-block {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; padding: 20px 16px; text-align: center;
+    gap: 4px; min-height: 80px; font-size: 12px; flex: 1;
+  }
+  .layout-block strong { font-size: 13px; font-weight: 600; display: block; margin-bottom: 2px; }
+  .layout-block.lb-dark { background: var(--ds-black); color: rgba(255,255,255,0.5); }
+  .layout-block.lb-dark strong { color: rgba(255,255,255,0.9); }
+  .layout-block.lb-muted { background: var(--ds-muted-bg); color: var(--ds-text-muted); }
+  .layout-block.lb-muted strong { color: var(--ds-black); }
+  .layout-block.lb-white { background: #fff; color: var(--ds-text-muted); }
+  .layout-block.lb-white strong { color: var(--ds-black); }
+  .layout-block.lb-border { border-right: 1px solid var(--ds-border); }
+  .layout-row { display: flex; border-top: 1px solid var(--ds-border); }
+  .layout-footer {
+    display: flex; justify-content: space-between;
+    padding: 8px 16px; background: #fff;
+    border-top: 1px solid var(--ds-border);
+    font-family: monospace; font-size: 11px; color: var(--ds-text-muted);
+  }
+
+  /* Page map */
+  .page-map { border: 1px solid var(--ds-border); border-radius: 12px; overflow: hidden; }
+  .page-map-row {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--ds-border);
+  }
+  .page-map-row:last-child { border-bottom: none; }
+  .page-map-num { font-family: var(--font-meta); font-style: italic; font-size: 13px; color: var(--ds-text-muted); width: 28px; flex-shrink: 0; }
+  .page-map-name { font-size: 14px; font-weight: 600; color: var(--ds-black); min-width: 200px; }
+  .page-map-meta { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.05em; padding: 3px 9px; border-radius: 100px;
+    white-space: nowrap;
+  }
+  .pill-dark { background: var(--ds-black); color: #fff; }
+  .pill-gray { background: var(--ds-muted-bg); color: var(--ds-text-muted); border: 1px solid var(--ds-border); }
+  .pill-blue { background: #dbeafe; color: #1d4ed8; }
+  .page-map-size { margin-left: auto; font-family: monospace; font-size: 11px; color: var(--ds-text-muted); }
+
+  /* ── EFFECTS & TRANSITIONS ── */
+  .effect-card {
+    border: 1px solid var(--ds-border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    background: #fff;
+    margin-bottom: 16px;
+  }
+  .effect-name { font-size: 15px; font-weight: 600; color: var(--ds-black); margin-bottom: 6px; }
+  .effect-where { font-family: var(--font-meta); font-style: italic; font-size: 13px; color: var(--ds-text-muted); margin-bottom: 14px; }
+  .effect-code {
+    background: var(--ds-black); color: rgba(255,255,255,0.8);
+    font-family: monospace; font-size: 12px; line-height: 1.9;
+    padding: 16px 20px; border-radius: 8px; margin-bottom: 12px;
+    overflow-x: auto;
+  }
+  .effect-note {
+    font-size: 12px; color: var(--ds-text-muted); line-height: 1.6;
+    background: var(--ds-muted-bg); padding: 10px 14px; border-radius: 6px;
+  }
+  .effect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ── TOKENS QUICK-REF ── */
+  .token-section {
+    border: 1px solid var(--ds-border); border-radius: 12px;
+    overflow: hidden; margin-bottom: 20px;
+  }
+  .token-header {
+    background: var(--ds-black); color: #fff;
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 10px 20px;
+  }
+  .token-body { background: #fff; }
+  .token-row {
+    display: grid; grid-template-columns: 180px 1fr;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--ds-border);
+    font-size: 12px; align-items: center;
+  }
+  .token-row:last-child { border-bottom: none; }
+  .token-name { font-family: monospace; color: var(--ds-text-muted); }
+  .token-value { font-weight: 500; color: var(--ds-black); }
+
+  /* ── NOTES BOX ── */
+  .note-box {
+    background: var(--ds-muted-bg);
+    border-left: 3px solid var(--ds-black);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ds-text-muted);
+    margin-top: 24px;
+  }
+  .note-box strong { color: var(--ds-black); font-weight: 600; }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    background: var(--ds-black);
+    color: rgba(255,255,255,0.4);
+    padding: 32px 72px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .doc-footer strong { color: rgba(255,255,255,0.7); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cover { padding: 48px 32px 40px; }
+    .ds-section { padding: 48px 32px; }
+    .effect-grid { grid-template-columns: 1fr; }
+    .comp-spec-grid { grid-template-columns: 1fr; }
+    .cover-bg { font-size: 160px; bottom: -20px; right: -10px; }
+  }
+
+  /* Color accent for code */
+  .ck { color: #7dd3fc; } /* key */
+  .cv { color: #86efac; } /* value */
+  .cc { color: rgba(255,255,255,0.28); } /* comment */
+</style>
+</head>
+<body>
+
+<!-- ── COVER ── -->
+<div class="cover">
+  <div class="cover-top">
+    <span class="cover-badge">(Design System · Extraído do Figma)</span>
+    <span class="cover-version">v1.0 · 2024</span>
+  </div>
+  <div class="cover-title"><span>©</span>Kajo<br>Studio</div>
+  <div class="cover-bottom">
+    <div class="cover-stat"><span class="cover-stat-label">Fontes</span><span class="cover-stat-val">Anton SC + Inter + Gambetta</span></div>
+    <div class="cover-stat"><span class="cover-stat-label">Cores</span><span class="cover-stat-val">2 cores base + variações</span></div>
+    <div class="cover-stat"><span class="cover-stat-label">Componentes</span><span class="cover-stat-val">8 componentes</span></div>
+    <div class="cover-stat"><span class="cover-stat-label">Canvas</span><span class="cover-stat-val">1920px · Grid 50/50</span></div>
+  </div>
+  <div class="cover-bg">DS</div>
+</div>
+
+<!-- ── STICKY NAV ── -->
+<nav class="sticky-nav no-print">
+  <a href="#colors">(01) Cores</a>
+  <a href="#typography">(02) Tipografia</a>
+  <a href="#spacing">(03) Espaçamento</a>
+  <a href="#components">(04) Componentes</a>
+  <a href="#layout">(05) Layout</a>
+  <a href="#effects">(06) Efeitos & Transições</a>
+  <a href="#tokens">(07) Tokens Rápidos</a>
+</nav>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 01 · COLORS -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="ds-section" id="colors">
+  <div class="section-eyebrow">(01 · Paleta)</div>
+  <h2 class="section-heading">Color Tokens</h2>
+  <p class="section-intro">Paleta intencionalmente monocromática — apenas preto, quase-branco e variações de opacidade. Todo o contraste visual vem do tamanho tipográfico e do espaço negativo, não de cores de acento.</p>
+
+  <div class="subsection">
+    <div class="subsection-title">Cores base</div>
+    <div class="color-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0E1011;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Background / Primary</div>
+          <div class="swatch-hex">#0E1011</div>
+          <div class="swatch-use">Fundo principal escuro, elementos sólidos, footer</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F8F8F8; border-bottom:1px solid #e8e8e8;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Background / Muted</div>
+          <div class="swatch-hex">#F8F8F8</div>
+          <div class="swatch-use">Seções alternadas, coluna direita do hero, fundo de cards</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FFFFFF; border-bottom:1px solid #e8e8e8;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Background / White</div>
+          <div class="swatch-hex">#FFFFFF</div>
+          <div class="swatch-use">Fundo de cards de componentes, rodapé de project cards</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0E1011;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Text / Default</div>
+          <div class="swatch-hex">#0E1011</div>
+          <div class="swatch-use">Texto principal sobre fundos claros</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:rgba(14,16,17,0.6); border-bottom:1px solid #e8e8e8;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Text / Muted</div>
+          <div class="swatch-hex">rgba(14,16,17, 0.6)</div>
+          <div class="swatch-use">Labels de seção, metadados, anos, descrições de corpo</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FFFFFF; border-bottom:1px solid #e8e8e8;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Text / Inverse</div>
+          <div class="swatch-hex">#FFFFFF</div>
+          <div class="swatch-use">Texto e logos sobre fundo #0E1011</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Variações de opacidade (sobre fundo escuro)</div>
+    <div class="color-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:rgba(255,255,255,0.6); border-bottom:1px solid rgba(0,0,0,0.1);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Icon / Muted Inverse</div>
+          <div class="swatch-hex">rgba(255,255,255, 0.6)</div>
+          <div class="swatch-use">Labels e ícones secundários no footer</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:rgba(14,16,17,0.12); border-bottom:1px solid #e8e8e8;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Border / Light</div>
+          <div class="swatch-hex">rgba(14,16,17, 0.12)</div>
+          <div class="swatch-use">Bordas sutis entre seções e cards</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="css-block">
+<span class="cc">/* ── CSS Custom Properties ── */</span><br>
+:root {<br>
+&nbsp;&nbsp;<span class="ck">--color-bg-primary</span>: <span class="cv">#0E1011</span>;<br>
+&nbsp;&nbsp;<span class="ck">--color-bg-muted</span>: <span class="cv">#F8F8F8</span>;<br>
+&nbsp;&nbsp;<span class="ck">--color-bg-white</span>: <span class="cv">#FFFFFF</span>;<br>
+&nbsp;&nbsp;<span class="ck">--color-text-default</span>: <span class="cv">#0E1011</span>;<br>
+&nbsp;&nbsp;<span class="ck">--color-text-muted</span>: <span class="cv">rgba(14, 16, 17, 0.6)</span>;<br>
+&nbsp;&nbsp;<span class="ck">--color-text-inverse</span>: <span class="cv">#FFFFFF</span>;<br>
+&nbsp;&nbsp;<span class="ck">--color-border</span>: <span class="cv">rgba(14, 16, 17, 0.12)</span>;<br>
+}
+  </div>
+
+  <div class="note-box">
+    <strong>⚠ Sem accent colors.</strong> A paleta do Kajo Studio não usa nenhuma cor de destaque (azul, verde, laranja, etc). Toda hierarquia visual é criada por tamanho tipográfico, peso e espaçamento. Se você precisar de alguma cor de acento para o seu projeto, escolha uma <em>única</em> e use-a com extrema parcimônia.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 02 · TYPOGRAPHY -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="ds-section" id="typography">
+  <div class="section-eyebrow">(02 · Tipografia)</div>
+  <h2 class="section-heading">Typography</h2>
+  <p class="section-intro">Três famílias com papéis bem definidos. Anton SC para impacto máximo, Inter para clareza funcional, Gambetta / DM Serif Text Italic para identidade editorial.</p>
+
+  <div class="subsection">
+    <div class="subsection-title">Anton SC — Display / Hero (Uppercase only)</div>
+    <div class="type-specimen">
+      <div class="type-preview dark-prev" style="min-height:140px;">
+        <div class="t-hero">©Kajo Studio</div>
+      </div>
+      <div class="type-meta-row">
+        <div class="type-meta-item"><span class="type-meta-label">Família</span><span class="type-meta-val">Anton SC</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Peso</span><span class="type-meta-val">Regular 400</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Transform</span><span class="type-meta-val">uppercase always</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Uso</span><span class="type-meta-val">Hero, seções decorativas</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Google Fonts</span><span class="type-meta-val">Disponível ✓</span></div>
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-preview" style="min-height:120px; overflow:hidden;">
+        <div style="font-family:var(--font-display); font-size:clamp(40px,7vw,80px); text-transform:uppercase; color:var(--ds-black); line-height:1; opacity:0.08; position:absolute; pointer-events:none;">PROJECTS</div>
+        <div class="t-h2-display">Creative Brands</div>
+      </div>
+      <div class="type-meta-row">
+        <div class="type-meta-item"><span class="type-meta-label">Token</span><span class="type-meta-val">Heading / H2</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Size</span><span class="type-meta-val">80px</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Line-h</span><span class="type-meta-val">1.1</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Tracking</span><span class="type-meta-val">0</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Inter Semi Bold — Headings Alt &amp; UI</div>
+    <div class="type-specimen">
+      <div class="type-preview">
+        <div class="t-heading-alt">Crafting impactful brands and websites that drive growth.</div>
+      </div>
+      <div class="type-meta-row">
+        <div class="type-meta-item"><span class="type-meta-label">Token</span><span class="type-meta-val">Heading Alt / H2 Tagline</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Size</span><span class="type-meta-val">48px</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Weight</span><span class="type-meta-val">Semi Bold 600</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Tracking</span><span class="type-meta-val">-0.5px</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Line-h</span><span class="type-meta-val">1.3</span></div>
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-preview">
+        <div class="t-heading-h3">Explore our recent projects showcasing creativity, innovation, and impactful design solutions.</div>
+      </div>
+      <div class="type-meta-row">
+        <div class="type-meta-item"><span class="type-meta-label">Token</span><span class="type-meta-val">Heading Alt / H3 Card Title</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Size</span><span class="type-meta-val">40px</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Tracking</span><span class="type-meta-val">-1px</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Line-h</span><span class="type-meta-val">1.4</span></div>
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-preview" style="gap:32px; flex-wrap:wrap;">
+        <div class="t-nav-item">Projects</div>
+        <div class="t-nav-item">Services</div>
+        <div class="t-nav-item">Studio</div>
+        <div class="t-nav-item">Journal</div>
+      </div>
+      <div class="type-meta-row">
+        <div class="type-meta-item"><span class="type-meta-label">Token</span><span class="type-meta-val">Components / Navbar &amp; CTA</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Size</span><span class="type-meta-val">22px</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Weight</span><span class="type-meta-val">Semi Bold 600</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Line-h</span><span class="type-meta-val">1.0</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Inter Regular — Corpo de Texto</div>
+    <div class="type-specimen">
+      <div class="type-preview">
+        <div class="t-body-text">We are passionate about creating meaningful brands and dynamic websites that stand out in today's competitive market. Our team combines strategic thinking with creative design to craft custom solutions that align with your business goals.</div>
+      </div>
+      <div class="type-meta-row">
+        <div class="type-meta-item"><span class="type-meta-label">Token</span><span class="type-meta-val">Text / Medium Body</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Size</span><span class="type-meta-val">22px</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Weight</span><span class="type-meta-val">Regular 400</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Line-h</span><span class="type-meta-val">1.7 (crucial!)</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Color</span><span class="type-meta-val">rgba(14,16,17,0.6)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Gambetta / DM Serif Text — Labels Editoriais</div>
+    <div class="type-specimen">
+      <div class="type-preview" style="flex-direction:column; align-items:flex-start; gap:12px;">
+        <div class="t-meta-label">(About Us)</div>
+        <div class="t-meta-label">(Selected Work)</div>
+        <div class="t-meta-label">(Our Partner)</div>
+        <div class="t-meta-label">(01) · (02) · (03)</div>
+      </div>
+      <div class="type-meta-row">
+        <div class="type-meta-item"><span class="type-meta-label">Família</span><span class="type-meta-val">Gambetta Medium Italic</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Alternativa</span><span class="type-meta-val">DM Serif Text italic</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Size</span><span class="type-meta-val">30–32px</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Weight</span><span class="type-meta-val">Medium 500</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Line-h</span><span class="type-meta-val">1.0</span></div>
+      </div>
+    </div>
+    <div class="note-box">
+      <strong>Gambetta</strong> é uma fonte paga (não está no Google Fonts). Alternativa gratuita fiel: <strong>DM Serif Text italic</strong> — mesma sensação editorial, disponível no Google Fonts. <code style="font-family:monospace; background:var(--ds-border); padding:1px 5px; border-radius:3px;">family=DM+Serif+Text:ital@1</code>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Escala tipográfica completa</div>
+    <table class="ds-table">
+      <tr><th>Token</th><th>Família</th><th>Size</th><th>Weight</th><th>Line-h</th><th>Tracking</th></tr>
+      <tr><td><span class="tag">Display</span>Heading / XXLarge</td><td>Anton SC</td><td>320px</td><td>400</td><td>1.0</td><td>0</td></tr>
+      <tr><td><span class="tag">Display</span>Heading / Large (Hero)</td><td>Anton SC</td><td>160px</td><td>400</td><td>1.0</td><td>0</td></tr>
+      <tr><td><span class="tag">Display</span>Heading / H2</td><td>Anton SC</td><td>80px</td><td>400</td><td>1.1</td><td>0</td></tr>
+      <tr><td><span class="tag">Alt</span>Heading Alt / Small</td><td>Inter</td><td>80px</td><td>600</td><td>1.2</td><td>-2px</td></tr>
+      <tr><td><span class="tag">Alt</span>Heading Alt / H2 Tagline</td><td>Inter</td><td>48px</td><td>600</td><td>1.3</td><td>-0.5px</td></tr>
+      <tr><td><span class="tag">Alt</span>Heading Alt / H3 Card</td><td>Inter</td><td>40px</td><td>600</td><td>1.4</td><td>-1px</td></tr>
+      <tr><td><span class="tag">UI</span>Components / Navbar &amp; CTA</td><td>Inter</td><td>22px</td><td>600</td><td>1.0</td><td>0</td></tr>
+      <tr><td><span class="tag">Body</span>Text / Medium Body</td><td>Inter</td><td>22px</td><td>400</td><td>1.7</td><td>0</td></tr>
+      <tr><td><span class="tag">Meta</span>Text / Meta Label</td><td>Gambetta</td><td>30px</td><td>500 Italic</td><td>1.0</td><td>0</td></tr>
+      <tr><td><span class="tag">Meta</span>Text / Meta Label Large</td><td>Gambetta</td><td>32px</td><td>500 Italic</td><td>1.0</td><td>0</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 03 · SPACING -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="ds-section" id="spacing">
+  <div class="section-eyebrow">(03 · Espaçamento)</div>
+  <h2 class="section-heading">Spacing System</h2>
+  <p class="section-intro">Múltiplos de 16px como base. O espaçamento é generoso — o Kajo Studio usa muito espaço negativo para dar respiro à tipografia massiva.</p>
+
+  <div class="spacing-list">
+    <div class="spacing-row">
+      <span class="spacing-token">--space-1</span>
+      <div class="spacing-bar-outer"><div class="spacing-bar-inner" style="width:6%;"></div></div>
+      <span class="spacing-px">16px</span>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-token">--space-2</span>
+      <div class="spacing-bar-outer"><div class="spacing-bar-inner" style="width:12%;"></div></div>
+      <span class="spacing-px">32px</span>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-token">--space-3</span>
+      <div class="spacing-bar-outer"><div class="spacing-bar-inner" style="width:18%;"></div></div>
+      <span class="spacing-px">48px</span>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-token">--space-4</span>
+      <div class="spacing-bar-outer"><div class="spacing-bar-inner" style="width:24%;"></div></div>
+      <span class="spacing-px">64px</span>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-token">--space-5 ★</span>
+      <div class="spacing-bar-outer"><div class="spacing-bar-inner" style="width:36%;"></div></div>
+      <span class="spacing-px">96px</span>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-token">--space-6</span>
+      <div class="spacing-bar-outer"><div class="spacing-bar-inner" style="width:48%;"></div></div>
+      <span class="spacing-px">128px</span>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-token">--space-7</span>
+      <div class="spacing-bar-outer"><div class="spacing-bar-inner" style="width:60%;"></div></div>
+      <span class="spacing-px">160px</span>
+    </div>
+  </div>
+
+  <div class="note-box" style="margin-top:24px;">★ <strong>96px</strong> é o valor mais usado — é o padding padrão de todas as seções horizontalmente.
+  </div>
+
+  <div class="subsection" style="margin-top:40px;">
+    <div class="subsection-title">Mapa de uso contextual</div>
+    <table class="ds-table">
+      <tr><th>Contexto</th><th>Valor</th><th>Token</th></tr>
+      <tr><td>Padding lateral de todas as seções</td><td>96px</td><td>--space-5</td></tr>
+      <tr><td>Padding top do Hero</td><td>160px</td><td>--space-7</td></tr>
+      <tr><td>Padding top do Header</td><td>64px</td><td>--space-4</td></tr>
+      <tr><td>Padding interno dos project cards</td><td>32px</td><td>--space-2</td></tr>
+      <tr><td>Gap entre links de navegação</td><td>32px</td><td>--space-2</td></tr>
+      <tr><td>Gap entre label e heading de seção</td><td>32px</td><td>--space-2</td></tr>
+      <tr><td>Gap entre heading e texto descritivo</td><td>16px</td><td>--space-1</td></tr>
+      <tr><td>Gap entre seções internas do hero</td><td>128px</td><td>--space-6</td></tr>
+      <tr><td>Gap entre logo e parceiros</td><td>64px</td><td>--space-4</td></tr>
+      <tr><td>Padding seção de projetos (cabeçalho)</td><td>96px</td><td>--space-5</td></tr>
+      <tr><td>Gap entre project cards</td><td>0px (flush)</td><td>—</td></tr>
+      <tr><td>Padding cabeçalho dos testimonials</td><td>96px</td><td>--space-5</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 04 · COMPONENTS -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="ds-section" id="components">
+  <div class="section-eyebrow">(04 · Componentes)</div>
+  <h2 class="section-heading">Components</h2>
+  <p class="section-intro">8 componentes principais. Cada um tem especificações exatas de tipografia, cor, espaçamento e comportamento interativo.</p>
+
+  <!-- Header -->
+  <div class="subsection">
+    <div class="subsection-title">Componente 01 — Header / Navigation</div>
+    <div class="comp-showcase">
+      <div class="comp-preview-area bg-dark">
+        <div class="demo-header">
+          <span class="demo-header-brand">©Kajo</span>
+          <div class="demo-nav-links">
+            <span class="demo-nav-link">Projects</span>
+            <span class="demo-nav-link">Services</span>
+            <span class="demo-nav-link">Studio</span>
+            <span class="demo-nav-link">Journal</span>
+          </div>
+          <span class="demo-cta-link">Let's Talk</span>
+        </div>
+      </div>
+      <div class="comp-spec-grid">
+        <div class="comp-spec-item"><span class="comp-spec-label">Posição</span><span class="comp-spec-val">position: sticky; top: 0</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Background</span><span class="comp-spec-val">Transparente (sem cor)</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Padding</span><span class="comp-spec-val">top: 64px · horizontal: 96px</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Logo / Marca</span><span class="comp-spec-val">Anton SC · 22px · uppercase</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Links de Nav</span><span class="comp-spec-val">Inter SemiBold · 22px · gap: 32px</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">CTA "Let's Talk"</span><span class="comp-spec-val">Texto + border-bottom: 2px solid</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Hover nav links</span><span class="comp-spec-val">Underline animado (scale from left)</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Z-index</span><span class="comp-spec-val">z-index: 50</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="subsection">
+    <div class="subsection-title">Componente 02 — Section Hero</div>
+    <div class="comp-showcase">
+      <div class="comp-preview-area bg-white" style="padding:0; align-items:stretch; justify-content:stretch;">
+        <div class="demo-hero">
+          <div class="demo-hero-left"><span class="demo-hero-img-hint">imagem fullcover<br>position: sticky</span></div>
+          <div class="demo-hero-right">
+            <div class="demo-hero-name">©Kajo<br>Studio</div>
+            <div class="demo-hero-loc">(Based in Prague)</div>
+            <div class="demo-hero-tag">Crafting impactful brands and websites that drive growth.</div>
+          </div>
+        </div>
+      </div>
+      <div class="comp-spec-grid">
+        <div class="comp-spec-item"><span class="comp-spec-label">Layout</span><span class="comp-spec-val">Grid 50/50 — 960px + 960px</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Col. esquerda (imagem)</span><span class="comp-spec-val">position: sticky; top: 0; bg: #0E1011</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Col. direita (conteúdo)</span><span class="comp-spec-val">Scrollable; bg: #F8F8F8</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Nome da marca</span><span class="comp-spec-val">Anton SC · 160px · uppercase</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Localização</span><span class="comp-spec-val">Gambetta italic · 30px · muted</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Tagline</span><span class="comp-spec-val">Inter SemiBold · 48px · -0.5px tracking</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Padding top direito</span><span class="comp-spec-val">160px</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Padding lateral direito</span><span class="comp-spec-val">96px</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Altura da parte 1</span><span class="comp-spec-val">100vh (1080px no original)</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Efeito de scroll</span><span class="comp-spec-val">Imagem fixa; texto desliza sobre ela</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Card -->
+  <div class="subsection">
+    <div class="subsection-title">Componente 03 — Project Card</div>
+    <div class="comp-showcase">
+      <div class="comp-preview-area bg-muted" style="gap:16px;">
+        <div class="demo-project-card">
+          <div class="demo-project-img"><div class="demo-project-logo">acme</div></div>
+          <div class="demo-project-footer"><span class="demo-project-name">Acme</span><span class="demo-project-year">(2024)</span></div>
+        </div>
+        <div class="demo-project-card">
+          <div class="demo-project-img" style="background:#1a1a1a;"><div class="demo-project-logo">kanba</div></div>
+          <div class="demo-project-footer"><span class="demo-project-name">Kanba</span><span class="demo-project-year">(2024)</span></div>
+        </div>
+        <div class="demo-project-card">
+          <div class="demo-project-img" style="background:#222;"><div class="demo-project-logo">utosia</div></div>
+          <div class="demo-project-footer"><span class="demo-project-name">Utosia</span><span class="demo-project-year">(2024)</span></div>
+        </div>
+      </div>
+      <div class="comp-spec-grid">
+        <div class="comp-spec-item"><span class="comp-spec-label">Tamanho original</span><span class="comp-spec-val">960 × 960px (half-grid)</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Background do wrapper</span><span class="comp-spec-val">#0E1011</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Imagem overlay opacity</span><span class="comp-spec-val">0.7 (varia: 0.7 a 0.9)</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Logo do cliente</span><span class="comp-spec-val">Centralizado; branco; ~90px altura</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Nome do projeto</span><span class="comp-spec-val">Inter SemiBold · 40px · -1px tracking</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Ano</span><span class="comp-spec-val">Gambetta italic · 32px · muted</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Padding do rodapé</span><span class="comp-spec-val">32px em todos os lados</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Hover</span><span class="comp-spec-val">image scale(1.05) · duration: 0.4s ease</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Overflow</span><span class="comp-spec-val">overflow: hidden (clip da imagem)</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Grid</span><span class="comp-spec-val">2 colunas × 2 linhas = 4 cards</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service Item -->
+  <div class="subsection">
+    <div class="subsection-title">Componente 04 — Service Item</div>
+    <div class="comp-showcase">
+      <div class="comp-preview-area bg-muted" style="justify-content:flex-start; align-items:flex-start;">
+        <div class="demo-service">
+          <div class="demo-service-title">Brand Strategy</div>
+          <div class="demo-service-desc">Build a strong, cohesive brand identity to connect with your audience.</div>
+          <span class="demo-service-label">(Branding Services)</span>
+          <div class="demo-service-grid">
+            <div class="demo-service-item">Brand Discovery</div>
+            <div class="demo-service-item">Visual Identity Design</div>
+            <div class="demo-service-item">Brand Positioning</div>
+            <div class="demo-service-item">Brand Guidelines</div>
+          </div>
+        </div>
+      </div>
+      <div class="comp-spec-grid">
+        <div class="comp-spec-item"><span class="comp-spec-label">Título do serviço</span><span class="comp-spec-val">Inter SemiBold · 48px · -0.5px</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Descrição breve</span><span class="comp-spec-val">Inter Regular · 22px · 1.7 lh · muted</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Label categoria</span><span class="comp-spec-val">Gambetta italic · 30px · muted</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Sub-serviços</span><span class="comp-spec-val">Inter SemiBold · 22px · grid 2 cols</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Separador</span><span class="comp-spec-val">border-top: 1px solid rgba(14,16,17,0.12)</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Padding vertical</span><span class="comp-spec-val">64–96px entre itens</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section Label -->
+  <div class="subsection">
+    <div class="subsection-title">Componente 05 — Section Label (Meta)</div>
+    <div class="comp-showcase">
+      <div class="comp-preview-area bg-muted" style="flex-direction:column; align-items:flex-start; gap:14px;">
+        <div class="demo-section-label">(About Us)</div>
+        <div class="demo-section-label">(Selected Work)</div>
+        <div class="demo-section-label">(01) — número de seção, alinhado à direita</div>
+      </div>
+      <div class="comp-spec-grid">
+        <div class="comp-spec-item"><span class="comp-spec-label">Fonte</span><span class="comp-spec-val">Gambetta / DM Serif Text Italic</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Tamanho</span><span class="comp-spec-val">30–32px</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Cor</span><span class="comp-spec-val">rgba(14,16,17,0.6)</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Formato</span><span class="comp-spec-val">Sempre entre parênteses: "(Label)"</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Posição</span><span class="comp-spec-val">Acima dos headings de seção</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Numeração</span><span class="comp-spec-val">(01), (02), (03) — alinhado à direita</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button -->
+  <div class="subsection">
+    <div class="subsection-title">Componente 06 — Button / CTA Text</div>
+    <div class="comp-showcase">
+      <div class="comp-preview-area bg-white" style="gap:40px;">
+        <span class="demo-btn-text">Let's Talk</span>
+        <span class="demo-btn-text">View Projects</span>
+        <span class="demo-btn-text">Get Started</span>
+      </div>
+      <div class="comp-spec-grid">
+        <div class="comp-spec-item"><span class="comp-spec-label">Estilo</span><span class="comp-spec-val">Sem background, sem border-radius</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Sublinhado</span><span class="comp-spec-val">border-bottom: 2px solid #0E1011</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Fonte</span><span class="comp-spec-val">Inter SemiBold · 22px</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Padding</span><span class="comp-spec-val">Nenhum (só padding-bottom: 2px)</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Hover</span><span class="comp-spec-val">opacity: 0.6 · transition: 0.2s ease</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Versão dark</span><span class="comp-spec-val">Cor: #fff · border: #fff</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonial -->
+  <div class="subsection">
+    <div class="subsection-title">Componente 07 — Testimonial Card</div>
+    <div class="comp-showcase">
+      <div class="comp-preview-area bg-muted" style="gap:16px; flex-wrap:wrap;">
+        <div class="demo-testimonial">
+          <div class="demo-quote">"</div>
+          <div class="demo-quote-title">Exceptional Branding That Elevated Our Identity.</div>
+          <div class="demo-quote-body">Their strategic approach completely transformed our brand. We've seen a huge increase in recognition and client engagement.</div>
+          <div class="demo-quote-author">Dave Mitchell</div>
+          <div class="demo-quote-company">(Lumina)</div>
+        </div>
+        <div class="demo-testimonial">
+          <div class="demo-quote">"</div>
+          <div class="demo-quote-title">Seamless Collaboration &amp; Support With Exceptional Results.</div>
+          <div class="demo-quote-body">Working with them was easy and efficient. They perfectly captured our vision, and the results were outstanding.</div>
+          <div class="demo-quote-author">Michaela Lee</div>
+          <div class="demo-quote-company">(Apex Fitness)</div>
+        </div>
+      </div>
+      <div class="comp-spec-grid">
+        <div class="comp-spec-item"><span class="comp-spec-label">Aspas abertas</span><span class="comp-spec-val">Anton SC · decorativo · "    (caractere)</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Título do depoimento</span><span class="comp-spec-val">Inter SemiBold · 18–22px</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Corpo do depoimento</span><span class="comp-spec-val">Inter Regular · 16–18px · 1.7 lh · muted</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Nome do cliente</span><span class="comp-spec-val">Inter SemiBold · 14px</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Empresa</span><span class="comp-spec-val">Gambetta italic · 14px · muted</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Borda superior</span><span class="comp-spec-val">border-top: 1px solid var(--border)</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Grid</span><span class="comp-spec-val">3 colunas em desktop</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Padding interno</span><span class="comp-spec-val">32px</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="subsection">
+    <div class="subsection-title">Componente 08 — Footer</div>
+    <div class="comp-showcase">
+      <div class="comp-preview-area bg-dark" style="flex-direction:column; align-items:flex-start; gap:20px; padding:32px 40px;">
+        <div style="font-family:var(--font-meta); font-style:italic; font-size:14px; color:rgba(255,255,255,0.4);">(Companies we worked with)</div>
+        <div style="display:flex; gap:32px; align-items:center; flex-wrap:wrap;">
+          <span style="font-family:var(--font-display); font-size:16px; text-transform:uppercase; color:rgba(255,255,255,0.5);">Acme</span>
+          <span style="font-family:var(--font-display); font-size:16px; text-transform:uppercase; color:rgba(255,255,255,0.5);">Kanba</span>
+          <span style="font-family:var(--font-display); font-size:16px; text-transform:uppercase; color:rgba(255,255,255,0.5);">Goldline</span>
+          <span style="font-family:var(--font-display); font-size:16px; text-transform:uppercase; color:rgba(255,255,255,0.5);">Utosia</span>
+        </div>
+        <div style="width:100%; height:1px; background:rgba(255,255,255,0.08);"></div>
+        <div style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:12px;">
+          <span style="font-family:var(--font-display); font-size:22px; text-transform:uppercase; color:#fff;">©Kajo Studio</span>
+          <div style="display:flex; gap:24px;">
+            <span style="font-size:13px; font-weight:600; color:rgba(255,255,255,0.6);">Projects</span>
+            <span style="font-size:13px; font-weight:600; color:rgba(255,255,255,0.6);">Services</span>
+            <span style="font-size:13px; font-weight:600; color:rgba(255,255,255,0.6);">Studio</span>
+          </div>
+        </div>
+      </div>
+      <div class="comp-spec-grid">
+        <div class="comp-spec-item"><span class="comp-spec-label">Background</span><span class="comp-spec-val">#0E1011</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Logos dos parceiros</span><span class="comp-spec-val">filter: brightness(0) invert(1)</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Texto primário</span><span class="comp-spec-val">#FFFFFF</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Texto secundário</span><span class="comp-spec-val">rgba(255,255,255,0.4)</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Label parceiros</span><span class="comp-spec-val">Gambetta italic · 30px · 40% opacity</span></div>
+        <div class="comp-spec-item"><span class="comp-spec-label">Padding</span><span class="comp-spec-val">96px horizontal · 80px vertical</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 05 · LAYOUT -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="ds-section" id="layout">
+  <div class="section-eyebrow">(05 · Estrutura)</div>
+  <h2 class="section-heading">Layout &amp; Grid</h2>
+  <p class="section-intro">Canvas base de 1920px. O sistema vive e respira o grid 50/50 — a divisão ao meio da tela é o elemento estrutural mais forte do design.</p>
+
+  <div class="subsection">
+    <div class="subsection-title">Hero — Split 50/50 com scroll sticky</div>
+    <div class="layout-diagram">
+      <div class="layout-title-bar">Section Hero · 1920px total · altura: ~2278px</div>
+      <div class="layout-viz">
+        <div class="layout-block lb-dark lb-border" style="min-height:180px;">
+          <strong>Imagem</strong>
+          <span>960px</span>
+          <span>position: sticky</span>
+          <span>top: 0</span>
+          <span>height: 100vh</span>
+          <span style="font-size:10px; margin-top:8px; opacity:0.5;">bg: #0E1011</span>
+        </div>
+        <div class="layout-block lb-muted" style="min-height:180px;">
+          <strong>Conteúdo</strong>
+          <span>960px</span>
+          <span>scrollable</span>
+          <span>overflow visible</span>
+          <span>&nbsp;</span>
+          <span style="font-size:10px; margin-top:8px; opacity:0.6;">bg: #F8F8F8</span>
+        </div>
+      </div>
+      <div class="layout-footer">
+        <span>← 960px →</span>
+        <span style="font-style:italic; color:var(--ds-text-muted);">Imagem fica fixa enquanto o texto desce</span>
+        <span>← 960px →</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Projects — Grid 2×2</div>
+    <div class="layout-diagram">
+      <div class="layout-title-bar">Section Projects · bg: #F8F8F8 · padding: 96px</div>
+      <div class="layout-row">
+        <div class="layout-block lb-dark lb-border"><strong>Card 1</strong><span>960×960px</span><span>Acme</span></div>
+        <div class="layout-block lb-dark"><strong>Card 2</strong><span>960×960px</span><span>Kanba</span></div>
+      </div>
+      <div class="layout-row">
+        <div class="layout-block lb-dark lb-border"><strong>Card 3</strong><span>960×960px</span><span>Utosia</span></div>
+        <div class="layout-block lb-dark"><strong>Card 4</strong><span>960×960px</span><span>Goldline</span></div>
+      </div>
+      <div class="layout-footer">
+        <span>Cards flush (sem gap)</span>
+        <span>aspect-ratio: 1/1</span>
+        <span>overflow: hidden</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Mapa completo da página</div>
+    <div class="page-map">
+      <div class="page-map-row">
+        <span class="page-map-num">—</span>
+        <span class="page-map-name">Header</span>
+        <div class="page-map-meta">
+          <span class="pill pill-dark">sticky</span>
+          <span class="pill pill-gray">transparente</span>
+          <span class="pill pill-gray">z-index: 50</span>
+        </div>
+        <span class="page-map-size">90px</span>
+      </div>
+      <div class="page-map-row">
+        <span class="page-map-num">(01)</span>
+        <span class="page-map-name">Section Hero</span>
+        <div class="page-map-meta">
+          <span class="pill pill-dark">split 50/50</span>
+          <span class="pill pill-blue">sticky image</span>
+          <span class="pill pill-gray">#F8F8F8 + #0E1011</span>
+        </div>
+        <span class="page-map-size">~2278px</span>
+      </div>
+      <div class="page-map-row">
+        <span class="page-map-num">(02)</span>
+        <span class="page-map-name">Section Projects</span>
+        <div class="page-map-meta">
+          <span class="pill pill-dark">grid 2×2</span>
+          <span class="pill pill-gray">#F8F8F8</span>
+          <span class="pill pill-gray">4 cards 960px</span>
+        </div>
+        <span class="page-map-size">~3088px</span>
+      </div>
+      <div class="page-map-row">
+        <span class="page-map-num">(03)</span>
+        <span class="page-map-name">Section Services</span>
+        <div class="page-map-meta">
+          <span class="pill pill-dark">lista vertical</span>
+          <span class="pill pill-gray">3 serviços</span>
+          <span class="pill pill-gray">padding: 96px</span>
+        </div>
+        <span class="page-map-size">~1800px</span>
+      </div>
+      <div class="page-map-row">
+        <span class="page-map-num">(04)</span>
+        <span class="page-map-name">Section Testimonials</span>
+        <div class="page-map-meta">
+          <span class="pill pill-dark">grid 3 cols</span>
+          <span class="pill pill-gray">6 cards</span>
+          <span class="pill pill-gray">#F8F8F8</span>
+        </div>
+        <span class="page-map-size">~900px</span>
+      </div>
+      <div class="page-map-row">
+        <span class="page-map-num">—</span>
+        <span class="page-map-name">Footer</span>
+        <div class="page-map-meta">
+          <span class="pill pill-dark">dark bg</span>
+          <span class="pill pill-gray">#0E1011</span>
+          <span class="pill pill-gray">logos + nav</span>
+        </div>
+        <span class="page-map-size">~320px</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Valores fixos do grid</div>
+    <table class="ds-table">
+      <tr><th>Propriedade</th><th>Valor</th></tr>
+      <tr><td>Largura total do canvas</td><td>1920px</td></tr>
+      <tr><td>Coluna do grid (half)</td><td>960px</td></tr>
+      <tr><td>Padding lateral padrão (dentro das colunas)</td><td>96px</td></tr>
+      <tr><td>Largura útil de conteúdo (half col)</td><td>768px (960 - 96 - 96)</td></tr>
+      <tr><td>Largura útil de conteúdo (full width)</td><td>1728px (1920 - 96 - 96)</td></tr>
+      <tr><td>Tamanho dos project cards</td><td>960 × 960px</td></tr>
+      <tr><td>Altura do header</td><td>90px</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 06 · EFFECTS & TRANSITIONS -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="ds-section" id="effects">
+  <div class="section-eyebrow">(06 · Efeitos)</div>
+  <h2 class="section-heading">Efeitos &amp; Transições</h2>
+  <p class="section-intro">O design tem poucos efeitos mas cada um é preciso. A filosofia é a mesma das cores: minimalismo. Nenhuma animação gratuita — cada efeito serve a navegação ou hierarquia.</p>
+
+  <div class="subsection">
+    <div class="subsection-title">Efeito principal — Sticky Scroll (Hero)</div>
+    <div class="effect-card">
+      <div class="effect-name">Imagem sticky com conteúdo scrollable</div>
+      <div class="effect-where">Onde: Section Hero · Coluna esquerda</div>
+      <div class="effect-code">
+/* Coluna esquerda — fica fixada */<br>
+.hero-image-col {<br>
+&nbsp;&nbsp;position: sticky;<br>
+&nbsp;&nbsp;top: 0;<br>
+&nbsp;&nbsp;height: 100vh;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgba(255,255,255,0.3);">/* Tela inteira */</span><br>
+&nbsp;&nbsp;overflow: hidden;<br>
+}<br><br>
+/* Coluna direita — desce normalmente */<br>
+.hero-content-col {<br>
+&nbsp;&nbsp;position: relative;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgba(255,255,255,0.3);">/* Fluxo normal */</span><br>
+&nbsp;&nbsp;z-index: 1;<br>
+}
+      </div>
+      <div class="effect-note">A imagem literalmente <em>fica parada</em> enquanto todo o conteúdo da direita (about, parceiros) desce por cima. É o efeito mais marcante do site e cria a sensação de profundidade.</div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Hover — Project Cards</div>
+    <div class="effect-grid">
+      <div class="effect-card">
+        <div class="effect-name">Zoom na imagem</div>
+        <div class="effect-where">Onde: Project Card — hover no card inteiro</div>
+        <div class="effect-code">
+.project-card { overflow: hidden; }<br><br>
+.project-card .image {<br>
+&nbsp;&nbsp;transition: transform 0.4s ease,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opacity 0.4s ease;<br>
+}<br><br>
+.project-card:hover .image {<br>
+&nbsp;&nbsp;transform: scale(1.05);<br>
+&nbsp;&nbsp;opacity: 0.85;&nbsp;<span style="color:rgba(255,255,255,0.3);">/* aumenta levemente */</span><br>
+}
+        </div>
+      </div>
+      <div class="effect-card">
+        <div class="effect-name">Cursor pointer</div>
+        <div class="effect-where">Onde: Project Card completo</div>
+        <div class="effect-code">
+.project-card {<br>
+&nbsp;&nbsp;cursor: pointer;<br>
+}<br><br>
+<span style="color:rgba(255,255,255,0.3);">/* Cards linkam para a página</span><br>
+<span style="color:rgba(255,255,255,0.3);">&nbsp;&nbsp; do projeto individual */</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Hover — Navigation Links</div>
+    <div class="effect-card">
+      <div class="effect-name">Underline animado (slide from left)</div>
+      <div class="effect-where">Onde: Links de nav · "Let's Talk" CTA</div>
+      <div class="effect-code">
+.nav-link {<br>
+&nbsp;&nbsp;position: relative;<br>
+&nbsp;&nbsp;text-decoration: none;<br>
+}<br><br>
+.nav-link::after {<br>
+&nbsp;&nbsp;content: '';<br>
+&nbsp;&nbsp;position: absolute;<br>
+&nbsp;&nbsp;bottom: -2px; left: 0;<br>
+&nbsp;&nbsp;width: 100%; height: 2px;<br>
+&nbsp;&nbsp;background: currentColor;<br>
+&nbsp;&nbsp;transform: scaleX(0);<br>
+&nbsp;&nbsp;transform-origin: left;<br>
+&nbsp;&nbsp;transition: transform 0.25s ease;<br>
+}<br><br>
+.nav-link:hover::after {<br>
+&nbsp;&nbsp;transform: scaleX(1);<br>
+}
+      </div>
+      <div class="effect-note">O "Let's Talk" já tem o underline <em>permanente</em> (border-bottom: 2px). Para os outros links, o underline aparece no hover.</div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Animações de entrada (Scroll Reveal)</div>
+    <div class="effect-card">
+      <div class="effect-name">Fade-up ao entrar na viewport</div>
+      <div class="effect-where">Onde: Headings de seção, cards de projeto, itens de serviço, testimonials</div>
+      <div class="effect-code">
+<span style="color:rgba(255,255,255,0.3);">/* CSS */</span><br>
+.reveal {<br>
+&nbsp;&nbsp;opacity: 0;<br>
+&nbsp;&nbsp;transform: translateY(24px);<br>
+&nbsp;&nbsp;transition: opacity 0.6s ease-out,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transform 0.6s ease-out;<br>
+}<br>
+.reveal.in-view {<br>
+&nbsp;&nbsp;opacity: 1;<br>
+&nbsp;&nbsp;transform: translateY(0);<br>
+}<br><br>
+<span style="color:rgba(255,255,255,0.3);">/* JS — Intersection Observer */</span><br>
+const observer = new IntersectionObserver(<br>
+&nbsp;&nbsp;(entries) =&gt; entries.forEach(e =&gt; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if (e.isIntersecting) e.target.classList.add('in-view');<br>
+&nbsp;&nbsp;}),<br>
+&nbsp;&nbsp;{ threshold: 0.15 }<br>
+);<br>
+document.querySelectorAll('.reveal').forEach(el =&gt; observer.observe(el));
+      </div>
+    </div>
+
+    <div class="effect-card" style="margin-top:16px;">
+      <div class="effect-name">Stagger (entrada em cascata)</div>
+      <div class="effect-where">Onde: Logos de parceiros, sub-itens de serviço, cards de testimonial</div>
+      <div class="effect-code">
+<span style="color:rgba(255,255,255,0.3);">/* Adicionar delay progressivo */</span><br>
+.stagger-item:nth-child(1) { transition-delay: 0.0s; }<br>
+.stagger-item:nth-child(2) { transition-delay: 0.1s; }<br>
+.stagger-item:nth-child(3) { transition-delay: 0.2s; }<br>
+.stagger-item:nth-child(4) { transition-delay: 0.3s; }<br><br>
+<span style="color:rgba(255,255,255,0.3);">/* Ou via JS dinamicamente */</span><br>
+items.forEach((el, i) =&gt; {<br>
+&nbsp;&nbsp;el.style.transitionDelay = `${i * 0.1}s`;<br>
+});
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Efeito da tipografia display (XXLarge)</div>
+    <div class="effect-card">
+      <div class="effect-name">Palavra decorativa de seção (ex: "PROJECTS")</div>
+      <div class="effect-where">Onde: Início de Section Projects — texto de 320px de fundo</div>
+      <div class="effect-code">
+.section-word-bg {<br>
+&nbsp;&nbsp;font-family: 'Anton SC', sans-serif;<br>
+&nbsp;&nbsp;font-size: 320px;<br>
+&nbsp;&nbsp;text-transform: uppercase;<br>
+&nbsp;&nbsp;line-height: 1;<br>
+&nbsp;&nbsp;color: var(--color-text-default);&nbsp;&nbsp;<span style="color:rgba(255,255,255,0.3);">/* #0E1011 */</span><br>
+&nbsp;&nbsp;pointer-events: none;<br>
+&nbsp;&nbsp;user-select: none;<br>
+&nbsp;&nbsp;<span style="color:rgba(255,255,255,0.3);">/* NÃO tem opacidade reduzida — </span><br>
+&nbsp;&nbsp;<span style="color:rgba(255,255,255,0.3);">&nbsp;&nbsp; é preto cheio mas fica abaixo do subtítulo */</span><br>
+}
+      </div>
+      <div class="effect-note">A palavra "PROJECTS" (320px) fica na mesma linha que o subtítulo descritivo (Inter 80px). A hierarquia visual funciona pela diferença de peso visual, não por opacidade.</div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Imagem com overlay</div>
+    <div class="effect-card">
+      <div class="effect-name">Overlay escuro sobre fotos nos Project Cards</div>
+      <div class="effect-where">Onde: Project Cards · Hero image</div>
+      <div class="effect-code">
+.project-image-wrapper {<br>
+&nbsp;&nbsp;position: relative;<br>
+&nbsp;&nbsp;background: #0E1011;&nbsp;&nbsp;<span style="color:rgba(255,255,255,0.3);">/* fallback + cria o overlay */</span><br>
+}<br><br>
+.project-image-wrapper img {<br>
+&nbsp;&nbsp;opacity: 0.7;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgba(255,255,255,0.3);">/* 70% — varia por card */</span><br>
+&nbsp;&nbsp;object-fit: cover;<br>
+&nbsp;&nbsp;width: 100%; height: 100%;<br>
+&nbsp;&nbsp;transition: opacity 0.4s ease;<br>
+}<br><br>
+<span style="color:rgba(255,255,255,0.3);">/* Valores de opacidade por card: */</span><br>
+<span style="color:rgba(255,255,255,0.3);">/* Acme: 0.70 · Kanba: 0.90 */</span><br>
+<span style="color:rgba(255,255,255,0.3);">/* Utosia: 0.77 · Goldline: 0.70 */</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Tabela resumo de todas as transições</div>
+    <table class="ds-table">
+      <tr><th>Elemento</th><th>Propriedade</th><th>Duration</th><th>Easing</th></tr>
+      <tr><td>Project card — imagem hover</td><td>transform: scale(1.05)</td><td>0.4s</td><td>ease</td></tr>
+      <tr><td>Nav links — underline</td><td>transform: scaleX()</td><td>0.25s</td><td>ease</td></tr>
+      <tr><td>Button CTA — opacity</td><td>opacity: 0.6</td><td>0.2s</td><td>ease</td></tr>
+      <tr><td>Scroll reveal — elementos</td><td>opacity + translateY</td><td>0.6s</td><td>ease-out</td></tr>
+      <tr><td>Stagger entre elementos</td><td>transition-delay</td><td>+0.1s cada</td><td>—</td></tr>
+      <tr><td>Image overlay hover</td><td>opacity</td><td>0.4s</td><td>ease</td></tr>
+      <tr><td>Hero sticky scroll</td><td>position: sticky (CSS)</td><td>nativo</td><td>—</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 07 · TOKENS RÁPIDOS -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="ds-section" id="tokens">
+  <div class="section-eyebrow">(07 · Referência)</div>
+  <h2 class="section-heading">Tokens Rápidos</h2>
+  <p class="section-intro">Referência rápida para copiar e colar. Cole isto no início de qualquer conversa com uma IA para garantir que ela entende o design system completo.</p>
+
+  <div class="token-section">
+    <div class="token-header">CORES</div>
+    <div class="token-body">
+      <div class="token-row"><span class="token-name">--color-bg-primary</span><span class="token-value">#0E1011</span></div>
+      <div class="token-row"><span class="token-name">--color-bg-muted</span><span class="token-value">#F8F8F8</span></div>
+      <div class="token-row"><span class="token-name">--color-text-default</span><span class="token-value">#0E1011</span></div>
+      <div class="token-row"><span class="token-name">--color-text-muted</span><span class="token-value">rgba(14, 16, 17, 0.6)</span></div>
+      <div class="token-row"><span class="token-name">--color-text-inverse</span><span class="token-value">#FFFFFF</span></div>
+      <div class="token-row"><span class="token-name">--color-border</span><span class="token-value">rgba(14, 16, 17, 0.12)</span></div>
+    </div>
+  </div>
+
+  <div class="token-section">
+    <div class="token-header">FONTES</div>
+    <div class="token-body">
+      <div class="token-row"><span class="token-name">Display / Hero</span><span class="token-value">Anton SC · 400 · uppercase</span></div>
+      <div class="token-row"><span class="token-name">Headings Alt / UI</span><span class="token-value">Inter · 600 · tracking negativo</span></div>
+      <div class="token-row"><span class="token-name">Body</span><span class="token-value">Inter · 400 · line-h 1.7</span></div>
+      <div class="token-row"><span class="token-name">Meta Labels</span><span class="token-value">Gambetta / DM Serif Text · Italic</span></div>
+    </div>
+  </div>
+
+  <div class="token-section">
+    <div class="token-header">ESPAÇAMENTO</div>
+    <div class="token-body">
+      <div class="token-row"><span class="token-name">--space-1</span><span class="token-value">16px</span></div>
+      <div class="token-row"><span class="token-name">--space-2</span><span class="token-value">32px</span></div>
+      <div class="token-row"><span class="token-name">--space-3</span><span class="token-value">48px</span></div>
+      <div class="token-row"><span class="token-name">--space-4</span><span class="token-value">64px</span></div>
+      <div class="token-row"><span class="token-name">--space-5 ★</span><span class="token-value">96px — padding padrão de seções</span></div>
+      <div class="token-row"><span class="token-name">--space-6</span><span class="token-value">128px</span></div>
+      <div class="token-row"><span class="token-name">--space-7</span><span class="token-value">160px — padding-top do hero</span></div>
+    </div>
+  </div>
+
+  <div class="token-section">
+    <div class="token-header">GRID</div>
+    <div class="token-body">
+      <div class="token-row"><span class="token-name">Canvas total</span><span class="token-value">1920px</span></div>
+      <div class="token-row"><span class="token-name">Coluna principal</span><span class="token-value">960px (50%)</span></div>
+      <div class="token-row"><span class="token-name">Padding lateral</span><span class="token-value">96px</span></div>
+      <div class="token-row"><span class="token-name">Conteúdo útil (half)</span><span class="token-value">768px</span></div>
+      <div class="token-row"><span class="token-name">Project cards</span><span class="token-value">960 × 960px</span></div>
+    </div>
+  </div>
+
+  <div class="token-section">
+    <div class="token-header">TRANSIÇÕES</div>
+    <div class="token-body">
+      <div class="token-row"><span class="token-name">Card hover scale</span><span class="token-value">transform scale(1.05) · 0.4s ease</span></div>
+      <div class="token-row"><span class="token-name">Nav underline</span><span class="token-value">scaleX(0→1) · 0.25s ease · origin left</span></div>
+      <div class="token-row"><span class="token-name">Scroll reveal</span><span class="token-value">opacity + translateY(24px) · 0.6s ease-out</span></div>
+      <div class="token-row"><span class="token-name">Stagger delay</span><span class="token-value">+0.1s por elemento filho</span></div>
+      <div class="token-row"><span class="token-name">Image overlay</span><span class="token-value">opacity 0.7–0.9 (fixo por card)</span></div>
+    </div>
+  </div>
+
+  <div class="css-block" style="margin-top:32px;">
+<span class="cc">/* ══ KAJO STUDIO DESIGN SYSTEM — CSS COMPLETO ══ */</span><br><br>
+:root {<br>
+&nbsp;&nbsp;<span class="cc">/* Cores */</span><br>
+&nbsp;&nbsp;<span class="ck">--ds-black</span>: <span class="cv">#0E1011</span>;<br>
+&nbsp;&nbsp;<span class="ck">--ds-bg-muted</span>: <span class="cv">#F8F8F8</span>;<br>
+&nbsp;&nbsp;<span class="ck">--ds-text-muted</span>: <span class="cv">rgba(14, 16, 17, 0.6)</span>;<br>
+&nbsp;&nbsp;<span class="ck">--ds-border</span>: <span class="cv">rgba(14, 16, 17, 0.12)</span>;<br><br>
+&nbsp;&nbsp;<span class="cc">/* Fontes */</span><br>
+&nbsp;&nbsp;<span class="ck">--font-display</span>: <span class="cv">'Anton SC', Impact, sans-serif</span>;<br>
+&nbsp;&nbsp;<span class="ck">--font-body</span>: <span class="cv">'Inter', system-ui, sans-serif</span>;<br>
+&nbsp;&nbsp;<span class="ck">--font-meta</span>: <span class="cv">'DM Serif Text', Georgia, serif</span>;<br><br>
+&nbsp;&nbsp;<span class="cc">/* Espaçamentos */</span><br>
+&nbsp;&nbsp;<span class="ck">--s1</span>: <span class="cv">16px</span>; <span class="ck">--s2</span>: <span class="cv">32px</span>; <span class="ck">--s3</span>: <span class="cv">48px</span>;<br>
+&nbsp;&nbsp;<span class="ck">--s4</span>: <span class="cv">64px</span>; <span class="ck">--s5</span>: <span class="cv">96px</span>; <span class="ck">--s6</span>: <span class="cv">128px</span>; <span class="ck">--s7</span>: <span class="cv">160px</span>;<br>
+}
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<div class="doc-footer">
+  <span>Design System extraído via <strong>Figma MCP</strong> · Kajo Studio Portfolio Community</span>
+  <span>Gerado em <strong>Março 2025</strong> · Arquivo: hNIP09Gh73kM9L1SL9EHsX</span>
+</div>
+
+</body>
+</html>

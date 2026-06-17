@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Ticker — O marketing que vive o seu negócio.',
+  title: 'Ticker | O marketing que vive o seu negócio.',
   description:
     'A Ticker constrói sistemas de marketing personalizados baseados no estudo profundo do seu negócio, conectando sua empresa às pessoas que precisam dela.',
   keywords: [
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Ticker' }],
   metadataBase: new URL('https://www.tickermkt.com'),
   openGraph: {
-    title: 'Ticker — O marketing que vive o seu negócio.',
+    title: 'Ticker | O marketing que vive o seu negócio.',
     description:
       'Construímos sistemas de marketing personalizados para conectar boas empresas às pessoas que precisam delas.',
     url: 'https://www.tickermkt.com',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ticker — O marketing que vive o seu negócio.',
+    title: 'Ticker | O marketing que vive o seu negócio.',
     description:
       'Construímos sistemas de marketing personalizados para conectar boas empresas às pessoas que precisam delas.',
   },
