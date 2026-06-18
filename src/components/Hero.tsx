@@ -2,24 +2,51 @@
 
 import Image from 'next/image'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
+import { useState, useEffect, useRef } from 'react'
 
 // ─── CONTEÚDO ──────────────────────────────────────────────────────────────
 //
 // Logos dos clientes — /public/images/clientes/
 const CLIENT_LOGOS = [
-  { file: '16.png', alt: 'Cliente 16' },
-  { file: '17.png', alt: 'Cliente 17' },
-  { file: '18.png', alt: 'Cliente 18' },
-  { file: '19.png', alt: 'Cliente 19' },
-  { file: '20.png', alt: 'Cliente 20' },
   { file: '21.png', alt: 'Cliente 21' },
-  { file: '22.png', alt: 'Cliente 22' },
+  { file: '18.png', alt: 'Cliente 18' },
   { file: '23.png', alt: 'Cliente 23' },
+  { file: '16.png', alt: 'Cliente 16' },
+  { file: '20.png', alt: 'Cliente 20' },
+  { file: '17.png', alt: 'Cliente 17' },
+  { file: '22.png', alt: 'Cliente 22' },
+  { file: '19.png', alt: 'Cliente 19' },
 ]
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function Hero() {
   const refContent = useScrollReveal<HTMLDivElement>()
+  const [shouldPlay, setShouldPlay] = useState(true)
+  const desktopVideoRef = useRef<HTMLVideoElement>(null)
+  const mobileVideoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setShouldPlay(!mediaQuery.matches)
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setShouldPlay(!e.matches)
+    }
+    mediaQuery.addEventListener('change', handleChange)
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (shouldPlay) {
+      desktopVideoRef.current?.play().catch(() => {})
+      mobileVideoRef.current?.play().catch(() => {})
+    } else {
+      desktopVideoRef.current?.pause()
+      mobileVideoRef.current?.pause()
+    }
+  }, [shouldPlay])
 
   return (
     <>
@@ -39,10 +66,13 @@ export default function Hero() {
         {/* Vídeo de fundo — Desktop (horizontal) */}
         <div className="hero-video-desktop" style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
           <video
-            autoPlay
+            ref={desktopVideoRef}
+            autoPlay={shouldPlay}
             loop
             muted
             playsInline
+            preload="metadata"
+            poster="/images/hero-poster.jpg"
             style={{
               position: 'absolute',
               inset: 0,
@@ -54,15 +84,28 @@ export default function Hero() {
           >
             <source src="/videos/hero-desktop.mp4" type="video/mp4" />
           </video>
+          {/* Overlay gradiente escuro na base do vídeo para legibilidade */}
+          <div style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            height: '150px',
+            background: 'linear-gradient(to top, rgba(14,16,17,0.4) 0%, rgba(14,16,17,0) 100%)',
+            pointerEvents: 'none',
+          }} />
         </div>
 
         {/* Vídeo de fundo — Mobile (vertical) */}
         <div className="hero-video-mobile" style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
           <video
-            autoPlay
+            ref={mobileVideoRef}
+            autoPlay={shouldPlay}
             loop
             muted
             playsInline
+            preload="metadata"
+            poster="/images/hero-poster.jpg"
             style={{
               position: 'absolute',
               inset: 0,
@@ -74,6 +117,16 @@ export default function Hero() {
           >
             <source src="/videos/hero-mobile.mp4" type="video/mp4" />
           </video>
+          {/* Overlay gradiente escuro na base do vídeo para legibilidade */}
+          <div style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            height: '150px',
+            background: 'linear-gradient(to top, rgba(14,16,17,0.4) 0%, rgba(14,16,17,0) 100%)',
+            pointerEvents: 'none',
+          }} />
         </div>
 
         {/* CTA — barra horizontal */}
@@ -89,33 +142,9 @@ export default function Hero() {
         }}
         className="hero-cta-bar"
         >
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontWeight: 600,
-            fontSize: '24px',
-            color: '#FFFFFF',
-            margin: 0,
-            letterSpacing: '-0.5px',
-            whiteSpace: 'nowrap',
-          }}>
-            O marketing que vive seu negócio
-          </p>
-          <a href="#contato" style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '20px',
-            fontWeight: 600,
-            textDecoration: 'none',
-            color: '#FFFFFF',
-            borderBottom: '2px solid rgba(255,255,255,0.6)',
-            paddingBottom: '4px',
-            transition: 'opacity 0.2s ease',
-            whiteSpace: 'nowrap',
-            flexShrink: 0,
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
-          onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-          >
-            Agendar uma conversa
+          <div />
+          <a href="#contato" className="cta-primary" style={{ color: '#FFFFFF', fontSize: '20px', whiteSpace: 'nowrap', flexShrink: 0 }}>
+            Vamos conversar
           </a>
         </div>
 
@@ -159,7 +188,7 @@ export default function Hero() {
                     <Image
                       key={`${copy}-${logo.file}`}
                       src={`/images/clientes/${logo.file}`}
-                      alt={logo.alt}
+                      alt=""
                       width={100}
                       height={40}
                       style={{
@@ -180,17 +209,17 @@ export default function Hero() {
       {/* ─── SEÇÃO 2 — Conteúdo Hero ─────────────────────────────────── */}
       <section
         aria-label="Hero"
+        className="section-massive"
         style={{
           background: '#F8F8F8',
           overflow: 'hidden',
         }}
       >
-        <div ref={refContent} className="hero-content reveal">
+        <div ref={refContent} className="hero-content reveal container-content">
           <div className="hero-text-col">
             <h1 className="hero-name">
-              O marketing<br />
-              que vive<br />
-              seu negócio
+              Primeiro entender<span style={{ color: 'var(--accent)' }}>.</span><br />
+              Depois construir<span style={{ color: 'var(--accent)' }}>.</span>
             </h1>
 
             <div style={{
@@ -200,43 +229,28 @@ export default function Hero() {
             }} />
 
             <p className="hero-tagline" style={{ marginBottom: '40px' }}>
-              Construímos mecanismos de marketing baseados no estudo profundo de cada negócio.
+              A Ticker planeja e executa o marketing a partir do estudo de cada negócio, do que move o fundador ao que move quem compra.
             </p>
 
             {/* ── CTAs ── */}
             <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
-              <a href="#contato" style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '22px',
-                fontWeight: 600,
-                textDecoration: 'none',
-                color: '#0E1011',
-                borderBottom: '2px solid #0E1011',
-                paddingBottom: '4px'
-              }}>
-                Agendar uma conversa
+              <a href="#contato" className="cta-primary" style={{ color: '#0E1011', fontSize: '22px' }}>
+                Vamos conversar
               </a>
-              <a href="#servicos" style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '22px',
-                fontWeight: 600,
-                textDecoration: 'none',
-                color: 'rgba(14,16,17,0.6)',
-                borderBottom: '2px solid rgba(14,16,17,0.3)',
-                paddingBottom: '4px'
-              }}>
-                Ver como funciona
+              <a href="#marketing-instintivo" className="cta-secondary" style={{ color: '#0E1011', fontSize: '22px' }}>
+                Como funciona
               </a>
             </div>
           </div>
 
           <div className="hero-image-wrapper">
-            <img
+            <Image
               src="/images/captação.jpg"
-              alt="Ticker Marketing — Captação"
+              alt="Ticker Marketing - Captação"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
               style={{
-                width: '100%',
-                height: '100%',
                 objectFit: 'cover',
               }}
             />

@@ -36,11 +36,12 @@ function IconYouTube({ size = 16 }: { size?: number }) {
 
 // ─── CONTEÚDO ───────────────────────────────────────────────────────────────
 const NAV_LINKS = [
-  { label: 'Manifesto',    href: '#manifesto' },
-  { label: 'Serviços',     href: '#servicos' },
-  { label: 'Depoimentos',  href: '#depoimentos' },
-  { label: 'Quem Somos',   href: '#quem-somos' },
-  { label: 'Contato',      href: '#contato' },
+  { label: 'Marketing Instintivo', href: '#marketing-instintivo' },
+  { label: 'O Mapa',               href: '#mapa' },
+  { label: 'Serviços',             href: '#servicos' },
+  { label: 'Quem Somos',           href: '#quem-somos' },
+  { label: 'Manifesto',            href: '#manifesto' },
+  { label: 'Contato',              href: '#contato' },
 ]
 
 const SOCIALS = [
@@ -102,6 +103,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
       style={{ background: t.bg }}
       className="footer-root"
     >
+      <div className="container-content">
       {/* ─── LOGO — acima do grid ─────────────────────────────────────── */}
       <Image
         src="/images/logo-TICKER.png"
@@ -246,6 +248,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
 
         {/* ── Coluna 3: Redes Sociais ─────────────────────────────────── */}
         <div>
+          {/* Ocultado temporariamente pois não há perfis sociais reais da Ticker
           <span
             style={{
               fontFamily: "'DM Serif Text', serif",
@@ -296,6 +299,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
               </a>
             ))}
           </div>
+          */}
 
           {/* ── Utilidades ────────────────────────────────────────────── */}
           <div
@@ -402,6 +406,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
           Voltar ao topo
           <ArrowUp size={12} strokeWidth={2.5} />
         </button>
+      </div>
       </div>
     </footer>
   )

@@ -21,7 +21,7 @@ const SERVICES: ServiceItem[] = [
     name: 'Consultoria',
     tagline: 'Visão e Direção',
     description:
-      'Ideal para empresas que precisam de clareza sobre si e o mercado antes de agir, mas querem executar por conta própria.',
+      'Ideal para empresas que buscam clareza estratégica para planejar suas ações, mas preferem executar internamente.',
     categoryLabel: '(Visão e Direção)',
     subItems: [
       'Mapa de Direção de Marketing (modelo de negócio, público, produto, posicionamento e canais)',
@@ -34,7 +34,7 @@ const SERVICES: ServiceItem[] = [
     name: 'BPO Gerencial',
     tagline: 'Gestão Estratégica',
     description:
-      'Ideal para empresas que já possuem equipe (interna ou terceirizada) mas precisam de direção, método e gestão para evoluir com tranquilidade.',
+      'Ideal para empresas que possuem equipe própria ou terceirizada, mas precisam de método e direção para organizar os processos.',
     categoryLabel: '(Gestão Estratégica)',
     subItems: [
       'Levantamento de iniciativas primordiais para o negócio',
@@ -48,7 +48,7 @@ const SERVICES: ServiceItem[] = [
     name: 'BPO Completo',
     tagline: 'Operação Integrada',
     description:
-      'Ideal para empresas que querem um marketing autônomo com execução de ponta a ponta.',
+      'Ideal para empresas que buscam descentralizar a operação de marketing com execução de ponta a ponta.',
     categoryLabel: '(Operação Integrada)',
     subItems: [
       'Operação completa de mídia, conteúdo, copy, design e campanhas',
@@ -91,59 +91,59 @@ const MICRO_SERVICES = [
 export default function Services() {
   const refHeader = useScrollReveal<HTMLDivElement>()
   const refList   = useScrollReveal<HTMLDivElement>()
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   const toggle = (i: number) => {
     setOpenIndex(prev => prev === i ? null : i)
   }
 
   return (
-    <section id="servicos" aria-label="Serviços" style={{ background: '#0E1011' }}>
+    <section id="servicos" aria-label="Serviços" className="section-massive" style={{ background: '#0E1011', paddingBottom: '0' }}>
+      <div className="container-content">
+        {/* ─── CABEÇALHO ─────────────────────────────────────────────────── */}
+        <div ref={refHeader} className="services-header reveal" style={{ paddingBottom: '64px' }}>
 
-      {/* ─── CABEÇALHO ─────────────────────────────────────────────────── */}
-      <div ref={refHeader} className="services-header reveal" style={{ paddingBottom: '64px' }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+          }}>
+            <span style={{
+              fontFamily: "'DM Serif Text', serif",
+              fontStyle: 'italic',
+              fontSize: '32px',
+              lineHeight: 1,
+              color: 'rgba(255,255,255,0.4)',
+            }}>
+              (O que fazemos)
+            </span>
+            <span style={{
+              fontFamily: "'DM Serif Text', serif",
+              fontStyle: 'italic',
+              fontSize: '32px',
+              lineHeight: 1,
+              color: 'var(--accent)',
+            }}>
+              (06)
+            </span>
+          </div>
 
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-        }}>
-          <span style={{
-            fontFamily: "'DM Serif Text', serif",
-            fontStyle: 'italic',
-            fontSize: '32px',
-            lineHeight: 1,
-            color: 'rgba(255,255,255,0.4)',
-          }}>
-            (O que fazemos)
-          </span>
-          <span style={{
-            fontFamily: "'DM Serif Text', serif",
-            fontStyle: 'italic',
-            fontSize: '32px',
-            lineHeight: 1,
-            color: 'rgba(255,255,255,0.4)',
-          }}>
-            (02)
-          </span>
+          <h2
+            aria-hidden
+            className="services-title-display"
+            style={{ color: '#FFFFFF' }}
+          >
+            Serviços
+          </h2>
+
+          <p className="services-subtitle" style={{ color: '#FFFFFF' }}>
+            {SECTION_SUBTITLE}
+          </p>
+
         </div>
 
-        <h2
-          aria-hidden
-          className="services-title-display"
-          style={{ color: '#FFFFFF' }}
-        >
-          Serviços
-        </h2>
-
-        <p className="services-subtitle" style={{ color: '#FFFFFF' }}>
-          {SECTION_SUBTITLE}
-        </p>
-
-      </div>
-
-      {/* ─── ACCORDION DE SERVIÇOS ─────────────────────────────────────── */}
-      <div ref={refList} style={{ padding: '0 96px 96px' }} className="services-list-wrap stagger reveal">
+        {/* ─── ACCORDION DE SERVIÇOS ─────────────────────────────────────── */}
+        <div ref={refList} style={{ padding: '0 0 96px' }} className="services-list-wrap stagger reveal">
         {SERVICES.map((service, index) => {
           const isOpen = openIndex === index
 
@@ -201,12 +201,12 @@ export default function Services() {
                     marginLeft: '24px',
                     transition: 'transform 0.3s ease, border-color 0.3s ease',
                     transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
-                    borderColor: isOpen ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.2)',
+                    borderColor: isOpen ? 'var(--accent)' : 'rgba(255,255,255,0.2)',
                   }}
                 >
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <line x1="8" y1="2" x2="8" y2="14" stroke="white" strokeWidth="1.5" />
-                    <line x1="2" y1="8" x2="14" y2="8" stroke="white" strokeWidth="1.5" />
+                    <line x1="8" y1="2" x2="8" y2="14" stroke={isOpen ? 'var(--accent)' : 'white'} strokeWidth="1.5" style={{ transition: 'stroke 0.3s ease' }} />
+                    <line x1="2" y1="8" x2="14" y2="8" stroke={isOpen ? 'var(--accent)' : 'white'} strokeWidth="1.5" style={{ transition: 'stroke 0.3s ease' }} />
                   </svg>
                 </span>
               </button>
@@ -268,7 +268,7 @@ export default function Services() {
                         lineHeight: 1.5,
                         color: 'rgba(255,255,255,0.85)',
                       }}>
-                        — {item}
+                        - {item}
                       </span>
                     ))}
                   </div>
@@ -277,6 +277,7 @@ export default function Services() {
             </div>
           )
         })}
+      </div>
       </div>
 
       {/* ─── FAIXA MARQUEE — Micro Serviços ────────────────────────────── */}

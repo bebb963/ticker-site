@@ -93,7 +93,7 @@ function ProjectCard({ project }: { project: Project }) {
       style={{ display: 'block', textDecoration: 'none', overflow: 'hidden', cursor: 'pointer' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      aria-label={`Ver case: ${project.name} — ${project.client}`}
+      aria-label={`Ver case: ${project.name} - ${project.client}`}
     >
       {/* ── Wrapper da imagem — aspect-ratio 1:1 ── */}
       <div style={{
@@ -106,7 +106,7 @@ function ProjectCard({ project }: { project: Project }) {
           /* Imagem real do case */
           <Image
             src={project.image}
-            alt={`${project.name} — ${project.client}`}
+            alt={`${project.name} - ${project.client}`}
             fill
             style={{
               objectFit: 'cover',
@@ -296,7 +296,7 @@ export default function Projects() {
       {/* ─── GRID 2×2 ────────────────────────────────────────────────────── */}
       <div ref={refGrid} className="projects-grid stagger reveal">
         {PROJECTS.map((project, i) => (
-          <div style={{ ['--index' as string]: i } as React.CSSProperties}><ProjectCard project={project} /></div>
+          <div key={project.id} style={{ ['--index' as string]: i } as React.CSSProperties}><ProjectCard project={project} /></div>
         ))}
       </div>
 

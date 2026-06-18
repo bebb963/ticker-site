@@ -24,6 +24,7 @@
   --ds-white:      #FFFFFF;
   --ds-text-muted: rgba(14, 16, 17, 0.60);
   --ds-border:     rgba(14, 16, 17, 0.12);
+  --accent:        #FF5A00;
 
   /* Spacing */
   --space-1: 16px;
@@ -114,6 +115,15 @@ body {
 }
 .section-pad-96 {
   padding: 96px;
+}
+
+@media (max-width: 1024px) {
+  .section-massive {
+    padding: 80px 48px;
+  }
+  .section-pad-96 {
+    padding: 80px 48px;
+  }
 }
 
 /* Coluna sticky (Kajo System) */
@@ -231,6 +241,28 @@ body {
 }
 .btn-text:hover {
   opacity: 0.6;
+}
+
+/* ── CUSTOM CTAS ─────────────────────────────────────────────────── */
+.cta-primary, .cta-secondary {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  padding-bottom: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+.cta-primary {
+  border-bottom: 2px solid var(--accent);
+}
+.cta-primary:hover {
+  opacity: 0.7;
+}
+.cta-secondary {
+  border-bottom: 2px solid rgba(255, 90, 0, 0.3);
+}
+.cta-secondary:hover {
+  border-bottom-color: var(--accent);
 }
 
 /* ── INPUTS ───────────────────────────────────────────────────────── */
@@ -416,7 +448,7 @@ body {
 }
 .hero-name {
   font-family: 'Anton SC', sans-serif;
-  font-size: clamp(48px, 8vw, 120px);
+  font-size: clamp(32px, 5.5vw, 76px);
   font-weight: 400;
   text-transform: uppercase;
   line-height: 1;
@@ -456,7 +488,7 @@ body {
   .hero-grid  { display: block; }
   .hero-left  { position: relative; height: 60vw; width: 100%; }
   .hero-part1 { padding: 48px 24px 64px; min-height: auto; }
-  .hero-name  { font-size: clamp(40px, 12vw, 160px); }
+  .hero-name  { font-size: clamp(32px, 8vw, 56px); }
   .hero-tagline { font-size: clamp(22px, 5vw, 48px); }
   .hero-part2 { padding: 64px 24px; }
   .hero-about-title { font-size: clamp(40px, 10vw, 80px); }
@@ -480,7 +512,7 @@ body {
   animation: hero-logos-scroll 25s linear infinite;
 }
 .hero-content {
-  padding: 120px 96px;
+  padding: 24px 0;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 80px;
@@ -498,7 +530,7 @@ body {
   .hero-content {
     grid-template-columns: 1fr;
     gap: 48px;
-    padding: 80px 48px;
+    padding: 0;
   }
   .hero-image-wrapper {
     aspect-ratio: 4 / 3;
@@ -508,7 +540,7 @@ body {
 }
 @media (max-width: 767px) {
   .hero-content {
-    padding: 64px 24px;
+    padding: 0;
   }
   .hero-image-wrapper {
     aspect-ratio: 1 / 1;
@@ -569,11 +601,11 @@ body {
 
 /* ── SERVICES ────────────────────────────────────────────────────── */
 .services-header {
-  padding: 64px 96px 48px;
+  padding: 64px 0 48px;
 }
 .services-title-display {
   font-family: 'Anton SC', sans-serif;
-  font-size: clamp(48px, 8vw, 120px);
+  font-size: clamp(60px, 8vw, 120px);
   font-weight: 400;
   text-transform: uppercase;
   line-height: 0.85;
@@ -586,7 +618,7 @@ body {
 .services-subtitle {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  font-size: clamp(24px, 5vw, 80px);
+  font-size: clamp(20px, 3vw, 36px);
   letter-spacing: -2px;
   line-height: 1.15;
   color: #0E1011;
@@ -608,9 +640,17 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 8px 48px;
 }
+@media (max-width: 1024px) {
+  .services-header {
+    padding: 64px 0 48px;
+  }
+  .services-list-wrap {
+    padding: 0 0 80px !important;
+  }
+}
 @media (max-width: 767px) {
-  .services-header { padding: 64px 24px 48px; }
-  .services-list-wrap { padding: 0 24px 64px !important; }
+  .services-header { padding: 64px 0 48px; }
+  .services-list-wrap { padding: 0 0 64px !important; }
   .services-subitems { grid-template-columns: 1fr; }
 }
 
@@ -1183,7 +1223,7 @@ body {
 
 /* ── QUEM SOMOS (Os Sócios — 50/50 Grid — Kajo DS) ──────────────── */
 .qs-section {
-  background: #F8F8F8;
+  background: linear-gradient(to right, #0E1011 50%, #F8F8F8 50%);
   color: #0E1011;
   overflow: hidden;
 }
@@ -1195,6 +1235,7 @@ body {
 .qs-image-col {
   position: relative;
   overflow: hidden;
+  background: #0E1011;
 }
 .qs-image {
   width: 100%;
@@ -1215,15 +1256,15 @@ body {
 .qs-eyebrow {
   font-family: 'DM Serif Text', serif;
   font-style: italic;
-  font-size: 20px;
+  font-size: clamp(24px, 2.5vw, 32px);
   line-height: 1;
-  color: rgba(14,16,17,0.3);
+  color: rgba(14,16,17,0.7);
   display: block;
   margin-bottom: 32px;
 }
 .qs-title {
   font-family: 'Anton SC', sans-serif;
-  font-size: clamp(48px, 7vw, 120px);
+  font-size: clamp(60px, 8vw, 120px);
   font-weight: 400;
   text-transform: uppercase;
   line-height: 0.9;
@@ -1234,9 +1275,9 @@ body {
 .qs-intro {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-size: clamp(16px, 1.5vw, 20px);
+  font-size: clamp(16px, 1.8vw, 20px);
   line-height: 1.7;
-  color: rgba(14,16,17,0.5);
+  color: rgba(14,16,17,0.7);
   max-width: 480px;
   margin: 0 0 48px;
 }
@@ -1252,15 +1293,15 @@ body {
 .qs-card-label {
   font-family: 'DM Serif Text', serif;
   font-style: italic;
-  font-size: 14px;
-  color: rgba(14,16,17,0.35);
+  font-size: clamp(16px, 1.8vw, 20px);
+  color: rgba(14,16,17,0.6);
   display: block;
   margin-bottom: 12px;
 }
 .qs-card-name {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  font-size: clamp(24px, 2.5vw, 36px);
+  font-size: clamp(22px, 2.5vw, 32px);
   letter-spacing: -0.5px;
   color: #0E1011;
   margin: 0 0 12px;
@@ -1268,24 +1309,28 @@ body {
 .qs-card-desc {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-size: clamp(14px, 1.1vw, 17px);
+  font-size: clamp(15px, 1.5vw, 18px);
   line-height: 1.7;
-  color: rgba(14,16,17,0.5);
+  color: rgba(14,16,17,0.7);
   margin: 0;
   max-width: 480px;
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1024px) {
+  .qs-section {
+    background: #F8F8F8;
+  }
   .qs-grid {
     grid-template-columns: 1fr;
     min-height: auto;
   }
   .qs-image-col {
     max-height: 500px;
+    background: #0E1011;
   }
   .qs-content-col {
-    padding: 64px 96px;
+    padding: 64px 48px;
   }
 }
 @media (max-width: 767px) {

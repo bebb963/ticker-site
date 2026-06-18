@@ -2,46 +2,22 @@
 
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
-const PERGUNTAS = [
+const HUMANOS = [
   {
-    num: '01',
-    titulo: 'Qual é o projeto?',
-    texto: 'Análise do modelo de negócio e do mercado inserido. Posicionamento, JTBD e PUV e mais.',
+    titulo: 'O fundador',
+    linhaDeApoio: 'a visão, o propósito e a convicção que deram origem ao negócio.',
   },
   {
-    num: '02',
-    titulo: 'Quem é o cliente?',
-    texto: 'Quem é o seu cliente de verdade e o que move a decisão dele.',
+    titulo: 'O time',
+    linhaDeApoio: 'a cultura viva que sustenta e faz tudo funcionar no dia a dia.',
   },
   {
-    num: '03',
-    titulo: 'Onde?',
-    texto: 'Em quais canais, territórios e contextos a sua empresa precisa estar presente.',
+    titulo: 'O produto',
+    linhaDeApoio: 'a tradução do que o negócio acredita e do que o mercado precisa.',
   },
   {
-    num: '04',
-    titulo: 'Como atrair?',
-    texto: 'Estratégias de aquisição realistas para o seu contexto e o seu custo ideal por cliente.',
-  },
-  {
-    num: '05',
-    titulo: 'Como converter?',
-    texto: 'Funis que constroem confiança antes da oferta — porque ninguém compra de quem não acredita.',
-  },
-  {
-    num: '06',
-    titulo: 'Como reter?',
-    texto: 'CRM, comunidade e experiência para o cliente ficar, voltar e gastar mais.',
-  },
-  {
-    num: '07',
-    titulo: 'Como monetizar?',
-    texto: 'Marketing e comercial jogando o mesmo jogo, com previsibilidade de receita.',
-  },
-  {
-    num: '08',
-    titulo: 'Como gerenciar?',
-    texto: 'Ritmo, prioridade e evolução contínua — para a estratégia não morrer no papel.',
+    titulo: 'O consumidor',
+    linhaDeApoio: 'movido por desejos e instintos que antecedem a razão.',
   },
 ]
 
@@ -52,30 +28,44 @@ export default function MarketingInstintivo() {
   return (
     <section 
       id="marketing-instintivo" 
-      aria-label="Instinto e Metodologia" 
+      aria-label="Marketing Instintivo" 
       className="section-massive"
       style={{ 
         background: '#F8F8F8', 
         color: '#0E1011'
       }}
     >
-      <div className="grid-split">
+      <div className="grid-split container-content">
         {/* Coluna Esquerda: Sticky */}
         <div ref={refTitle} className="sticky-col reveal">
-          <span style={{
-            fontFamily: "'DM Serif Text', serif",
-            fontStyle: 'italic',
-            fontSize: '32px',
-            lineHeight: 1,
-            color: 'rgba(14,16,17,0.6)',
-            display: 'block',
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
             marginBottom: '32px',
           }}>
-            (Marketing Instintivo)
-          </span>
+            <span style={{
+              fontFamily: "'DM Serif Text', serif",
+              fontStyle: 'italic',
+              fontSize: 'clamp(24px, 2.5vw, 32px)',
+              lineHeight: 1,
+              color: 'rgba(14,16,17,0.6)',
+            }}>
+              (Marketing Instintivo)
+            </span>
+            <span style={{
+              fontFamily: "'DM Serif Text', serif",
+              fontStyle: 'italic',
+              fontSize: 'clamp(24px, 2.5vw, 32px)',
+              lineHeight: 1,
+              color: 'var(--accent)',
+            }}>
+              (02)
+            </span>
+          </div>
           <h2 style={{
             fontFamily: "'Anton SC', sans-serif",
-            fontSize: 'clamp(60px, 10vw, 160px)',
+            fontSize: 'clamp(60px, 8vw, 120px)',
             fontWeight: 400,
             textTransform: 'uppercase',
             lineHeight: 1,
@@ -83,100 +73,73 @@ export default function MarketingInstintivo() {
             color: '#0E1011',
             margin: '0 0 32px'
           }}>
-            Instinto e<br/>Metodologia
+            Marketing<br/>Instintivo
           </h2>
+          
           <div style={{
             fontFamily: "'Inter', sans-serif",
             fontWeight: 400,
-            fontSize: '20px',
+            fontSize: 'clamp(16px, 1.8vw, 20px)',
             lineHeight: 1.7,
             color: 'rgba(14,16,17,0.7)',
             maxWidth: '600px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '12px',
+            gap: '24px',
           }}>
             <p style={{ margin: 0 }}>
-              <strong style={{ color: '#0E1011' }}>O fundador:</strong> a visão, o propósito e a convicção que deram origem ao negócio.
+              Todo negócio é feito de pessoas. O Marketing Instintivo estuda as motivações que movem cada uma delas.
             </p>
             <p style={{ margin: 0 }}>
-              <strong style={{ color: '#0E1011' }}>O time:</strong> a cultura viva que sustenta e faz tudo funcionar no dia a dia.
-            </p>
-            <p style={{ margin: 0 }}>
-              <strong style={{ color: '#0E1011' }}>O produto:</strong> a tradução prática daquilo em que o negócio acredita e do que o mercado precisa.
-            </p>
-            <p style={{ margin: 0 }}>
-              <strong style={{ color: '#0E1011' }}>O consumidor:</strong> movido por desejos e instintos que muitas vezes antecedem a razão.
-            </p>
-            <p style={{ margin: 0, marginTop: '8px' }}>
-              O Marketing Instintivo orienta a compreensão profunda do negócio.
-            </p>
-            <p style={{ margin: 0 }}>
-              É a partir dessa observação que respondemos às perguntas que compõem nossa metodologia de crescimento.
+              Quando a visão do fundador, a cultura do time, o produto e a percepção de quem compra se alinham, o crescimento acontece de forma natural.
             </p>
           </div>
 
           {/* CTA abaixo da descrição */}
-          <a href="#contato" style={{
+          <a href="#mapa" className="cta-secondary" style={{
             display: 'inline-block',
             marginTop: '48px',
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '22px',
-            fontWeight: 600,
-            textDecoration: 'none',
             color: '#0E1011',
-            borderBottom: '2px solid #0E1011',
-            paddingBottom: '4px',
-            transition: 'opacity 0.2s ease'
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.6')}
-          onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-          >
-            Quero as minhas 8 respostas
+            fontSize: '22px',
+          }}>
+            Conheça o Mapa
           </a>
         </div>
 
-        {/* Coluna Direita: Cards das 8 Perguntas (scroll vertical) */}
+        {/* Coluna Direita: Cards dos 4 Humanos */}
         <div ref={refGrid} className="stagger reveal" style={{ display: 'flex', flexDirection: 'column', gap: '32px', paddingTop: '16px' }}>
-          {PERGUNTAS.map((item, i) => (
+          {HUMANOS.map((humano, i) => (
             <div 
               key={i} 
               style={{
                 background: '#FFFFFF',
-                padding: '64px',
+                padding: '48px 64px',
                 border: '1px solid rgba(14,16,17,0.05)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '12px',
                 ['--index' as string]: i 
               } as React.CSSProperties}
             >
-              <div style={{ display: 'flex', gap: '20px', alignItems: 'baseline', marginBottom: '24px' }}>
-                <span style={{
-                  fontFamily: "'DM Serif Text', serif",
-                  fontStyle: 'italic',
-                  fontSize: '28px',
-                  color: 'rgba(14,16,17,0.25)',
-                }}>
-                  ({item.num})
-                </span>
-                <h3 style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 600,
-                  fontSize: '40px',
-                  letterSpacing: '-1px',
-                  margin: 0,
-                  color: '#0E1011'
-                }}>
-                  {item.titulo}
-                </h3>
-              </div>
+              <h3 style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 600,
+                fontSize: '24px',
+                letterSpacing: '-0.5px',
+                margin: 0,
+                color: '#0E1011'
+              }}>
+                {humano.titulo}
+              </h3>
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 400,
-                fontSize: '22px',
-                lineHeight: 1.7,
+                fontSize: 'clamp(15px, 1.5vw, 18px)',
+                lineHeight: 1.6,
                 color: 'rgba(14,16,17,0.6)',
                 margin: 0
               }}>
-                {item.texto}
+                - {humano.linhaDeApoio}
               </p>
             </div>
           ))}

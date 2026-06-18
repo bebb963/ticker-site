@@ -6,13 +6,11 @@ import { Menu, X } from 'lucide-react'
 import Logo from './Logo'
 
 const NAV_LINKS = [
-  { label: 'Manifesto',         href: '#manifesto' },
-  // { label: 'O Mapa',            href: '#mapa' },           // absorvido por Marketing Instintivo
-  { label: 'Serviços',          href: '#servicos' },
-  // { label: 'Cases',             href: '#cases' },          // temporariamente oculto
-  { label: 'Depoimentos',       href: '#depoimentos' },
-  // { label: 'O Processo',        href: '#trabalhe-conosco' }, // temporariamente oculto
-  { label: 'Quem Somos',        href: '#quem-somos' },
+  { label: 'Marketing Instintivo', href: '#marketing-instintivo' },
+  { label: 'O Mapa',               href: '#mapa' },
+  { label: 'Serviços',             href: '#servicos' },
+  { label: 'Quem Somos',           href: '#quem-somos' },
+  { label: 'Manifesto',            href: '#manifesto' },
 ]
 
 const CTA_LABEL = 'Vamos conversar'
@@ -55,12 +53,12 @@ export default function Header({ variant = 'small' }: HeaderProps) {
           {/* ── DESKTOP ───────────────────────────────────────────────────── */}
           <div className="hidden lg:flex items-center justify-between w-full">
 
-            {/* Logo — esquerda */}
-            <Link href="/" aria-label="Ticker — Home" style={{ color: '#FFFFFF' }}>
+            {/* Logo - esquerda */}
+            <Link href="/" aria-label="Ticker - Home" style={{ color: '#FFFFFF' }}>
               <Logo variant="dark" />
             </Link>
 
-            {/* Links de nav — centro */}
+            {/* Links de nav - centro */}
             <nav
               className="flex items-center"
               style={{ gap: '24px' }}
@@ -73,8 +71,8 @@ export default function Header({ variant = 'small' }: HeaderProps) {
               ))}
             </nav>
 
-            {/* CTA — direita */}
-            <Link href={CTA_HREF} className="cta-header" aria-label={CTA_LABEL} style={{ color: '#FFFFFF', borderColor: '#FFFFFF' }}>
+            {/* CTA - direita */}
+            <Link href={CTA_HREF} className="cta-primary" aria-label={CTA_LABEL} style={{ color: '#FFFFFF' }}>
               {CTA_LABEL}
             </Link>
           </div>
@@ -82,20 +80,20 @@ export default function Header({ variant = 'small' }: HeaderProps) {
           {/* ── MOBILE / TABLET ───────────────────────────────────────────── */}
           <div className="flex lg:hidden items-center justify-between w-full">
 
-            <Link href="/" aria-label="Ticker — Home" style={{ color: '#FFFFFF' }}>
+            <Link href="/" aria-label="Ticker - Home" style={{ color: '#FFFFFF' }}>
               <Logo variant="dark" className="h-8 w-auto" />
             </Link>
 
             <div className="flex items-center gap-6">
-              <Link href={CTA_HREF} className="cta-header" aria-label={CTA_LABEL} style={{ color: '#FFFFFF', borderColor: '#FFFFFF', fontSize: '16px' }}>
-                Falar com a gente
+              <Link href={CTA_HREF} className="cta-primary" aria-label={CTA_LABEL} style={{ color: '#FFFFFF', fontSize: '16px' }}>
+                {CTA_LABEL}
               </Link>
 
               <button
                 onClick={() => setDrawerOpen(true)}
                 aria-label="Abrir menu"
                 className="flex items-center justify-center p-0"
-                style={{ color: '#FFFFFF', background: 'none', border: 'none', cursor: 'pointer' }}
+                style={{ color: '#FFFFFF', background: 'none', border: 'none', cursor: 'pointer', width: '44px', height: '44px' }}
               >
                 <Menu size={28} strokeWidth={1.5} />
               </button>
@@ -135,7 +133,7 @@ export default function Header({ variant = 'small' }: HeaderProps) {
           <button
             onClick={() => setDrawerOpen(false)}
             aria-label="Fechar menu"
-            style={{ color: '#FFFFFF', background: 'none', border: 'none', cursor: 'pointer' }}
+            style={{ color: '#FFFFFF', background: 'none', border: 'none', cursor: 'pointer', width: '44px', height: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           >
             <X size={28} strokeWidth={1.5} />
           </button>

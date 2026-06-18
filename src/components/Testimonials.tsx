@@ -24,7 +24,7 @@ interface Testimonial {
 // Fonte: Estratégia Ticker.md:172 — "Clareza sobre quem a marca é..."
 const SECTION_TITLE = 'O que dizem\nquem passou\npelo processo.'
 const SECTION_SUBTITLE =
-  'Resultados não estão só nos números — estão na clareza, na direção e na confiança de quem sabia exatamente o que estava construindo.'
+  'Resultados não estão só nos números, mas na clareza, na direção e na confiança de quem sabia exatamente o que estava construindo.'
 
 // ── Depoimentos (6 — Lorem Ipsum autorizado) ──────────────────────────────
 // ⚠️ Substituir por depoimentos reais quando disponíveis
@@ -70,7 +70,7 @@ function TestimonialCard({ item, isLast }: { item: Testimonial; isLast: boolean 
           userSelect: 'none',
         }}
       >
-        "
+        &ldquo;
       </span>
 
       {/* Título do depoimento */}

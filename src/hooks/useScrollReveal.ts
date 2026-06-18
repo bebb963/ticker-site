@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react'
  * Observa o elemento via IntersectionObserver e adiciona a classe "in-view"
  * quando ele entra na viewport, disparando a animação .reveal definida em globals.css.
  *
- * ROBUSTEZ: Inclui fallback de segurança — se o observer não disparar em 1.5s,
+ * ROBUSTEZ: Inclui fallback de segurança, se o observer não disparar em 1.5s,
  * força a exibição do elemento. Isso evita o problema recorrente de texto
  * invisível quando o JS/hydration falha.
  *

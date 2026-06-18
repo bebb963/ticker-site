@@ -17,27 +17,43 @@ import OQueNaoFaz from '@/components/OQueNaoFaz'
 import QuemSomos from '@/components/QuemSomos'
 import Contato from '@/components/Contato'
 import Footer from '@/components/Footer'
+import Premissa from '@/components/Premissa'
+import ComoOlhamos from '@/components/ComoOlhamos'
+import OQueMuda from '@/components/OQueMuda'
+import ParaQuemE from '@/components/ParaQuemE'
 
 export default function Home() {
   return (
     <main>
       <Header variant="small" />
       <Hero />
-      {/* <Partners /> */}
-      {/* <Manifesto /> */}
-      {/* <MarketingInstintivo /> */}
+
+      <Premissa />
+
+      {/* <Partners /> - reativar quando houver logos reais */}
+
+      <MarketingInstintivo />
       {/* <MarketingInstintivoV2 /> */}
       {/* <MarketingInstintivoV3 /> */}
       {/* <MarketingInstintivoV4 /> */}
-      <MarketingInstintivoV5 />
-      {/* <OMapa /> */}
+      {/* <MarketingInstintivoV5 /> */}
+
+      <ComoOlhamos />
+      <OMapa />
+      <OQueMuda />
+
       <Services />
-      {/* <Projects /> */}
-      {/* <TrabalheConosco /> */}
+
+      {/* <ParaQuemE /> */}
       {/* <OQueNaoFaz /> */}
+
       <QuemSomos />
+
+      {/* <Manifesto /> */}
       <ManifestoV2 />
-      {/* <Testimonials /> */}
+
+      {/* <Testimonials /> - reativar quando houver depoimentos reais */}
+
       <Contato />
       <Footer variant="dark" />
     </main>

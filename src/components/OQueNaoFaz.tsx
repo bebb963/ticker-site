@@ -3,10 +3,10 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 const NOT_DOING = [
-  "Não fazemos apostas; desenhamos sistemas.",
-  "Não operamos sem entender a direção.",
-  "Não somos agência de post; somos parceiros de crescimento.",
-  "Não seguimos tendências vazias; buscamos o que converte e se sustenta."
+  "Não vendemos pacotes fechados.",
+  "Não começamos pela execução.",
+  "Não atendemos quem quer resultado sem processo.",
+  "Não tratamos marketing como uma lista de entregas."
 ]
 
 export default function OQueNaoFaz() {
@@ -23,20 +23,34 @@ export default function OQueNaoFaz() {
         color: '#FFFFFF'
       }}
     >
-      <div className="grid-split">
+      <div className="grid-split container-content">
         {/* Coluna Esquerda */}
         <div ref={refHeader} className="sticky-col reveal">
-          <span style={{
-            fontFamily: "'DM Serif Text', serif",
-            fontStyle: 'italic',
-            fontSize: '32px',
-            lineHeight: 1,
-            color: 'rgba(255,255,255,0.4)',
-            display: 'block',
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
             marginBottom: '32px',
           }}>
-            (Foco e Limites)
-          </span>
+            <span style={{
+              fontFamily: "'DM Serif Text', serif",
+              fontStyle: 'italic',
+              fontSize: '32px',
+              lineHeight: 1,
+              color: 'rgba(255,255,255,0.4)',
+            }}>
+              (Foco e limites)
+            </span>
+            <span style={{
+              fontFamily: "'DM Serif Text', serif",
+              fontStyle: 'italic',
+              fontSize: '32px',
+              lineHeight: 1,
+              color: 'var(--accent)',
+            }}>
+              (08)
+            </span>
+          </div>
           <h2 style={{
             fontFamily: "'Anton SC', sans-serif",
             fontSize: 'clamp(60px, 8vw, 120px)',
@@ -55,9 +69,10 @@ export default function OQueNaoFaz() {
             fontSize: '22px',
             lineHeight: 1.7,
             color: 'rgba(255,255,255,0.7)',
-            maxWidth: '600px'
+            maxWidth: '600px',
+            margin: 0
           }}>
-            Ter limites claros sobre o que não somos nos dá a precisão absurda sobre aquilo que somos.
+            Saber com clareza o que recusamos é o que nos dá precisão sobre o que fazemos.
           </p>
         </div>
 

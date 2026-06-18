@@ -5,9 +5,9 @@ import { useEffect, useRef } from 'react'
 
 const MANIFESTO_PHRASES = [
   "A Ticker nasceu da admiração por quem decide construir um negócio.",
-  "Acreditamos que grandes empresas são construídas sobre percepções que poucos se dedicam a observar.",
-  "Por isso, escolhemos estar próximos. Das pessoas, dos clientes, da operação e da realidade que molda cada negócio todos os dias.",
-  "A partir daí, transformamos conhecimento em direção."
+  "Vimos de perto o que não funciona: negócios únicos recebendo soluções genéricas, atendidos por quem nunca entendeu o que eles realmente são.",
+  "Por isso a gente começa por dentro. Observa as pessoas, a cultura, o mercado e quem compra, antes de mover qualquer peça.",
+  "O maior desperdício nos negócios é uma boa empresa que ninguém encontra."
 ]
 
 export default function Manifesto() {

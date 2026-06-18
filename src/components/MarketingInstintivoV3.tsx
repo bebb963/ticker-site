@@ -17,10 +17,10 @@ const PERGUNTAS = [
   { num: '02', titulo: 'Quem é o cliente?',   texto: 'Quem é o seu cliente de verdade e o que move a decisão dele.' },
   { num: '03', titulo: 'Onde?',               texto: 'Em quais canais, territórios e contextos a sua empresa precisa estar presente.' },
   { num: '04', titulo: 'Como atrair?',        texto: 'Estratégias de aquisição realistas para o seu contexto e custo ideal por cliente.' },
-  { num: '05', titulo: 'Como converter?',     texto: 'Funis que constroem confiança antes da oferta — porque ninguém compra de quem não acredita.' },
+  { num: '05', titulo: 'Como converter?',     texto: 'Funis que constroem confiança antes da oferta, porque ninguém compra de quem não acredita.' },
   { num: '06', titulo: 'Como reter?',         texto: 'CRM, comunidade e experiência para o cliente ficar, voltar e gastar mais.' },
   { num: '07', titulo: 'Como monetizar?',     texto: 'Marketing e comercial jogando o mesmo jogo, com previsibilidade de receita.' },
-  { num: '08', titulo: 'Como gerenciar?',     texto: 'Ritmo, prioridade e evolução contínua — para a estratégia não morrer no papel.' },
+  { num: '08', titulo: 'Como gerenciar?',     texto: 'Ritmo, prioridade e evolução contínua, para a estratégia não morrer no papel.' },
 ]
 
 // ─── Pilar card com hover ────────────────────────────────────────────────────

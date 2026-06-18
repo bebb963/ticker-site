@@ -2,23 +2,23 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Ticker | O marketing que vive o seu negócio.',
+  title: 'Ticker | Primeiro entender. Depois construir.',
   description:
-    'A Ticker constrói sistemas de marketing personalizados baseados no estudo profundo do seu negócio, conectando sua empresa às pessoas que precisam dela.',
+    'A Ticker planeja e executa o marketing a partir do estudo de cada negócio, do que move o fundador ao que move quem compra.',
   keywords: [
-    'agência de marketing',
-    'marketing estratégico',
-    'marketing instintivo',
-    'BPO de marketing',
+    'consultoria de marketing',
     'sistemas de marketing',
+    'marketing instintivo',
+    'estratégia de marca',
     'Ticker',
+    'marketing estratégico',
   ],
   authors: [{ name: 'Ticker' }],
   metadataBase: new URL('https://www.tickermkt.com'),
   openGraph: {
-    title: 'Ticker | O marketing que vive o seu negócio.',
+    title: 'Ticker | Primeiro entender. Depois construir.',
     description:
-      'Construímos sistemas de marketing personalizados para conectar boas empresas às pessoas que precisam delas.',
+      'A Ticker planeja e executa o marketing a partir do estudo de cada negócio, do que move o fundador ao que move quem compra.',
     url: 'https://www.tickermkt.com',
     type: 'website',
     locale: 'pt_BR',
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ticker | O marketing que vive o seu negócio.',
+    title: 'Ticker | Primeiro entender. Depois construir.',
     description:
-      'Construímos sistemas de marketing personalizados para conectar boas empresas às pessoas que precisam delas.',
+      'A Ticker planeja e executa o marketing a partir do estudo de cada negócio, do que move o fundador ao que move quem compra.',
   },
   robots: {
     index: true,

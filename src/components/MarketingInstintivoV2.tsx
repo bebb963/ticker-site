@@ -36,7 +36,7 @@ const PERGUNTAS = [
   {
     num: '05',
     titulo: 'Como converter?',
-    texto: 'Funis que constroem confiança antes da oferta — porque ninguém compra de quem não acredita.',
+    texto: 'Funis que constroem confiança antes da oferta, porque ninguém compra de quem não acredita.',
   },
   {
     num: '06',
@@ -51,7 +51,7 @@ const PERGUNTAS = [
   {
     num: '08',
     titulo: 'Como gerenciar?',
-    texto: 'Ritmo, prioridade e evolução contínua — para a estratégia não morrer no papel.',
+    texto: 'Ritmo, prioridade e evolução contínua, para a estratégia não morrer no papel.',
   },
 ]
 

@@ -12,20 +12,20 @@ const MANIFESTO_PHRASES = [
     { text: ' por quem decide construir um negócio.' },
   ],
   [
-    { text: 'Acreditamos que grandes empresas são construídas sobre ' },
-    { text: 'percepções', highlight: true },
-    { text: ' que poucos se dedicam a observar.' },
+    { text: 'Vimos de perto o que ' },
+    { text: 'não funciona:', highlight: true },
+    { text: ' empresas recebendo soluções genéricas, atendidas sem a compreensão real de seu modelo de negócio.' },
   ],
   [
-    { text: 'Por isso, escolhemos estar ' },
-    { text: 'próximos.', highlight: true },
-    { text: ' Das pessoas, dos clientes, da operação e da realidade que molda cada negócio todos os dias.' },
+    { text: 'Por isso a gente começa ' },
+    { text: 'por dentro.', highlight: true },
+    { text: ' Observa as pessoas, a cultura, o mercado e quem compra, antes de mover qualquer peça.' },
   ],
   [
-    { text: 'A partir daí, transformamos ' },
-    { text: 'conhecimento', highlight: true },
-    { text: ' em ' },
-    { text: 'direção.', highlight: true },
+    { text: 'O maior ' },
+    { text: 'desperdício', highlight: true },
+    { text: ' nos negócios é uma boa empresa que ninguém ' },
+    { text: 'encontra.', highlight: true },
   ],
 ]
 
@@ -183,36 +183,49 @@ export default function ManifestoV2() {
         justifyContent: 'center',
       }}
     >
-      <div style={{ width: '100%' }}>
-        {/* Rótulo da seção */}
+      <div className="container-content" style={{ width: '100%' }}>
+        {/* Rótulo e Índice da seção */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '16px',
+            justifyContent: 'space-between',
             marginBottom: '48px',
           }}
         >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flex: 1 }}>
+            <span
+              style={{
+                fontFamily: "'DM Serif Text', serif",
+                fontStyle: 'italic',
+                fontSize: 'clamp(24px, 2.5vw, 32px)',
+                lineHeight: 1,
+                color: 'rgba(255,255,255,0.4)',
+              }}
+            >
+              (O Manifesto)
+            </span>
+            <div
+              style={{
+                flex: 1,
+                height: '1px',
+                background:
+                  'linear-gradient(90deg, rgba(255,255,255,0.12) 0%, transparent 100%)',
+                maxWidth: '200px',
+              }}
+            />
+          </div>
           <span
             style={{
               fontFamily: "'DM Serif Text', serif",
               fontStyle: 'italic',
-              fontSize: '32px',
+              fontSize: 'clamp(24px, 2.5vw, 32px)',
               lineHeight: 1,
-              color: 'rgba(255,255,255,0.4)',
+              color: 'var(--accent)',
             }}
           >
-            (O Manifesto)
+            (08)
           </span>
-          <div
-            style={{
-              flex: 1,
-              height: '1px',
-              background:
-                'linear-gradient(90deg, rgba(255,255,255,0.12) 0%, transparent 100%)',
-              maxWidth: '200px',
-            }}
-          />
         </div>
 
         {/* Frases */}
