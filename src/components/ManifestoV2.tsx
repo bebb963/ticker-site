@@ -224,7 +224,7 @@ export default function ManifestoV2() {
               color: 'var(--accent)',
             }}
           >
-            (07)
+            (08)
           </span>
         </div>
 

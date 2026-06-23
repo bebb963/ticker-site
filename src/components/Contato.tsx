@@ -87,7 +87,7 @@ export default function Contato() {
                 lineHeight: 1,
                 color: 'var(--accent)',
               }}>
-                (08)
+                (09)
               </span>
             </div>
             <h2 style={{

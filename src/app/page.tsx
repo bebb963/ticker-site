@@ -44,7 +44,7 @@ export default function Home() {
 
       <Services />
 
-      {/* <ParaQuemE /> */}
+      <ParaQuemE />
       {/* <OQueNaoFaz /> */}
 
       {/* <QuemSomos /> */}

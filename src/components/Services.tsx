@@ -99,7 +99,7 @@ export default function Services() {
 
   return (
     <>
-     <section id="servicos" aria-label="Serviços" className="section-massive" style={{ background: '#F8F8F8', paddingBottom: '0' }}>
+     <section id="servicos" aria-label="Serviços" className="section-massive" style={{ background: '#0E1011', paddingBottom: '0' }}>
       <div className="container-content">
         {/* ─── CABEÇALHO ─────────────────────────────────────────────────── */}
         <div ref={refHeader} className="services-header reveal" style={{ paddingBottom: '64px' }}>
@@ -114,7 +114,7 @@ export default function Services() {
               fontStyle: 'italic',
               fontSize: '32px',
               lineHeight: 1,
-              color: 'rgba(14,16,17,0.6)',
+              color: 'rgba(255,255,255,0.4)',
             }}>
               (O que fazemos)
             </span>
@@ -132,12 +132,12 @@ export default function Services() {
           <h2
             aria-hidden
             className="services-title-display"
-            style={{ color: '#0E1011' }}
+            style={{ color: '#FFFFFF' }}
           >
             Serviços
           </h2>
 
-          <p className="services-subtitle" style={{ color: '#0E1011' }}>
+          <p className="services-subtitle" style={{ color: '#FFFFFF' }}>
             {SECTION_SUBTITLE}
           </p>
 
@@ -152,8 +152,8 @@ export default function Services() {
             <div
               key={service.id}
               style={{
-                borderTop: '1px solid rgba(14,16,17,0.1)',
-                borderBottom: index === SERVICES.length - 1 ? '1px solid rgba(14,16,17,0.1)' : 'none',
+                borderTop: '1px solid rgba(255,255,255,0.1)',
+                borderBottom: index === SERVICES.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none',
               }}
             >
               {/* ── Toggle row ──────────────────────────────────────────── */}
@@ -178,12 +178,12 @@ export default function Services() {
                     fontStyle: 'italic',
                     fontSize: '28px',
                     lineHeight: 1,
-                    color: 'rgba(14,16,17,0.3)',
+                    color: 'rgba(255,255,255,0.25)',
                     flexShrink: 0,
                   }}>
                     {service.id}
                   </span>
-                  <h3 className="services-item-name" style={{ color: '#0E1011' }}>
+                  <h3 className="services-item-name" style={{ color: '#FFFFFF' }}>
                     {service.name}
                   </h3>
                 </div>
@@ -194,7 +194,7 @@ export default function Services() {
                     width: '40px',
                     height: '40px',
                     borderRadius: '50%',
-                    border: '1.5px solid rgba(14,16,17,0.15)',
+                    border: '1.5px solid rgba(255,255,255,0.2)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -202,12 +202,12 @@ export default function Services() {
                     marginLeft: '24px',
                     transition: 'transform 0.3s ease, border-color 0.3s ease',
                     transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
-                    borderColor: isOpen ? 'var(--accent)' : 'rgba(14,16,17,0.15)',
+                    borderColor: isOpen ? 'var(--accent)' : 'rgba(255,255,255,0.2)',
                   }}
                 >
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <line x1="8" y1="2" x2="8" y2="14" stroke={isOpen ? 'var(--accent)' : '#0E1011'} strokeWidth="1.5" style={{ transition: 'stroke 0.3s ease' }} />
-                    <line x1="2" y1="8" x2="14" y2="8" stroke={isOpen ? 'var(--accent)' : '#0E1011'} strokeWidth="1.5" style={{ transition: 'stroke 0.3s ease' }} />
+                    <line x1="8" y1="2" x2="8" y2="14" stroke={isOpen ? 'var(--accent)' : 'white'} strokeWidth="1.5" style={{ transition: 'stroke 0.3s ease' }} />
+                    <line x1="2" y1="8" x2="14" y2="8" stroke={isOpen ? 'var(--accent)' : 'white'} strokeWidth="1.5" style={{ transition: 'stroke 0.3s ease' }} />
                   </svg>
                 </span>
               </button>
@@ -229,7 +229,7 @@ export default function Services() {
                     fontStyle: 'italic',
                     fontSize: '24px',
                     lineHeight: 1.4,
-                    color: 'rgba(14,16,17,0.7)',
+                    color: 'rgba(255,255,255,0.5)',
                     margin: '0 0 20px',
                   }}>
                     {service.tagline}
@@ -241,7 +241,7 @@ export default function Services() {
                     fontWeight: 400,
                     fontSize: '20px',
                     lineHeight: 1.7,
-                    color: 'rgba(14,16,17,0.6)',
+                    color: 'rgba(255,255,255,0.5)',
                     maxWidth: '768px',
                     margin: '0 0 32px',
                   }}>
@@ -254,7 +254,7 @@ export default function Services() {
                     fontStyle: 'italic',
                     fontSize: '24px',
                     lineHeight: 1,
-                    color: 'rgba(14,16,17,0.4)',
+                    color: 'rgba(255,255,255,0.3)',
                     display: 'block',
                     marginBottom: '16px',
                   }}>
@@ -267,7 +267,7 @@ export default function Services() {
                         fontWeight: 600,
                         fontSize: '18px',
                         lineHeight: 1.5,
-                        color: 'rgba(14,16,17,0.85)',
+                        color: 'rgba(255,255,255,0.85)',
                       }}>
                         - {item}
                       </span>
@@ -286,11 +286,11 @@ export default function Services() {
       <div
         aria-label="Micro serviços"
         style={{
-          borderTop: '1px solid rgba(14,16,17,0.1)',
-          borderBottom: '1px solid rgba(14,16,17,0.1)',
+          borderTop: '1px solid rgba(255,255,255,0.1)',
+          borderBottom: '1px solid rgba(255,255,255,0.1)',
           overflow: 'hidden',
           padding: '28px 0',
-          background: '#F8F8F8',
+          background: '#0E1011',
         }}
       >
         <div
@@ -327,7 +327,7 @@ export default function Services() {
                       fontFamily: "'Inter', sans-serif",
                       fontWeight: 600,
                       fontSize: '18px',
-                      color: 'rgba(14,16,17,0.7)',
+                      color: 'rgba(255,255,255,0.7)',
                       whiteSpace: 'nowrap',
                       textTransform: 'uppercase',
                       letterSpacing: '1px',
@@ -340,7 +340,7 @@ export default function Services() {
                       width: '6px',
                       height: '6px',
                       borderRadius: '50%',
-                      background: 'rgba(14,16,17,0.3)',
+                      background: 'rgba(255,255,255,0.3)',
                       flexShrink: 0,
                       margin: '0 24px',
                     }}
