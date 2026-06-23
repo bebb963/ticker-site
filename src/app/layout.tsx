@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Ticker | Primeiro entender. Depois construir.',
+  title: 'Ticker | Marketing estruturado a partir do negócio',
   description:
-    'A Ticker planeja e executa o marketing a partir do estudo de cada negócio, do que move o fundador ao que move quem compra.',
+    'A Ticker estrutura o marketing a partir de um estudo do negócio: modelo, público, produto e comportamento de compra.',
   keywords: [
     'consultoria de marketing',
     'sistemas de marketing',
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'Ticker' }],
   metadataBase: new URL('https://www.tickermkt.com'),
   openGraph: {
-    title: 'Ticker | Primeiro entender. Depois construir.',
+    title: 'Ticker | Marketing estruturado a partir do negócio',
     description:
-      'A Ticker planeja e executa o marketing a partir do estudo de cada negócio, do que move o fundador ao que move quem compra.',
+      'A Ticker estrutura o marketing a partir de um estudo do negócio: modelo, público, produto e comportamento de compra.',
     url: 'https://www.tickermkt.com',
     type: 'website',
     locale: 'pt_BR',
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ticker | Primeiro entender. Depois construir.',
+    title: 'Ticker | Marketing estruturado a partir do negócio',
     description:
-      'A Ticker planeja e executa o marketing a partir do estudo de cada negócio, do que move o fundador ao que move quem compra.',
+      'A Ticker estrutura o marketing a partir de um estudo do negócio: modelo, público, produto e comportamento de compra.',
   },
   robots: {
     index: true,

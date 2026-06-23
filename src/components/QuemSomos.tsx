@@ -40,7 +40,7 @@ export default function QuemSomos() {
 
             {/* Subtítulo / Descrição Principal */}
             <p className="qs-intro" style={{ color: 'rgba(14,16,17,0.7)', maxWidth: '650px', marginBottom: '48px' }}>
-              A Ticker une duas experiências complementares em marketing, marca e crescimento, estruturadas após anos de atuação direta no mercado.
+              A Ticker foi fundada por dois profissionais com experiências complementares em marketing, marca e crescimento, formadas ao longo de atuação direta no mercado.
             </p>
 
             {/* Cartão: Priscila Lima */}

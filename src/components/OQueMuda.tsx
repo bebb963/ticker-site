@@ -59,7 +59,7 @@ export default function OQueMuda() {
             maxWidth: '1100px',
           }}
         >
-          Quando uma empresa entende quem ela é, ela para de perseguir clientes e começa a atrair os certos.
+          Quando o marketing parte de um diagnóstico preciso, a empresa deixa de depender de tentativa e erro e passa a operar com direção.
         </h2>
 
         {/* CTA centralizado no final */}

@@ -59,7 +59,7 @@ export default function Premissa() {
             maxWidth: '1100px',
           }}
         >
-          Quase todo marketing ruim começa pela mesma coisa: pressa para agir antes de entender.
+          A maioria dos problemas de marketing começa no mesmo ponto: execução sem diagnóstico.
         </h2>
 
         {/* Três observações empilhadas */}
@@ -74,7 +74,7 @@ export default function Premissa() {
               margin: 0,
             }}
           >
-            Você investe em conteúdo, tráfego e campanha, mas a conta nunca fecha do jeito que deveria.
+             Investimento em conteúdo, tráfego e campanhas existe, mas o retorno não se sustenta.
           </p>
           <p
             style={{
@@ -86,7 +86,7 @@ export default function Premissa() {
               margin: 0,
             }}
           >
-            Marketing e comercial trabalham muito, cada um puxando para um lado.
+             Marketing e comercial operam com esforço, mas sem integração.
           </p>
           <p
             style={{
@@ -98,7 +98,7 @@ export default function Premissa() {
               margin: 0,
             }}
           >
-            Quando o resultado não vem, a culpa cai no anúncio, no post, na agência. Quase nunca em quem nunca entendeu o negócio de verdade.
+             Quando os resultados não aparecem, o foco se volta para o canal, o criativo ou o fornecedor. Raramente para a ausência de um diagnóstico.
           </p>
         </div>
 
@@ -117,7 +117,7 @@ export default function Premissa() {
             maxWidth: '900px',
           }}
         >
-          A Ticker começa onde a maioria pula: entender o que move o negócio antes de mover qualquer peça.
+           O trabalho da Ticker começa pelo diagnóstico: entender o modelo de negócio, o comportamento de compra e as variáveis do mercado antes de definir qualquer ação.
         </p>
       </div>
     </section>

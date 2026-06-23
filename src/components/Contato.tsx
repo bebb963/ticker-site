@@ -111,7 +111,7 @@ export default function Contato() {
               maxWidth: '600px',
               marginBottom: '48px'
             }}>
-              Se você entende o valor de construir com base em direção, envie-nos uma mensagem.
+              Para iniciar uma conversa sobre o seu negócio, preencha o formulário abaixo.
             </p>
 
             <div>

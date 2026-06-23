@@ -229,7 +229,7 @@ export default function Hero() {
             }} />
 
             <p className="hero-tagline" style={{ marginBottom: '40px' }}>
-              A Ticker planeja e executa o marketing a partir do estudo de cada negócio, do que move o fundador ao que move quem compra.
+              A Ticker estrutura o marketing a partir de um estudo do negócio: modelo, público, produto e comportamento de compra.
             </p>
 
             {/* ── CTAs ── */}

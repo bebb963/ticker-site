@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 const SECTION_SUBTITLE =
-  'Três modelos. Um\ncomprometimento: entender\nseu negócio antes de agir.'
+  'Três formatos de atuação. Todos\npartem do mesmo princípio:\ndiagnóstico antes de execução.'
 
 interface ServiceItem {
   id: string
@@ -21,7 +21,7 @@ const SERVICES: ServiceItem[] = [
     name: 'Consultoria',
     tagline: 'Visão e Direção',
     description:
-      'Ideal para empresas que buscam clareza estratégica para planejar suas ações, mas preferem executar internamente.',
+      'Para empresas que precisam de direção estratégica e preferem executar com equipe própria.',
     categoryLabel: '(Visão e Direção)',
     subItems: [
       'Mapa de Direção de Marketing (modelo de negócio, público, produto, posicionamento e canais)',
@@ -34,7 +34,7 @@ const SERVICES: ServiceItem[] = [
     name: 'BPO Gerencial',
     tagline: 'Gestão Estratégica',
     description:
-      'Ideal para empresas que possuem equipe própria ou terceirizada, mas precisam de método e direção para organizar os processos.',
+      'Para empresas com equipe própria ou terceirizada que precisam de método e governança sobre os processos de marketing.',
     categoryLabel: '(Gestão Estratégica)',
     subItems: [
       'Levantamento de iniciativas primordiais para o negócio',
@@ -48,7 +48,7 @@ const SERVICES: ServiceItem[] = [
     name: 'BPO Completo',
     tagline: 'Operação Integrada',
     description:
-      'Ideal para empresas que buscam descentralizar a operação de marketing com execução de ponta a ponta.',
+      'Para empresas que precisam de operação completa de marketing, da estratégia à execução.',
     categoryLabel: '(Operação Integrada)',
     subItems: [
       'Operação completa de mídia, conteúdo, copy, design e campanhas',
@@ -62,7 +62,7 @@ const SERVICES: ServiceItem[] = [
     name: 'Módulos Complementares',
     tagline: 'Projetos Pontuais',
     description:
-      'Frentes avançadas que conectam o marketing ao resto do negócio.',
+      'Projetos específicos que complementam a operação de marketing com frentes técnicas.',
     categoryLabel: '(Projetos Pontuais)',
     subItems: [
       'Branding e Comunicação Visual',

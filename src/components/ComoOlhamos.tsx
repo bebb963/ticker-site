@@ -7,11 +7,11 @@ import Image from 'next/image'
 const IMAGE_SRC: string | null = null
 
 const ITEMS = [
-  'Imersão no contexto real da empresa',
-  'Conversas com quem está na operação, não só com a liderança',
-  'Leitura de cultura, comportamento e relações internas',
-  'Observação de quem compra e do que move a decisão',
-  'Sinais de mercado que passam despercebidos no dia a dia',
+  'Imersão no contexto operacional da empresa',
+  'Entrevistas com diferentes níveis da operação',
+  'Mapeamento de cultura, comportamento e dinâmicas internas',
+  'Análise do comportamento de compra e dos fatores de decisão',
+  'Identificação de sinais de mercado não evidentes na rotina',
   'Testes e validações contínuas',
 ]
 
@@ -86,7 +86,7 @@ export default function ComoOlhamos() {
               margin: '0 0 40px',
             }}
           >
-            Acompanhamos a operação de perto, conversamos com as equipes e analisamos o contexto além dos relatórios tradicionais.
+            O processo inclui acompanhamento da operação, entrevistas com as equipes e análise de contexto além dos relatórios padronizados.
           </p>
 
           {/* Slot de Imagem / Fallback Neutro */}
@@ -194,7 +194,7 @@ export default function ComoOlhamos() {
               margin: '16px 0 0',
             }}
           >
-            É desse mergulho que nasce tudo o que construímos depois.
+            A execução é derivada desse levantamento.
           </p>
         </div>
       </div>

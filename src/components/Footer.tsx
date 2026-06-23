@@ -132,7 +132,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
               margin: '0 0 32px',
             }}
           >
-            Marketing com direção. Construímos marcas que crescem com propósito.
+            Marketing estruturado a partir do negócio.
           </p>
 
           {/* ── Localização ──────────────────────────────────────────── */}

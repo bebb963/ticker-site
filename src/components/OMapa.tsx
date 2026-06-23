@@ -8,7 +8,7 @@ const WAYPOINTS = [
     step: '01',
     title: 'Quem?',
     subtitle: 'Mapeamento de Persona',
-    desc: 'Entendemos quem é o cliente em relação ao produto e o que realmente o move a agir.',
+    desc: 'Mapeamento do perfil de compra e das motivações reais de decisão.',
     coords: 'LAT: HUMANO // LONG: INSTINTO',
     pin: { x: '22%', y: '25%' }
   },
@@ -16,7 +16,7 @@ const WAYPOINTS = [
     step: '02',
     title: 'Onde?',
     subtitle: 'Presença e Contexto',
-    desc: 'Identificamos canais, territórios e contextos de influência de alta relevância.',
+    desc: 'Identificação de canais, territórios e contextos de influência relevantes para o negócio.',
     coords: 'LAT: TERRITÓRIO // LONG: INFLUÊNCIA',
     pin: { x: '46%', y: '18%' }
   },
@@ -24,7 +24,7 @@ const WAYPOINTS = [
     step: '03',
     title: 'Como atrair?',
     subtitle: 'Estratégia de Aquisição',
-    desc: 'Definimos estratégias de aquisição alinhadas ao contexto e ao CAC ideal do negócio.',
+    desc: 'Definição de estratégias de aquisição alinhadas ao contexto e ao custo de aquisição sustentável.',
     coords: 'LAT: AQUISIÇÃO // LONG: CAC_IDEAL',
     pin: { x: '72%', y: '28%' }
   },
@@ -32,7 +32,7 @@ const WAYPOINTS = [
     step: '04',
     title: 'Como converter?',
     subtitle: 'Desenho de Funil',
-    desc: 'Construímos confiança antes da oferta, desenhando funis que entregam valor real.',
+    desc: 'Desenho de funis que constroem confiança antes da oferta e entregam valor em cada etapa.',
     coords: 'LAT: CONFIANÇA // LONG: CONVERSÃO',
     pin: { x: '82%', y: '55%' }
   },
@@ -40,7 +40,7 @@ const WAYPOINTS = [
     step: '05',
     title: 'Como reter?',
     subtitle: 'Relacionamento e LTV',
-    desc: 'Estruturamos CRM, comunidade e experiências que maximizam o LTV e o NRR.',
+    desc: 'Estruturação de CRM, comunidade e experiências orientadas a maximizar LTV e retenção líquida.',
     coords: 'LAT: RETENÇÃO // LONG: LTV_NRR',
     pin: { x: '62%', y: '78%' }
   },
@@ -48,7 +48,7 @@ const WAYPOINTS = [
     step: '06',
     title: 'Como monetizar?',
     subtitle: 'Previsibilidade Comercial',
-    desc: 'Unimos marketing e vendas para gerar previsibilidade e eficiência de receita.',
+    desc: 'Integração entre marketing e vendas para gerar previsibilidade e eficiência de receita.',
     coords: 'LAT: SLA_RECEITA // LONG: COMERCIAL',
     pin: { x: '35%', y: '70%' }
   },
@@ -56,7 +56,7 @@ const WAYPOINTS = [
     step: '07',
     title: 'Como gerenciar?',
     subtitle: 'Ritmo e Governança',
-    desc: 'Priorizamos ritmo, governança e evolução contínua através de sprints ágeis.',
+    desc: 'Ritmo operacional, governança e ciclos de melhoria contínua por meio de sprints.',
     coords: 'LAT: GOVERNANÇA // LONG: AGILIDADE',
     pin: { x: '25%', y: '48%' }
   }
@@ -282,7 +282,7 @@ export default function OMapa() {
               color: 'rgba(14,16,17,0.7)',
               marginBottom: '32px'
             }}>
-              As sete perguntas do Marketing Instintivo compõem a base do Mapa, o diagnóstico que a Ticker entrega antes de qualquer execução. Nele, a empresa visualiza oportunidades, gargalos e os próximos passos.
+              O Mapa é o diagnóstico estruturado que a Ticker entrega antes de qualquer execução. Ele é construído a partir de sete perguntas que mapeiam o negócio, identificam gargalos e definem os próximos passos.
             </p>
 
             <p style={{
@@ -293,7 +293,7 @@ export default function OMapa() {
               color: 'rgba(14,16,17,0.5)',
               margin: 0
             }}>
-              Ao final, o cliente tem em mãos o sistema de marketing desenhado para a realidade dele.
+              O resultado é um sistema de marketing documentado, desenhado para a realidade específica de cada negócio.
             </p>
           </div>
 
@@ -462,7 +462,7 @@ export default function OMapa() {
           color: '#0E1011',
           fontSize: '24px',
         }}>
-          Quero meu Mapa
+          Solicitar diagnóstico
         </a>
       </div>
     </section>

@@ -5,19 +5,19 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 const HUMANOS = [
   {
     titulo: 'O fundador',
-    linhaDeApoio: 'a visão, o propósito e a convicção que deram origem ao negócio.',
+    linhaDeApoio: 'A visão que deu origem ao negócio e as premissas sobre as quais ele foi construído.',
   },
   {
     titulo: 'O time',
-    linhaDeApoio: 'a cultura viva que sustenta e faz tudo funcionar no dia a dia.',
+    linhaDeApoio: 'A cultura e os processos que determinam como as decisões são tomadas no dia a dia.',
   },
   {
     titulo: 'O produto',
-    linhaDeApoio: 'a tradução do que o negócio acredita e do que o mercado precisa.',
+    linhaDeApoio: 'A tradução do modelo de negócio em uma oferta concreta para o mercado.',
   },
   {
     titulo: 'O consumidor',
-    linhaDeApoio: 'movido por desejos e instintos que antecedem a razão.',
+    linhaDeApoio: 'O comportamento real de compra, incluindo as motivações que antecedem a decisão racional.',
   },
 ]
 
@@ -88,10 +88,10 @@ export default function MarketingInstintivo() {
             gap: '24px',
           }}>
             <p style={{ margin: 0 }}>
-              Todo negócio é feito de pessoas. O Marketing Instintivo estuda as motivações que movem cada uma delas.
+              Todo negócio opera sobre um conjunto de relações humanas. O Marketing Instintivo é o método da Ticker para mapear as motivações que influenciam cada uma delas.
             </p>
             <p style={{ margin: 0 }}>
-              Quando a visão do fundador, a cultura do time, o produto e a percepção de quem compra se alinham, o crescimento acontece de forma natural.
+              Quando a visão do fundador, a cultura da equipe, o produto e a percepção do comprador operam de forma alinhada, o crescimento deixa de depender de impulso e passa a ser estrutural.
             </p>
           </div>
 
