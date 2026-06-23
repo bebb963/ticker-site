@@ -98,6 +98,7 @@ export default function Services() {
   }
 
   return (
+    <>
     <section id="servicos" aria-label="Serviços" className="section-massive" style={{ background: '#0E1011', paddingBottom: '0' }}>
       <div className="container-content">
         {/* ─── CABEÇALHO ─────────────────────────────────────────────────── */}
@@ -279,6 +280,7 @@ export default function Services() {
         })}
       </div>
       </div>
+      </section>
 
       {/* ─── FAIXA MARQUEE — Micro Serviços ────────────────────────────── */}
       <div
@@ -350,6 +352,6 @@ export default function Services() {
         </div>
       </div>
 
-    </section>
+    </>
   )
 }

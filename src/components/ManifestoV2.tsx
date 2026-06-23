@@ -102,7 +102,7 @@ function ManifestoPhrase({
           fontFamily: "'DM Serif Text', serif",
           fontStyle: 'italic',
           fontSize: '16px',
-          color: 'rgba(255,255,255,0.2)',
+          color: 'rgba(14,16,17,0.25)',
           display: 'block',
           marginBottom: '24px',
         }}
@@ -118,7 +118,7 @@ function ManifestoPhrase({
           fontSize: 'clamp(32px, 5vw, 72px)',
           letterSpacing: '-1.5px',
           lineHeight: 1.15,
-          color: '#FFFFFF',
+          color: '#0E1011',
           margin: 0,
           maxWidth: '1100px',
         }}
@@ -131,10 +131,10 @@ function ManifestoPhrase({
                 fontFamily: "'DM Serif Text', serif",
                 fontStyle: 'italic',
                 fontWeight: 400,
-                color: 'rgba(255,255,255,0.95)',
+                color: 'rgba(14,16,17,0.95)',
                 // Underline decorativa sutil
                 backgroundImage:
-                  'linear-gradient(transparent 85%, rgba(255,255,255,0.15) 85%)',
+                  'linear-gradient(transparent 85%, rgba(14,16,17,0.15) 85%)',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: `${progress * 100}% 100%`,
                 transition: 'background-size 0.6s ease-out',
@@ -158,7 +158,7 @@ function ManifestoPhrase({
             width: `${progress * 100}%`,
             maxWidth: '200px',
             height: '1px',
-            background: 'rgba(255,255,255,0.1)',
+            background: 'rgba(14,16,17,0.1)',
             transition: 'width 0.8s ease-out',
           }}
         />
@@ -175,8 +175,8 @@ export default function ManifestoV2() {
       aria-label="Manifesto"
       className="section-massive"
       style={{
-        background: '#0E1011',
-        color: '#FFFFFF',
+        background: '#F8F8F8',
+        color: '#0E1011',
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
@@ -200,7 +200,7 @@ export default function ManifestoV2() {
                 fontStyle: 'italic',
                 fontSize: 'clamp(24px, 2.5vw, 32px)',
                 lineHeight: 1,
-                color: 'rgba(255,255,255,0.4)',
+                color: 'rgba(14,16,17,0.6)',
               }}
             >
               (O Manifesto)
@@ -210,7 +210,7 @@ export default function ManifestoV2() {
                 flex: 1,
                 height: '1px',
                 background:
-                  'linear-gradient(90deg, rgba(255,255,255,0.12) 0%, transparent 100%)',
+                  'linear-gradient(90deg, rgba(14,16,17,0.12) 0%, transparent 100%)',
                 maxWidth: '200px',
               }}
             />
@@ -246,7 +246,7 @@ export default function ManifestoV2() {
             style={{
               width: '32px',
               height: '1px',
-              background: 'rgba(255,255,255,0.3)',
+              background: 'rgba(14,16,17,0.3)',
             }}
           />
           <span
@@ -254,7 +254,7 @@ export default function ManifestoV2() {
               fontFamily: "'DM Serif Text', serif",
               fontStyle: 'italic',
               fontSize: '18px',
-              color: 'rgba(255,255,255,0.3)',
+              color: 'rgba(14,16,17,0.4)',
             }}
           >
             Isso é a Ticker.
