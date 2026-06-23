@@ -9,7 +9,6 @@ const NAV_LINKS = [
   { label: 'Marketing Instintivo', href: '#marketing-instintivo' },
   { label: 'O Mapa',               href: '#mapa' },
   { label: 'Serviços',             href: '#servicos' },
-  { label: 'Quem Somos',           href: '#quem-somos' },
   { label: 'Manifesto',            href: '#manifesto' },
 ]
 

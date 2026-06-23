@@ -14,7 +14,7 @@ import Projects from '@/components/Projects'
 import Testimonials from '@/components/Testimonials'
 import TrabalheConosco from '@/components/TrabalheConosco'
 import OQueNaoFaz from '@/components/OQueNaoFaz'
-import QuemSomos from '@/components/QuemSomos'
+// import QuemSomos from '@/components/QuemSomos'
 import Contato from '@/components/Contato'
 import Footer from '@/components/Footer'
 import Premissa from '@/components/Premissa'
@@ -47,7 +47,7 @@ export default function Home() {
       {/* <ParaQuemE /> */}
       {/* <OQueNaoFaz /> */}
 
-      <QuemSomos />
+      {/* <QuemSomos /> */}
 
       {/* <Manifesto /> */}
       <ManifestoV2 />
