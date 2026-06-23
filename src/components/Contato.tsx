@@ -57,8 +57,8 @@ export default function Contato() {
       aria-label="Contato" 
       className="section-massive"
       style={{ 
-        background: '#0E1011', 
-        color: '#FFFFFF'
+        background: '#F8F8F8', 
+        color: '#0E1011'
       }}
     >
       <div className="container-content">
@@ -76,7 +76,7 @@ export default function Contato() {
                 fontStyle: 'italic',
                 fontSize: 'clamp(24px, 2.5vw, 32px)',
                 lineHeight: 1,
-                color: 'rgba(255,255,255,0.7)',
+                color: 'rgba(14,16,17,0.7)',
               }}>
                 (Contato)
               </span>
@@ -97,7 +97,7 @@ export default function Contato() {
               textTransform: 'uppercase',
               lineHeight: 1,
               letterSpacing: '-1px',
-              color: '#FFFFFF',
+              color: '#0E1011',
               margin: '0 0 32px'
             }}>
               Vamos<br/>conversar.
@@ -107,7 +107,7 @@ export default function Contato() {
               fontWeight: 400,
               fontSize: 'clamp(16px, 1.8vw, 20px)',
               lineHeight: 1.7,
-              color: 'rgba(255,255,255,0.7)',
+              color: 'rgba(14,16,17,0.7)',
               maxWidth: '600px',
               marginBottom: '48px'
             }}>
@@ -119,7 +119,7 @@ export default function Contato() {
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 600,
                 fontSize: '16px',
-                color: '#FFFFFF',
+                color: '#0E1011',
                 display: 'block',
                 marginBottom: '8px'
               }}>
@@ -129,7 +129,7 @@ export default function Contato() {
                 fontFamily: "'DM Serif Text', serif",
                 fontStyle: 'italic',
                 fontSize: '24px',
-                color: 'rgba(255,255,255,0.7)',
+                color: 'rgba(14,16,17,0.7)',
                 textDecoration: 'none'
               }}>
                 bruno@tickermkt.com.br
@@ -151,15 +151,15 @@ export default function Contato() {
                   width: '100%',
                   background: 'transparent',
                   border: 'none',
-                  borderBottom: '1px solid rgba(255,255,255,0.15)',
+                  borderBottom: '1px solid rgba(14,16,17,0.15)',
                   padding: '16px 0',
                   fontFamily: "'Inter', sans-serif",
                   fontSize: '24px',
-                  color: '#FFFFFF',
+                  color: '#0E1011',
                   outline: 'none',
                 }}
-                onFocus={(e) => (e.target.style.borderBottom = '1px solid #FFFFFF')}
-                onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(255,255,255,0.15)')}
+                onFocus={(e) => (e.target.style.borderBottom = '1px solid #0E1011')}
+                onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(14,16,17,0.15)')}
               />
             </div>
 
@@ -174,15 +174,15 @@ export default function Contato() {
                   width: '100%',
                   background: 'transparent',
                   border: 'none',
-                  borderBottom: '1px solid rgba(255,255,255,0.15)',
+                  borderBottom: '1px solid rgba(14,16,17,0.15)',
                   padding: '16px 0',
                   fontFamily: "'Inter', sans-serif",
                   fontSize: '24px',
-                  color: '#FFFFFF',
+                  color: '#0E1011',
                   outline: 'none',
                 }}
-                onFocus={(e) => (e.target.style.borderBottom = '1px solid #FFFFFF')}
-                onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(255,255,255,0.15)')}
+                onFocus={(e) => (e.target.style.borderBottom = '1px solid #0E1011')}
+                onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(14,16,17,0.15)')}
               />
             </div>
 
@@ -197,15 +197,15 @@ export default function Contato() {
                   width: '100%',
                   background: 'transparent',
                   border: 'none',
-                  borderBottom: '1px solid rgba(255,255,255,0.15)',
+                  borderBottom: '1px solid rgba(14,16,17,0.15)',
                   padding: '16px 0',
                   fontFamily: "'Inter', sans-serif",
                   fontSize: '24px',
-                  color: '#FFFFFF',
+                  color: '#0E1011',
                   outline: 'none',
                 }}
-                onFocus={(e) => (e.target.style.borderBottom = '1px solid #FFFFFF')}
-                onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(255,255,255,0.15)')}
+                onFocus={(e) => (e.target.style.borderBottom = '1px solid #0E1011')}
+                onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(14,16,17,0.15)')}
               />
             </div>
 
@@ -221,16 +221,16 @@ export default function Contato() {
                   width: '100%',
                   background: 'transparent',
                   border: 'none',
-                  borderBottom: '1px solid rgba(255,255,255,0.15)',
+                  borderBottom: '1px solid rgba(14,16,17,0.15)',
                   padding: '16px 0',
                   fontFamily: "'Inter', sans-serif",
                   fontSize: '24px',
-                  color: '#FFFFFF',
+                  color: '#0E1011',
                   outline: 'none',
                   resize: 'none'
                 }}
-                onFocus={(e) => (e.target.style.borderBottom = '1px solid #FFFFFF')}
-                onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(255,255,255,0.15)')}
+                onFocus={(e) => (e.target.style.borderBottom = '1px solid #0E1011')}
+                onBlur={(e) => (e.target.style.borderBottom = '1px solid rgba(14,16,17,0.15)')}
               />
             </div>
 
@@ -242,7 +242,7 @@ export default function Contato() {
                   fontFamily: "'Inter', sans-serif",
                   fontSize: '22px',
                   fontWeight: 600,
-                  color: '#FFFFFF',
+                  color: '#0E1011',
                   background: 'transparent',
                   border: 'none',
                   borderBottom: '2px solid var(--accent)',

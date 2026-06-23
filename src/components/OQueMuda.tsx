@@ -11,8 +11,8 @@ export default function OQueMuda() {
       aria-label="O que muda"
       className="section-massive"
       style={{
-        background: '#F8F8F8',
-        color: '#0E1011',
+        background: '#0E1011',
+        color: '#FFFFFF',
       }}
     >
       <div ref={refReveal} className="reveal container-content" style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}>
@@ -28,7 +28,7 @@ export default function OQueMuda() {
               fontStyle: 'italic',
               fontSize: 'clamp(24px, 2.5vw, 32px)',
               lineHeight: 1,
-              color: 'rgba(14,16,17,0.6)',
+              color: 'rgba(255,255,255,0.7)',
             }}
           >
             (O que muda)
@@ -54,7 +54,7 @@ export default function OQueMuda() {
             fontSize: 'clamp(36px, 5vw, 64px)',
             letterSpacing: '-1.5px',
             lineHeight: 1.15,
-            color: '#0E1011',
+            color: '#FFFFFF',
             margin: 0,
             maxWidth: '1100px',
           }}
@@ -68,7 +68,7 @@ export default function OQueMuda() {
             href="#contato"
             className="cta-primary"
             style={{
-              color: '#0E1011',
+              color: '#FFFFFF',
               fontSize: '22px',
             }}
           >
