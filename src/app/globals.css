@@ -1386,3 +1386,289 @@ body {
     animation: none;
   }
 }
+
+/* ── O MAPA INTERATIVO (Estilos Locais Transferidos) ───────────────── */
+
+/* Padrões Globais da Seção */
+.live-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: relative;
+  display: inline-block;
+}
+.live-indicator::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pin-glow-pulse 1.8s infinite ease-out;
+}
+
+/* Estrutura de Grid de 3 Colunas no Desktop */
+.map-3col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.map-left-col {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.map-center-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.map-right-col {
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+/* Recipiente do Vetor de Mapa (sem fundo/bordas) */
+.map-graphic-container {
+  position: relative;
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* Card de Detalhes na Coluna da Direita */
+.map-details-card {
+  width: 100%;
+  min-height: 350px;
+  background: #FFFFFF;
+  border: 1px solid rgba(14, 16, 17, 0.08);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 15px 35px -10px rgba(14,16,17,0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-content-fade {
+  animation: card-fade-in 0.4s ease-out forwards;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+@keyframes card-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card-num {
+  font-family: 'DM Serif Text', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--accent);
+}
+
+.card-coords {
+  font-family: monospace;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  color: rgba(14, 16, 17, 0.4);
+}
+
+.card-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #0E1011;
+  margin: 6px 0;
+  letter-spacing: -0.3px;
+}
+
+.card-subtitle {
+  font-family: 'DM Serif Text', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(14, 16, 17, 0.5);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.card-desc {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(14, 16, 17, 0.6);
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* Pinos de Coordenadas de GPS sobre o Mapa */
+.map-gps-pin {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 10;
+}
+.map-gps-pin:hover {
+  transform: translate(-50%, -50%) scale(1.25);
+}
+
+.map-gps-ring {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(14, 16, 17, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+.map-gps-pin:hover .map-gps-ring {
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(255, 90, 0, 0.2);
+}
+.map-gps-pin.active .map-gps-ring {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 15px rgba(255, 90, 0, 0.4);
+}
+
+.plus-sign {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: rgba(14, 16, 17, 0.6);
+  line-height: 1;
+  transition: all 0.3s ease;
+}
+.map-gps-pin:hover .plus-sign {
+  color: var(--accent);
+}
+.map-gps-pin.active .plus-sign {
+  color: #FFFFFF;
+  transform: rotate(45deg);
+}
+
+.map-gps-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+.map-gps-pin.active .map-gps-pulse {
+  animation: pin-glow-pulse 2.2s infinite ease-out;
+}
+
+/* Marcador Visual do número do Passo sob o Pino */
+.map-gps-label {
+  position: absolute;
+  bottom: -18px;
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: bold;
+  color: rgba(14, 16, 17, 0.5);
+  transition: color 0.3s ease;
+  pointer-events: none;
+}
+.map-gps-pin.active .map-gps-label,
+.map-gps-pin:hover .map-gps-label {
+  color: var(--accent);
+}
+
+@keyframes subtle-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0px rgba(255, 90, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(255, 90, 0, 0.2);
+  }
+}
+.map-gps-pin:not(.active) .map-gps-ring {
+  animation: subtle-pulse 3s infinite ease-in-out;
+}
+
+/* ── Animações de Traçado de SVG e Pulsação de Luz ── */
+@keyframes pin-glow-pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+@keyframes draw-path-flow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+@keyframes wave-pulse-1 {
+  0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+  50% { transform: scale(1.02) translate(-2px, 1px); opacity: 0.4; }
+}
+@keyframes wave-pulse-2 {
+  0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.3; }
+  50% { transform: scale(0.98) translate(1px, -2px); opacity: 0.7; }
+}
+@keyframes rotate-compass {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.map-expedition-path {
+  animation: draw-path-flow 4s linear infinite;
+}
+.map-coastline-outer-1 {
+  transform-origin: center;
+  animation: wave-pulse-1 12s ease-in-out infinite;
+}
+.map-coastline-outer-2 {
+  transform-origin: center;
+  animation: wave-pulse-2 16s ease-in-out infinite;
+}
+.compass-rose-pointer {
+  transform-origin: 0px 0px;
+  animation: rotate-compass 60s linear infinite;
+}
+
+@media (max-width: 1024px) {
+  .map-3col-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .map-details-card {
+    min-height: auto;
+  }
+}
