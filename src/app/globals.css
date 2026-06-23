@@ -1316,6 +1316,14 @@ body {
   max-width: 480px;
 }
 
+.qs-content-wrapper {
+  max-width: 604px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .qs-section {
