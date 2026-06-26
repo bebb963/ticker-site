@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 // ─── Frases do manifesto com trechos em destaque ────────────────────────────
 // Cada frase é um array de segmentos: { text, highlight? }
-// highlight = true → renderizado em DM Serif Text Italic (contraste tipográfico)
+// highlight = true → renderizado em Itálico para destaque
 const MANIFESTO_PHRASES = [
   [
     { text: 'A Ticker nasceu da ' },
@@ -29,48 +29,6 @@ const MANIFESTO_PHRASES = [
   ],
 ]
 
-// ─── Hook: opacidade progressiva baseada na intersecção (mais robusto) ────────
-function useProgressiveReveal<T extends HTMLElement>(offset = 0.3) {
-  const ref = useRef<T>(null)
-  const [progress, setProgress] = useState(0)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-
-    // Fallback de segurança se IO não estiver disponível
-    if (typeof IntersectionObserver === 'undefined') {
-      setProgress(1)
-      return
-    }
-
-    // Criamos 100 thresholds para ter uma animação fluida (0 a 1)
-    const thresholds = Array.from({ length: 101 }, (_, i) => i / 100)
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // intersectionRatio vai de 0 (fora) a 1 (totalmente visível)
-        // Multiplicamos por um fator (ex: 1.5) para atingir 100% de opacidade antes de ficar totalmente visível
-        let p = entry.intersectionRatio * 1.5
-        if (p > 1) p = 1
-        setProgress(p)
-      },
-      {
-        root: null, // viewport
-        // offset ajusta a margem para começar a revelar (ex: -10% da margem inferior)
-        rootMargin: '-10% 0px -10% 0px',
-        threshold: thresholds
-      }
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
-  return { ref, progress }
-}
-
-// ─── Componente de frase ────────────────────────────────────────────────────
 type Segment = { text: string; highlight?: boolean }
 
 function ManifestoPhrase({
@@ -80,20 +38,13 @@ function ManifestoPhrase({
   segments: Segment[]
   index: number
 }) {
-  const { ref, progress } = useProgressiveReveal<HTMLDivElement>(0.35)
-
-  // Transforma o progresso (0→1) em opacidade e translateY
-  // Mantém opacidade mínima de 0.15 para garantir que nunca fique 100% invisível
-  const opacity = Math.max(0.15, progress)
-  const translateY = (1 - progress) * 40
+  const ref = useScrollReveal<HTMLDivElement>(0.2)
 
   return (
     <div
       ref={ref}
+      className="reveal"
       style={{
-        opacity,
-        transform: `translateY(${translateY}px)`,
-        transition: 'opacity 0.1s ease-out, transform 0.1s ease-out',
         paddingBottom: '56px',
         position: 'relative',
       }}
@@ -133,35 +84,27 @@ function ManifestoPhrase({
                 fontFamily: "'Anantason Expanded Italic', serif",
                 fontStyle: 'italic',
                 fontWeight: 400,
-                color: 'rgba(255,255,255,0.95)',
-                // Underline decorativa sutil
-                backgroundImage:
-                  'linear-gradient(transparent 85%, rgba(255,255,255,0.15) 85%)',
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: `${progress * 100}% 100%`,
-                transition: 'background-size 0.6s ease-out',
+                color: '#FFFFFF',
               }}
             >
               {seg.text}
             </span>
           ) : (
-            <span key={i}>{seg.text}</span>
+            <span key={i} style={{ color: '#FFFFFF' }}>{seg.text}</span>
           )
         )}
       </h2>
 
-      {/* Linha divisória com animação */}
+      {/* Linha divisória */}
       {index < MANIFESTO_PHRASES.length - 1 && (
         <div
           style={{
             position: 'absolute',
             bottom: '0',
             left: '0',
-            width: `${progress * 100}%`,
-            maxWidth: '200px',
+            width: '200px',
             height: '1px',
             background: 'rgba(255,255,255,0.1)',
-            transition: 'width 0.8s ease-out',
           }}
         />
       )}
