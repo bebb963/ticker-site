@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import CustomCursor from '@/components/CustomCursor'
 
 export const metadata: Metadata = {
   title: 'Ticker | Marketing estruturado a partir do negócio',
@@ -45,7 +46,11 @@ export default function RootLayout({
     <html lang="pt-BR">
       <head>
       </head>
-      <body>{children}</body>
+      <body>
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   )
 }
+

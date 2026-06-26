@@ -129,46 +129,92 @@ export default function Hero() {
           }} />
         </div>
 
-        {/* CTA — barra horizontal combinada */}
+        {/* ─── Bolhas Interativas (Estilo The Simple Gym) ─── */}
+        <div className="hero-bubbles-container">
+          <a href="#trabalhe-conosco" className="hero-bubble">
+            <div className="hero-bubble-content">
+              <span className="hero-bubble-label">Faça parte do time</span>
+              <span className="hero-bubble-title">Trabalhe Conosco</span>
+            </div>
+            <div className="hero-bubble-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+          </a>
+
+          <a href="#blog" className="hero-bubble">
+            <div className="hero-bubble-content">
+              <span className="hero-bubble-label">Últimos artigos</span>
+              <span className="hero-bubble-title">Blog da Ticker</span>
+            </div>
+            <div className="hero-bubble-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+          </a>
+
+          <a href="#redes-sociais" className="hero-bubble">
+            <div className="hero-bubble-content">
+              <span className="hero-bubble-label">Acompanhe</span>
+              <span className="hero-bubble-title">Redes Sociais</span>
+            </div>
+            <div className="hero-bubble-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+          </a>
+
+          <a href="#youtube" className="hero-bubble">
+            <div className="hero-bubble-content">
+              <span className="hero-bubble-label">Conteúdo exclusivo</span>
+              <span className="hero-bubble-title">YouTube</span>
+            </div>
+            <div className="hero-bubble-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+          </a>
+        </div>
+
+        {/* CTA — barra compacta e minimalista */}
         <div style={{
           flexShrink: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '40px 0',
-          background: 'rgba(14,16,17,0.85)',
-          borderTop: '1px solid rgba(255,255,255,0.05)',
+          padding: '16px 0',
+          background: 'rgba(14,16,17,0.9)',
+          borderTop: '1px solid rgba(255,255,255,0.06)',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
           zIndex: 10,
         }}
         className="hero-cta-bar"
         >
-          <div className="container-content" style={{ display: 'flex', flexWrap: 'wrap', width: '100%', justifyContent: 'space-between', alignItems: 'center', gap: '32px' }}>
-            {/* Coluna Esquerda: Texto e Status */}
-            <div style={{ flex: '1 1 500px' }}>
-              {/* Status Operacional */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
-                <span style={{ position: 'relative', display: 'flex', width: '8px', height: '8px' }}>
-                  <span style={{ position: 'absolute', width: '100%', height: '100%', background: '#52c41a', borderRadius: '50%', opacity: 0.8, animation: 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
-                  <span style={{ position: 'relative', width: '8px', height: '8px', background: '#52c41a', borderRadius: '50%' }} />
-                </span>
-                <span style={{ color: 'rgba(255,255,255,0.6)', fontFamily: "'Open Sauce One', sans-serif", fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '1px' }}>
-                  Sistema Ativo e Operacional
-                </span>
-              </div>
-              
-              <h2 style={{ color: '#fff', fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 600, fontFamily: "'Anantason Expanded', sans-serif", margin: '0 0 8px', letterSpacing: '-0.5px' }}>
-                Estratégia e Execução de Marketing.
-              </h2>
-              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 'clamp(16px, 2vw, 20px)', fontFamily: "'Open Sauce One', sans-serif", margin: 0, maxWidth: '650px', lineHeight: 1.5 }}>
-                A inteligência de uma consultoria premium aliada à velocidade de uma operação tática. Focado em crescimento e resultado.
-              </p>
+          <div className="container-content" style={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center', gap: '24px' }}>
+            {/* Lado Esquerdo: Status + Texto numa linha */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', overflow: 'hidden' }}>
+              {/* Ping */}
+              <span style={{ position: 'relative', display: 'flex', width: '8px', height: '8px', flexShrink: 0 }}>
+                <span style={{ position: 'absolute', width: '100%', height: '100%', background: '#52c41a', borderRadius: '50%', opacity: 0.8, animation: 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
+                <span style={{ position: 'relative', width: '8px', height: '8px', background: '#52c41a', borderRadius: '50%' }} />
+              </span>
+              <span style={{ color: 'rgba(255,255,255,0.5)', fontFamily: "'Open Sauce One', sans-serif", fontSize: '12px', fontWeight: 500, letterSpacing: '0.5px', whiteSpace: 'nowrap' }}>
+                Estratégia e Execução de Marketing
+              </span>
             </div>
             
-            {/* Coluna Direita: CTA */}
+            {/* Lado Direito: CTA */}
             <div style={{ flexShrink: 0 }}>
-              <a href="#contato" className="cta-primary" style={{ color: '#FFFFFF', fontSize: '20px', whiteSpace: 'nowrap' }}>
+              <a href="#contato" className="cta-primary" style={{ color: '#FFFFFF', fontSize: '14px', whiteSpace: 'nowrap', padding: '10px 24px' }}>
                 Vamos conversar
               </a>
             </div>
