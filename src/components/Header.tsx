@@ -9,8 +9,7 @@ const NAV_LINKS = [
   { label: 'Marketing Instintivo', href: '#marketing-instintivo' },
   { label: 'O Mapa',               href: '#mapa' },
   { label: 'Serviços',             href: '#servicos' },
-  { label: 'Para Quem É',          href: '#para-quem-e' },
-  { label: 'Manifesto',            href: '#manifesto' },
+  { label: 'Quem Somos',           href: '#quem-somos' },
 ]
 
 const CTA_LABEL = 'Vamos conversar'
@@ -40,7 +39,7 @@ export default function Header({ variant = 'small' }: HeaderProps) {
     <>
       {/* ─── HEADER ────────────────────────────────────────────────────── */}
       <header
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none"
+        className="header-fixed"
         style={{
           paddingTop: '32px',
           paddingBottom: '24px',
@@ -48,10 +47,10 @@ export default function Header({ variant = 'small' }: HeaderProps) {
           color: '#FFFFFF'
         }}
       >
-        <div className="container-content pointer-events-auto header-inner-container">
+        <div className="container-content header-inner-container" style={{ pointerEvents: 'auto' }}>
           
           {/* ── DESKTOP ───────────────────────────────────────────────────── */}
-          <div className="hidden lg:flex items-center justify-between w-full">
+          <div className="header-desktop">
 
             {/* Logo - esquerda */}
             <Link href="/" aria-label="Ticker - Home" style={{ color: '#FFFFFF' }}>
@@ -60,7 +59,7 @@ export default function Header({ variant = 'small' }: HeaderProps) {
 
             {/* Links de nav - centro */}
             <nav
-              className="flex items-center"
+              className="header-nav"
               style={{ gap: '24px' }}
               aria-label="Navegação principal"
             >
@@ -78,13 +77,13 @@ export default function Header({ variant = 'small' }: HeaderProps) {
           </div>
 
           {/* ── MOBILE / TABLET ───────────────────────────────────────────── */}
-          <div className="flex lg:hidden items-center justify-between w-full">
+          <div className="header-mobile">
 
             <Link href="/" aria-label="Ticker - Home" style={{ color: '#FFFFFF' }}>
-              <Logo variant="dark" className="h-8 w-auto" />
+              <Logo variant="dark" className="header-logo-mobile" />
             </Link>
 
-            <div className="flex items-center gap-6">
+            <div className="header-mobile-actions">
               <Link href={CTA_HREF} className="cta-primary" aria-label={CTA_LABEL} style={{ color: '#FFFFFF', fontSize: '16px' }}>
                 {CTA_LABEL}
               </Link>
@@ -92,7 +91,7 @@ export default function Header({ variant = 'small' }: HeaderProps) {
               <button
                 onClick={() => setDrawerOpen(true)}
                 aria-label="Abrir menu"
-                className="flex items-center justify-center p-0"
+                className="header-menu-btn"
                 style={{ color: '#FFFFFF', background: 'none', border: 'none', cursor: 'pointer', width: '44px', height: '44px' }}
               >
                 <Menu size={28} strokeWidth={1.5} />
@@ -106,7 +105,7 @@ export default function Header({ variant = 'small' }: HeaderProps) {
       {/* Overlay */}
       <div
         onClick={() => setDrawerOpen(false)}
-        className="fixed inset-0 z-40 bg-black/40 lg:hidden transition-opacity duration-300"
+        className="drawer-overlay"
         style={{
           opacity: drawerOpen ? 1 : 0,
           pointerEvents: drawerOpen ? 'auto' : 'none',
@@ -119,7 +118,7 @@ export default function Header({ variant = 'small' }: HeaderProps) {
         role="dialog"
         aria-modal="true"
         aria-label="Menu de navegação"
-        className="fixed top-0 right-0 h-full z-50 lg:hidden flex flex-col"
+        className="drawer-panel"
         style={{
           width: '280px',
           background: '#0E1011',
@@ -129,7 +128,7 @@ export default function Header({ variant = 'small' }: HeaderProps) {
         }}
       >
         {/* Fechar */}
-        <div className="flex justify-end mb-12">
+        <div className="drawer-close-row">
           <button
             onClick={() => setDrawerOpen(false)}
             aria-label="Fechar menu"
@@ -140,7 +139,7 @@ export default function Header({ variant = 'small' }: HeaderProps) {
         </div>
 
         {/* Links */}
-        <nav className="flex flex-col" style={{ gap: '32px' }}>
+        <nav className="drawer-nav">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}

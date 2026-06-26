@@ -1,13 +1,110 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton+SC&family=Inter:wght@400;600&family=DM+Serif+Text:ital@0;1&display=swap');
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/anantason-expanded.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@font-face {
+  font-family: 'Anantason Expanded Italic';
+  src: url('/fonts/anantason-expanded-italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
-/* ── HEADER CONTAINER ────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Anantason Expanded';
+  src: url('/fonts/opensauceone-regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+/* ── HEADER ──────────────────────────────────────────────────────── */
+.header-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
 .header-inner-container {
   padding-left: 96px;
   padding-right: 96px;
+}
+.header-desktop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.header-mobile {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+.header-mobile-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.header-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.header-logo-mobile {
+  height: 32px;
+  width: auto;
+}
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(0, 0, 0, 0.4);
+  transition: opacity 0.3s ease;
+}
+.drawer-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+}
+.drawer-close-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 48px;
+}
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+@media (max-width: 1023px) {
+  .header-desktop {
+    display: none;
+  }
+  .header-mobile {
+    display: flex;
+  }
+}
+@media (min-width: 1024px) {
+  .drawer-overlay,
+  .drawer-panel {
+    display: none;
+  }
 }
 @media (max-width: 767px) {
   .header-inner-container {
@@ -18,7 +115,7 @@
 
 /* ── CSS CUSTOM PROPERTIES ───────────────────────────────────────── */
 :root {
-  /* Colors */
+  /* Colors — Design System Kajo */
   --ds-black:      #0E1011;
   --ds-bg-muted:   #F8F8F8;
   --ds-white:      #FFFFFF;
@@ -26,12 +123,19 @@
   --ds-border:     rgba(14, 16, 17, 0.12);
   --accent:        #FF5A00;
 
-  /* Spacing */
+  --color-bg-primary:   #0E1011;
+  --color-bg-muted:     #F8F8F8;
+  --color-text-default: #0E1011;
+  --color-text-muted:   rgba(14, 16, 17, 0.60);
+  --color-text-inverse: #FFFFFF;
+  --color-border:       #0E1011;
+
+  /* Spacing — múltiplos de 32px */
   --space-1: 16px;
   --space-2: 32px;
   --space-3: 48px;
   --space-4: 64px;
-  --space-5: 96px;   /* ★ padding padrão de seção */
+  --space-5: 96px;
   --space-6: 128px;
   --space-7: 160px;
 }
@@ -45,48 +149,182 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  line-height: 1.5;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 400;
   color: var(--ds-black);
   background-color: var(--ds-white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  line-height: inherit;
+}
+
+/* Media elements — prevents overflow */
+img, video, svg, canvas, audio, iframe, embed, object {
+  display: block;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+img, video {
+  height: auto;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/* Buttons & Inputs */
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+button, [role="button"] {
+  cursor: pointer;
+}
+
+/* Lists */
+ol, ul, menu {
+  list-style: none;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-indent: 0;
+  border-color: inherit;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* Misc */
+hr {
+  height: 0;
+  color: inherit;
+  border-top-width: 1px;
+}
+
+blockquote, dl, dd, figure, pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
 }
 
 /* ── TYPOGRAPHY UTILITIES ────────────────────────────────────────── */
 
 /* Anton SC — Display (sempre uppercase) */
 .font-display {
-  font-family: 'Anton SC', sans-serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 1;
+  font-family: 'Anantason Expanded', sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
 }
 
 /* Inter SemiBold — Headings Alt */
 .font-heading {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
 }
 
 /* Inter Regular — Body */
 .font-body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 400;
   line-height: 1.7;
 }
 
 /* DM Serif Text Italic — Meta Labels */
 .font-meta {
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Anantason Expanded Italic', serif;
   font-style: italic;
   font-weight: 400;
   color: var(--ds-text-muted);
   line-height: 1;
+}
+
+/* ── DESIGN SYSTEM — Typography Classes ──────────────────────────── */
+
+/* Anton SC — Display H2 */
+.text-display-h2 {
+  font-family: 'Anantason Expanded', sans-serif;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+/* Inter Regular — Body 22px */
+.text-body {
+  font-family: 'Open Sauce One', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* DM Serif Text — Meta Labels */
+.text-meta {
+  font-family: 'Anantason Expanded Italic', serif;
+  font-size: 30px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+}
+
+/* ── LEAN REDESIGN — Section Utilities ───────────────────────────── */
+
+/* Rótulo de seção: serif itálico entre parênteses */
+.section-label {
+  font-family: 'Anantason Expanded Italic', serif;
+  font-style: italic;
+  font-size: clamp(22px, 2.5vw, 30px);
+  line-height: 1;
+  color: rgba(14, 16, 17, 0.5);
+  display: block;
+  margin-bottom: var(--space-2);
+}
+.section-label--inverse {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Statement de seção: Anton SC grande, 1 linha */
+.section-statement {
+  font-family: 'Anantason Expanded', sans-serif;
+  font-size: clamp(36px, 4.5vw, 64px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin: 0 0 var(--space-2);
+}
+
+/* Apoio de seção: Inter 400 22px, 1 linha */
+.section-support {
+  font-family: 'Open Sauce One', sans-serif;
+  font-weight: 400;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.6;
+  color: rgba(14, 16, 17, 0.6);
+  max-width: 700px;
+  margin: 0;
+}
+.section-support--inverse {
+  color: rgba(255, 255, 255, 0.55);
 }
 
 /* ── COMPONENT UTILITIES ─────────────────────────────────────────── */
@@ -111,7 +349,7 @@ body {
 
 /* Novas seções padrões (alto espaçamento) */
 .section-massive {
-  padding: 96px 96px;
+  padding: var(--space-6) var(--space-5);
 }
 .section-pad-96 {
   padding: 96px;
@@ -119,7 +357,7 @@ body {
 
 @media (max-width: 1024px) {
   .section-massive {
-    padding: 80px 48px;
+    padding: 96px 48px;
   }
   .section-pad-96 {
     padding: 80px 48px;
@@ -153,7 +391,7 @@ body {
     gap: 56px;
   }
   .section-massive {
-    padding: 56px 24px;
+    padding: 72px 24px;
   }
   .section-pad-96 {
     padding: 64px 24px;
@@ -185,7 +423,7 @@ body {
   border: 1.5px solid var(--ds-black);
   background: transparent;
   color: var(--ds-black);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: 1;
@@ -207,7 +445,7 @@ body {
   border: 1.5px solid var(--ds-black);
   background: var(--ds-black);
   color: var(--ds-white);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: 1;
@@ -224,7 +462,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
   font-size: 22px;
   line-height: 1;
@@ -245,7 +483,7 @@ body {
 
 /* ── CUSTOM CTAS ─────────────────────────────────────────────────── */
 .cta-primary, .cta-secondary {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
   text-decoration: none;
   padding-bottom: 4px;
@@ -272,7 +510,7 @@ body {
   border-bottom: 2px solid transparent;
   border-radius: 4px 4px 0 0;
   padding: 14px 16px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-size: 16px;
   color: var(--ds-black);
   width: 100%;
@@ -286,7 +524,7 @@ body {
 /* ── NAV LINK ─────────────────────────────────────────────────────── */
 .nav-link {
   position: relative;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
   font-size: 16px;
   color: var(--ds-black);
@@ -350,8 +588,8 @@ body {
 /* ── HEADER — Nav links ──────────────────────────────────────────── */
 .nav-link-header {
   position: relative;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-family: 'Anantason Expanded', sans-serif;
+  font-weight: 500;
   font-size: 18px;
   line-height: 1;
   color: currentColor;
@@ -376,8 +614,8 @@ body {
 
 /* ── HEADER — CTA ────────────────────────────────────────────────── */
 .cta-header {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-family: 'Anantason Expanded', sans-serif;
+  font-weight: 500;
   font-size: 18px;
   line-height: 1;
   color: currentColor;
@@ -392,8 +630,8 @@ body {
 
 /* ── DRAWER — Links ──────────────────────────────────────────────── */
 .nav-link-drawer {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-family: 'Anantason Expanded', sans-serif;
+  font-weight: 500;
   font-size: 28px;
   line-height: 1;
   color: #FFFFFF;
@@ -407,7 +645,7 @@ body {
 
 /* ── DRAWER — CTA ────────────────────────────────────────────────── */
 .cta-drawer {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
   font-size: 18px;
   line-height: 1;
@@ -447,16 +685,15 @@ body {
   justify-content: flex-start;
 }
 .hero-name {
-  font-family: 'Anton SC', sans-serif;
-  font-size: clamp(32px, 5.5vw, 76px);
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 1;
+  font-family: 'Anantason Expanded', sans-serif;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 500;
+  line-height: 1.1;
   color: #0E1011;
   margin: 0;
 }
 .hero-tagline {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
   font-size: 48px;
   line-height: 1.3;
@@ -469,11 +706,10 @@ body {
   padding: 96px;
 }
 .hero-about-title {
-  font-family: 'Anton SC', sans-serif;
-  font-size: 80px;
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 1.05;
+  font-family: 'Anantason Expanded', sans-serif;
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 500;
+  line-height: 1.15;
   color: #0E1011;
   margin: 0 0 48px;
   white-space: pre-line;
@@ -604,21 +840,20 @@ body {
   padding: 64px 0 48px;
 }
 .services-title-display {
-  font-family: 'Anton SC', sans-serif;
-  font-size: clamp(60px, 8vw, 120px);
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 0.85;
+  font-family: 'Anantason Expanded', sans-serif;
+  font-size: clamp(36px, 4.5vw, 64px);
+  font-weight: 500;
+  line-height: 0.95;
   color: #0E1011;
   margin: 16px 0 0;
   pointer-events: none;
   user-select: none;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
 }
 .services-subtitle {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
-  font-size: clamp(20px, 3vw, 36px);
+  font-size: clamp(22px, 3vw, 36px);
   letter-spacing: -2px;
   line-height: 1.15;
   color: #0E1011;
@@ -627,8 +862,8 @@ body {
   white-space: pre-line;
 }
 .services-item-name {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-family: 'Anantason Expanded', sans-serif;
+  font-weight: 500;
   font-size: clamp(28px, 4vw, 48px);
   letter-spacing: -0.5px;
   color: #0E1011;
@@ -656,11 +891,10 @@ body {
 
 /* ── TESTIMONIALS ────────────────────────────────────────────────── */
 .testimonials-title {
-  font-family: 'Anton SC', sans-serif;
-  font-size: clamp(36px, 6vw, 80px);
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 1.05;
+  font-family: 'Anantason Expanded', sans-serif;
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 500;
+  line-height: 1.15;
   color: #0E1011;
   margin: 0;
   white-space: pre-line;
@@ -826,7 +1060,7 @@ body {
   border-bottom: none;
 }
 .mi-v3-pergunta-num {
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Anantason Expanded Italic', serif;
   font-style: italic;
   font-size: 48px;
   line-height: 1;
@@ -891,7 +1125,7 @@ body {
   padding-left: 0;
 }
 .mi-v4-pilar-num {
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Anantason Expanded Italic', serif;
   font-style: italic;
   font-size: 13px;
   color: rgba(14,16,17,0.25);
@@ -931,7 +1165,7 @@ body {
 }
 .mi-v4-pergunta-num {
   grid-row: 1 / 3;
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Anantason Expanded Italic', serif;
   font-style: italic;
   font-size: 36px;
   line-height: 1;
@@ -943,7 +1177,7 @@ body {
   color: rgba(14,16,17,0.15);
 }
 .mi-v4-pergunta-titulo {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
   font-size: clamp(18px, 1.8vw, 24px);
   letter-spacing: -0.3px;
@@ -952,9 +1186,9 @@ body {
   margin: 0 0 8px;
 }
 .mi-v4-pergunta-texto {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.7;
   color: rgba(14,16,17,0.45);
   margin: 0;
@@ -1010,7 +1244,7 @@ body {
   padding: 96px 96px 0;
 }
 .mi-eyebrow {
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Anantason Expanded Italic', serif;
   font-style: italic;
   font-size: 20px;
   color: rgba(255,255,255,0.35);
@@ -1024,19 +1258,18 @@ body {
   gap: 64px;
 }
 .mi-title {
-  font-family: 'Anton SC', sans-serif;
-  font-size: clamp(48px, 8vw, 120px);
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 0.95;
-  letter-spacing: -2px;
+  font-family: 'Anantason Expanded', sans-serif;
+  font-size: clamp(36px, 4.5vw, 64px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -1px;
   color: #FFFFFF;
   margin: 0;
 }
 .mi-intro {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 400;
-  font-size: clamp(16px, 1.5vw, 20px);
+  font-size: clamp(18px, 1.8vw, 22px);
   line-height: 1.7;
   color: rgba(255,255,255,0.5);
   max-width: 400px;
@@ -1052,7 +1285,7 @@ body {
   padding-bottom: 96px;
 }
 .mi-sublabel {
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Anantason Expanded Italic', serif;
   font-style: italic;
   font-size: 18px;
   color: rgba(255,255,255,0.4);
@@ -1080,13 +1313,13 @@ body {
   cursor: default;
 }
 .mi-pilar-num {
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Anantason Expanded Italic', serif;
   font-style: italic;
   font-size: 20px;
   color: rgba(255,255,255,0.25);
 }
 .mi-pilar-title {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
   font-size: clamp(22px, 2vw, 28px);
   color: #FFFFFF;
@@ -1099,9 +1332,9 @@ body {
   color: rgba(255,255,255,0.6);
 }
 .mi-instinto-desc {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 400;
-  font-size: clamp(18px, 1.5vw, 24px);
+  font-size: clamp(20px, 1.8vw, 26px);
   line-height: 1.7;
   color: rgba(255,255,255,0.45);
   max-width: 780px;
@@ -1133,7 +1366,7 @@ body {
   border-bottom: none;
 }
 .mi-metodo-num {
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Anantason Expanded Italic', serif;
   font-style: italic;
   font-size: clamp(36px, 4vw, 48px);
   color: rgba(255,255,255,0.12);
@@ -1148,7 +1381,7 @@ body {
   padding-top: 4px;
 }
 .mi-metodo-title {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
   font-size: clamp(20px, 1.8vw, 24px);
   color: #FFFFFF;
@@ -1156,9 +1389,9 @@ body {
   letter-spacing: -0.3px;
 }
 .mi-metodo-text {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 400;
-  font-size: clamp(15px, 1.2vw, 17px);
+  font-size: clamp(16px, 1.4vw, 19px);
   line-height: 1.7;
   color: rgba(255,255,255,0.4);
   margin: 0;
@@ -1254,7 +1487,7 @@ body {
   gap: 0;
 }
 .qs-eyebrow {
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Anantason Expanded Italic', serif;
   font-style: italic;
   font-size: clamp(24px, 2.5vw, 32px);
   line-height: 1;
@@ -1263,19 +1496,18 @@ body {
   margin-bottom: 32px;
 }
 .qs-title {
-  font-family: 'Anton SC', sans-serif;
-  font-size: clamp(60px, 8vw, 120px);
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 0.9;
-  letter-spacing: -2px;
+  font-family: 'Anantason Expanded', sans-serif;
+  font-size: clamp(36px, 4.5vw, 64px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -1px;
   color: #0E1011;
   margin: 0 0 24px;
 }
 .qs-intro {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 400;
-  font-size: clamp(16px, 1.8vw, 20px);
+  font-size: clamp(18px, 2vw, 24px);
   line-height: 1.7;
   color: rgba(14,16,17,0.7);
   max-width: 480px;
@@ -1291,7 +1523,7 @@ body {
   padding-bottom: 0;
 }
 .qs-card-label {
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Anantason Expanded Italic', serif;
   font-style: italic;
   font-size: clamp(16px, 1.8vw, 20px);
   color: rgba(14,16,17,0.6);
@@ -1299,7 +1531,7 @@ body {
   margin-bottom: 12px;
 }
 .qs-card-name {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
   font-size: clamp(22px, 2.5vw, 32px);
   letter-spacing: -0.5px;
@@ -1307,9 +1539,9 @@ body {
   margin: 0 0 12px;
 }
 .qs-card-desc {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 400;
-  font-size: clamp(15px, 1.5vw, 18px);
+  font-size: clamp(16px, 1.6vw, 20px);
   line-height: 1.7;
   color: rgba(14,16,17,0.7);
   margin: 0;
@@ -1488,7 +1720,7 @@ body {
 }
 
 .card-num {
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Anantason Expanded Italic', serif;
   font-style: italic;
   font-size: 16px;
   color: var(--accent);
@@ -1502,7 +1734,7 @@ body {
 }
 
 .card-title {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
   font-size: 20px;
   color: #0E1011;
@@ -1511,7 +1743,7 @@ body {
 }
 
 .card-subtitle {
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Anantason Expanded Italic', serif;
   font-style: italic;
   font-size: 14px;
   color: rgba(14, 16, 17, 0.5);
@@ -1520,9 +1752,9 @@ body {
 }
 
 .card-desc {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   color: rgba(14, 16, 17, 0.6);
   margin: 0;
@@ -1570,7 +1802,7 @@ body {
 }
 
 .plus-sign {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sauce One', sans-serif;
   font-weight: 600;
   font-size: 14px;
   color: rgba(14, 16, 17, 0.6);
@@ -1671,6 +1903,17 @@ body {
   animation: rotate-compass 60s linear infinite;
 }
 
+@keyframes sonar-pulse {
+  0% {
+    r: 10;
+    opacity: 0.8;
+  }
+  100% {
+    r: 30;
+    opacity: 0;
+  }
+}
+
 @media (max-width: 1024px) {
   .map-3col-grid {
     grid-template-columns: 1fr;
@@ -1679,4 +1922,674 @@ body {
   .map-details-card {
     min-height: auto;
   }
+}
+
+/* ── QUEM SOMOS — Lean Cards Responsive ──────────────────────────── */
+@media (max-width: 767px) {
+  .quem-somos-cards {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   INTERACTIVE VISUAL LAYER
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── MARKETING INSTINTIVO — Interactive Human Blocks ─────────────── */
+.mi-humans-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.mi-human-block {
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px 28px;
+  background: #FFFFFF;
+  border-right: 1px solid rgba(14,16,17,0.06);
+  transition: background 0.4s ease;
+}
+.mi-human-block:last-child {
+  border-right: none;
+}
+.mi-human-block:hover,
+.mi-human-block:focus-within {
+  background: rgba(14,16,17,0.02);
+}
+/* Número decorativo grande */
+.mi-human-media {
+  position: absolute;
+  top: 24px;
+  left: 28px;
+  font-family: 'Anantason Expanded Italic', serif;
+  font-style: italic;
+  font-size: 48px;
+  line-height: 1;
+  color: rgba(14,16,17,0.04);
+  transition: color 0.4s ease;
+  background: none;
+  opacity: 1;
+}
+.mi-human-block:hover .mi-human-media,
+.mi-human-block:focus-within .mi-human-media {
+  color: rgba(255,90,0,0.12);
+  opacity: 1;
+}
+/* Remove gradient overlay (não necessário no fundo claro) */
+.mi-human-block::after {
+  display: none;
+}
+/* Texto sobre o bloco */
+.mi-human-content {
+  position: relative;
+  z-index: 2;
+}
+.mi-human-title {
+  font-family: 'Open Sauce One', sans-serif;
+  font-weight: 600;
+  font-size: clamp(20px, 2.2vw, 26px);
+  letter-spacing: -0.5px;
+  color: var(--color-text-default);
+  margin: 0 0 8px;
+  transition: color 0.3s ease;
+}
+.mi-human-block:hover .mi-human-title,
+.mi-human-block:focus-within .mi-human-title {
+  color: var(--accent);
+}
+.mi-human-hint {
+  font-family: 'Open Sauce One', sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(14,16,17,0.45);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease 0.1s;
+}
+.mi-human-block:hover .mi-human-hint,
+.mi-human-block:focus-within .mi-human-hint {
+  max-height: 60px;
+  opacity: 1;
+}
+@media (max-width: 1024px) {
+  .mi-humans-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mi-human-block:nth-child(2) {
+    border-right: none;
+  }
+  .mi-human-block {
+    border-bottom: 1px solid rgba(14,16,17,0.06);
+  }
+}
+@media (max-width: 767px) {
+  .mi-humans-grid {
+    grid-template-columns: 1fr;
+  }
+  .mi-human-block {
+    min-height: 200px;
+    border-right: none;
+    border-bottom: 1px solid rgba(14,16,17,0.06);
+  }
+  .mi-human-block:last-child {
+    border-bottom: none;
+  }
+  /* Always show hint on mobile */
+  .mi-human-hint {
+    max-height: 60px;
+    opacity: 1;
+  }
+}
+
+/* ── MEDIA SLOT — Fallback elegante + Parallax ───────────────────── */
+.media-slot {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.media-slot-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+.media-slot-fallback {
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.media-slot-fallback::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 40% 50%, rgba(255,255,255,0.04) 0%, transparent 60%);
+}
+.media-slot-fallback::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── COMO OLHAMOS — Lentes Interativas ───────────────────────────── */
+.como-lenses-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.como-lens {
+  padding: 32px 28px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  cursor: pointer;
+  transition: background 0.3s ease;
+  position: relative;
+}
+.como-lens:last-child {
+  border-right: none;
+}
+.como-lens:hover,
+.como-lens.active {
+  background: rgba(255,255,255,0.03);
+}
+.como-lens-num {
+  font-family: 'Anantason Expanded Italic', serif;
+  font-style: italic;
+  font-size: 36px;
+  line-height: 1;
+  color: rgba(255,255,255,0.06);
+  display: block;
+  margin-bottom: 16px;
+  transition: color 0.3s ease;
+}
+.como-lens.active .como-lens-num {
+  color: rgba(255,90,0,0.3);
+}
+.como-lens-title {
+  font-family: 'Open Sauce One', sans-serif;
+  font-weight: 600;
+  font-size: clamp(20px, 2vw, 26px);
+  letter-spacing: -0.3px;
+  color: #FFFFFF;
+  margin: 0 0 8px;
+}
+.como-lens-detail {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease 0.05s;
+}
+.como-lens-detail.visible {
+  max-height: 120px;
+  opacity: 1;
+}
+.como-lens-detail p {
+  font-family: 'Open Sauce One', sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.45);
+  margin: 8px 0 0;
+}
+.como-lens-indicator {
+  position: absolute;
+  top: 32px;
+  right: 28px;
+  color: rgba(255,255,255,0.2);
+  transition: color 0.3s ease;
+}
+.como-lens.active .como-lens-indicator {
+  color: var(--accent);
+}
+@media (max-width: 1024px) {
+  .como-lenses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .como-lens {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .como-lens:nth-child(2) { border-right: none; }
+}
+@media (max-width: 767px) {
+  .como-lenses-grid {
+    grid-template-columns: 1fr;
+  }
+  .como-lens {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 24px 0;
+  }
+  .como-lens:last-child { border-bottom: none; }
+  .como-lens-indicator { right: 0; top: 24px; }
+}
+
+/* ── MAPA ROTA VISUAL — SVG com paradas clicáveis ────────────────── */
+.rota-mapa-desktop {
+  position: relative;
+  margin: var(--space-2) 0;
+}
+.rota-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* Botão invisível sobre cada parada */
+.rota-stop-btn {
+  padding: 0;
+}
+.rota-stop-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+/* ─── Área de detalhe fixa (abaixo do mapa, nunca tampa pontos) ─── */
+.rota-detail-area {
+  min-height: 80px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(14,16,17,0.06);
+  margin-top: 12px;
+}
+.rota-detail-content {
+  animation: rota-detail-in 0.3s ease forwards;
+}
+@keyframes rota-detail-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rota-detail-hint {
+  font-family: 'Open Sauce One', sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  color: rgba(14,16,17,0.3);
+  margin: 0;
+  font-style: italic;
+}
+
+
+
+/* ── Mapa Mobile — Timeline vertical ────────────────────────────── */
+.rota-mapa-mobile {
+  display: none;
+}
+@media (max-width: 768px) {
+  .rota-mapa-desktop {
+    display: none;
+  }
+  .rota-mapa-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: var(--space-2) 0;
+  }
+  .rota-mobile-stop {
+    display: flex;
+    gap: 16px;
+    cursor: pointer;
+    padding: 4px 0;
+  }
+  .rota-mobile-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 16px;
+    padding-top: 6px;
+  }
+  .rota-mobile-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(14,16,17,0.15);
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+  .rota-mobile-stop.active .rota-mobile-dot {
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(255,90,0,0.15);
+  }
+  .rota-mobile-line {
+    width: 2px;
+    flex: 1;
+    min-height: 20px;
+    background: rgba(14,16,17,0.08);
+  }
+  .rota-mobile-content {
+    flex: 1;
+    padding-bottom: 20px;
+  }
+  .rota-mobile-answer {
+    font-family: 'Open Sauce One', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.5;
+    color: rgba(14,16,17,0.5);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    margin: 0;
+  }
+  .rota-mobile-stop.active .rota-mobile-answer {
+    max-height: 120px;
+    opacity: 1;
+    margin-top: 8px;
+  }
+}
+
+/* ── REDUCED MOTION ──────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .mi-human-block,
+  .mi-human-title,
+  .mi-human-hint,
+  .como-lens,
+  .como-lens-num,
+  .como-lens-detail,
+  .rota-stop-label,
+  .rota-mobile-dot,
+  .rota-mobile-answer {
+    transition: none;
+  }
+  .mi-human-block:hover,
+  .mi-human-block:focus-within {
+    transform: none;
+  }
+  .mi-human-hint {
+    max-height: 60px;
+    opacity: 1;
+  }
+  .media-slot-inner {
+    transform: none !important;
+    transition: none;
+  }
+  .rota-detail-content {
+    animation: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  svg animate {
+    display: none;
+  }
+}
+
+/* ── DEPOIMENTOS ─────────────────────────────────────────────────── */
+.depo-featured {
+  position: relative;
+  padding: var(--space-3) 0;
+  animation: depo-fade-in 0.4s ease forwards;
+}
+@keyframes depo-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.depo-quote-mark {
+  font-family: 'Anantason Expanded Italic', serif;
+  font-size: clamp(80px, 10vw, 140px);
+  line-height: 0.8;
+  color: rgba(255,255,255,0.06);
+  position: absolute;
+  top: 0;
+  left: -8px;
+  pointer-events: none;
+  user-select: none;
+}
+.depo-quote {
+  margin: 0;
+  padding: 0;
+  max-width: 800px;
+}
+.depo-quote p {
+  font-family: 'Open Sauce One', sans-serif;
+  font-weight: 400;
+  font-size: clamp(22px, 2.8vw, 32px);
+  line-height: 1.5;
+  letter-spacing: -0.3px;
+  color: rgba(255,255,255,0.85);
+  margin: 0;
+}
+.depo-attribution {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: var(--space-2);
+}
+.depo-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Open Sauce One', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: rgba(255,255,255,0.3);
+  flex-shrink: 0;
+}
+.depo-name {
+  font-family: 'Open Sauce One', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #FFFFFF;
+  font-style: normal;
+  display: block;
+  line-height: 1.3;
+}
+.depo-role {
+  font-family: 'Anantason Expanded Italic', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(255,255,255,0.35);
+  display: block;
+  line-height: 1.3;
+}
+
+/* Navegação entre depoimentos */
+.depo-nav {
+  display: flex;
+  gap: 0;
+  margin-top: var(--space-3);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.depo-nav-btn {
+  flex: 1;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  border-top: 2px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+  margin-top: -1px;
+}
+.depo-nav-btn:hover {
+  background: rgba(255,255,255,0.02);
+}
+.depo-nav-btn.active {
+  border-top-color: var(--accent);
+}
+.depo-nav-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.depo-nav-name {
+  font-family: 'Open Sauce One', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  display: block;
+  margin-bottom: 2px;
+  transition: color 0.3s ease;
+}
+.depo-nav-btn.active .depo-nav-name {
+  color: #FFFFFF;
+}
+.depo-nav-company {
+  font-family: 'Anantason Expanded Italic', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(255,255,255,0.2);
+  display: block;
+  transition: color 0.3s ease;
+}
+.depo-nav-btn.active .depo-nav-company {
+  color: rgba(255,255,255,0.35);
+}
+
+@media (max-width: 767px) {
+  .depo-nav {
+    flex-direction: column;
+    gap: 0;
+  }
+  .depo-nav-btn {
+    border-top: none;
+    border-left: 2px solid transparent;
+    padding: 16px 20px;
+    margin-top: 0;
+  }
+  .depo-nav-btn.active {
+    border-top-color: transparent;
+    border-left-color: var(--accent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .depo-featured {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Depoimentos — Variante Clara ────────────────────────────────── */
+.depo-quote-mark--light {
+  color: rgba(14,16,17,0.05);
+}
+.depo-quote-text--light {
+  color: rgba(14,16,17,0.8) !important;
+}
+.depo-avatar--light {
+  background: rgba(14,16,17,0.06);
+  color: rgba(14,16,17,0.3);
+}
+.depo-name--light {
+  color: var(--color-text-default);
+}
+.depo-role--light {
+  color: rgba(14,16,17,0.4);
+}
+.depo-nav--light {
+  border-top-color: rgba(14,16,17,0.06);
+}
+.depo-nav-btn--light:hover {
+  background: rgba(14,16,17,0.02);
+}
+.depo-nav-name--light {
+  color: rgba(14,16,17,0.35);
+}
+.depo-nav-btn--light.active .depo-nav-name--light {
+  color: var(--color-text-default);
+}
+.depo-nav-company--light {
+  color: rgba(14,16,17,0.2);
+}
+.depo-nav-btn--light.active .depo-nav-company--light {
+  color: rgba(14,16,17,0.4);
+}
+
+/* ── HERO MOSAIC ─────────────────────────────────────────────────── */
+.hero-mosaic-container {
+  margin-top: 64px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 240px;
+  gap: 16px;
+}
+.hero-mosaic-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(14,16,17,0.04);
+  cursor: default;
+}
+/* Grid layout: asymmetrical */
+.hero-mosaic-item:nth-child(1) { grid-column: span 5; grid-row: span 2; }
+.hero-mosaic-item:nth-child(2) { grid-column: span 7; grid-row: span 1; }
+.hero-mosaic-item:nth-child(3) { grid-column: span 3; grid-row: span 1; }
+.hero-mosaic-item:nth-child(4) { grid-column: span 4; grid-row: span 1; }
+
+.hero-mosaic-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.hero-mosaic-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(14,16,17,0.8) 0%, rgba(14,16,17,0) 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 24px;
+}
+.hero-mosaic-item:hover .hero-mosaic-img {
+  transform: scale(1.05);
+}
+.hero-mosaic-item:hover .hero-mosaic-overlay {
+  opacity: 1;
+}
+.hero-mosaic-caption {
+  color: #FFFFFF;
+  font-family: 'Open Sauce One', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  margin: 0;
+  transform: translateY(10px);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.hero-mosaic-item:hover .hero-mosaic-caption {
+  transform: translateY(0);
+}
+
+@media (max-width: 1024px) {
+  .hero-mosaic-container {
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 200px;
+  }
+  .hero-mosaic-item:nth-child(1) { grid-column: span 6; grid-row: span 1; }
+  .hero-mosaic-item:nth-child(2) { grid-column: span 3; grid-row: span 1; }
+  .hero-mosaic-item:nth-child(3) { grid-column: span 3; grid-row: span 1; }
+  .hero-mosaic-item:nth-child(4) { display: none; } /* Hide one on smaller screens */
+}
+@media (max-width: 767px) {
+  .hero-mosaic-container {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+  }
+  .hero-mosaic-item { grid-column: span 1 !important; grid-row: span 1 !important; }
+  .hero-mosaic-item:nth-child(4) { display: block; }
+  .hero-mosaic-overlay { opacity: 1; background: linear-gradient(to top, rgba(14,16,17,0.6) 0%, rgba(14,16,17,0) 50%); }
+  .hero-mosaic-caption { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-mosaic-img, .hero-mosaic-caption { transition: none; transform: none !important; }
 }

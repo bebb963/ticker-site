@@ -39,8 +39,7 @@ const NAV_LINKS = [
   { label: 'Marketing Instintivo', href: '#marketing-instintivo' },
   { label: 'O Mapa',               href: '#mapa' },
   { label: 'Serviços',             href: '#servicos' },
-  { label: 'Para Quem É',          href: '#para-quem-e' },
-  { label: 'Manifesto',            href: '#manifesto' },
+  { label: 'Quem Somos',           href: '#quem-somos' },
   { label: 'Contato',              href: '#contato' },
 ]
 
@@ -123,7 +122,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
         <div className="footer-brand-col">
           <p
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Open Sauce One', sans-serif",
               fontWeight: 400,
               fontSize: '15px',
               lineHeight: 1.7,
@@ -151,7 +150,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
             />
             <span
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Open Sauce One', sans-serif",
                 fontWeight: 500,
                 fontSize: '14px',
                 lineHeight: 1.5,
@@ -178,7 +177,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Open Sauce One', sans-serif",
                 fontWeight: 500,
                 fontSize: '14px',
                 lineHeight: 1.5,
@@ -202,7 +201,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
         <div>
           <span
             style={{
-              fontFamily: "'DM Serif Text', serif",
+              fontFamily: "'Anantason Expanded Italic', serif",
               fontStyle: 'italic',
               fontSize: '14px',
               lineHeight: 1,
@@ -225,7 +224,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
                 key={link.href}
                 href={link.href}
                 style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Open Sauce One', sans-serif",
                   fontWeight: 600,
                   fontSize: '14px',
                   lineHeight: 1,
@@ -251,7 +250,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
           {/* Ocultado temporariamente pois não há perfis sociais reais da Ticker
           <span
             style={{
-              fontFamily: "'DM Serif Text', serif",
+              fontFamily: "'Anantason Expanded Italic', serif",
               fontStyle: 'italic',
               fontSize: '14px',
               lineHeight: 1,
@@ -279,7 +278,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '10px',
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Open Sauce One', sans-serif",
                   fontWeight: 600,
                   fontSize: '14px',
                   lineHeight: 1,
@@ -313,7 +312,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
             <Link
               href="#privacidade"
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Open Sauce One', sans-serif",
                 fontWeight: 400,
                 fontSize: '12px',
                 lineHeight: 1,
@@ -333,7 +332,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
             <Link
               href="#termos"
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Open Sauce One', sans-serif",
                 fontWeight: 400,
                 fontSize: '12px',
                 lineHeight: 1,
@@ -368,7 +367,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
       <div className="footer-bottom">
         <span
           style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Open Sauce One', sans-serif",
             fontWeight: 400,
             fontSize: '12px',
             lineHeight: 1,
@@ -385,7 +384,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '6px',
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Open Sauce One', sans-serif",
             fontWeight: 600,
             fontSize: '12px',
             lineHeight: 1,

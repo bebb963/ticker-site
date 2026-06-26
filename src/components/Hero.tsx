@@ -129,24 +129,61 @@ export default function Hero() {
           }} />
         </div>
 
-        {/* CTA — barra horizontal */}
+        {/* CTA — barra horizontal combinada */}
         <div style={{
           flexShrink: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '28px 96px',
-          background: 'rgba(14,16,17,0.6)',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
+          padding: '40px 0',
+          background: 'rgba(14,16,17,0.85)',
+          borderTop: '1px solid rgba(255,255,255,0.05)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          zIndex: 10,
         }}
         className="hero-cta-bar"
         >
-          <div />
-          <a href="#contato" className="cta-primary" style={{ color: '#FFFFFF', fontSize: '20px', whiteSpace: 'nowrap', flexShrink: 0 }}>
-            Vamos conversar
-          </a>
+          <div className="container-content" style={{ display: 'flex', flexWrap: 'wrap', width: '100%', justifyContent: 'space-between', alignItems: 'center', gap: '32px' }}>
+            {/* Coluna Esquerda: Texto e Status */}
+            <div style={{ flex: '1 1 500px' }}>
+              {/* Status Operacional */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+                <span style={{ position: 'relative', display: 'flex', width: '8px', height: '8px' }}>
+                  <span style={{ position: 'absolute', width: '100%', height: '100%', background: '#52c41a', borderRadius: '50%', opacity: 0.8, animation: 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
+                  <span style={{ position: 'relative', width: '8px', height: '8px', background: '#52c41a', borderRadius: '50%' }} />
+                </span>
+                <span style={{ color: 'rgba(255,255,255,0.6)', fontFamily: "'Open Sauce One', sans-serif", fontSize: '11px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '1px' }}>
+                  Sistema Ativo e Operacional
+                </span>
+              </div>
+              
+              <h2 style={{ color: '#fff', fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 600, fontFamily: "'Anantason Expanded', sans-serif", margin: '0 0 8px', letterSpacing: '-0.5px' }}>
+                Estratégia e Execução de Marketing.
+              </h2>
+              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 'clamp(16px, 2vw, 20px)', fontFamily: "'Open Sauce One', sans-serif", margin: 0, maxWidth: '650px', lineHeight: 1.5 }}>
+                A inteligência de uma consultoria premium aliada à velocidade de uma operação tática. Focado em crescimento e resultado.
+              </p>
+            </div>
+            
+            {/* Coluna Direita: CTA */}
+            <div style={{ flexShrink: 0 }}>
+              <a href="#contato" className="cta-primary" style={{ color: '#FFFFFF', fontSize: '20px', whiteSpace: 'nowrap' }}>
+                Vamos conversar
+              </a>
+            </div>
+          </div>
         </div>
+
+        {/* Keyframe global para o pulse do ping */}
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes ping {
+            75%, 100% {
+              transform: scale(2.5);
+              opacity: 0;
+            }
+          }
+        `}} />
 
         {/* Faixa de logos dos clientes */}
         <div
@@ -211,53 +248,70 @@ export default function Hero() {
         aria-label="Hero"
         className="section-massive"
         style={{
-          background: '#F8F8F8',
+          background: 'var(--color-bg-muted)',
           overflow: 'hidden',
         }}
       >
-        <div ref={refContent} className="hero-content reveal container-content">
-          <div className="hero-text-col">
-            <h1 className="hero-name">
-              Primeiro entender<span style={{ color: 'var(--accent)' }}>.</span><br />
-              Depois construir<span style={{ color: 'var(--accent)' }}>.</span>
-            </h1>
-
-            <div style={{
-              width: '100%', height: '1px',
-              background: 'rgba(14,16,17,0.12)',
-              margin: '32px 0',
-            }} />
-
-            <p className="hero-tagline" style={{ marginBottom: '40px' }}>
-              A Ticker estrutura o marketing a partir de um estudo do negócio: modelo, público, produto e comportamento de compra.
-            </p>
-
-            {/* ── CTAs ── */}
-            <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
-              <a href="#contato" className="cta-primary" style={{ color: '#0E1011', fontSize: '22px' }}>
-                Vamos conversar
-              </a>
-              <a href="#marketing-instintivo" className="cta-secondary" style={{ color: '#0E1011', fontSize: '22px' }}>
-                Como funciona
-              </a>
+        <div ref={refContent} className="reveal container-content">
+          <div className="grid-split" style={{ alignItems: 'center', gap: '64px' }}>
+            {/* Coluna Esquerda: Texto */}
+            <div>
+              <h1 className="section-statement" style={{ color: 'var(--color-text-default)' }}>
+                Entendemos o seu negócio antes de fazer o seu marketing.
+              </h1>
+    
+              <p className="section-support" style={{ marginBottom: '48px', fontSize: '24px', textAlign: 'justify' }}>
+                A Ticker le o que move a sua empresa, pessoas, mercado e marca, e transforma isso em direcao.
+              </p>
+    
+              {/* CTAs */}
+              <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
+                <a href="#contato" className="btn-text" style={{ color: 'var(--color-text-default)' }}>
+                  Vamos conversar
+                </a>
+                <a href="#sistema-de-humanos" className="btn-text" style={{
+                  color: 'var(--color-text-default)',
+                  borderBottomColor: 'rgba(14,16,17,0.3)',
+                }}>
+                  Como funciona
+                </a>
+              </div>
             </div>
-          </div>
 
-          <div className="hero-image-wrapper">
-            <Image
-              src="/images/captação.jpg"
-              alt="Ticker Marketing - Captação"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
-              style={{
-                objectFit: 'cover',
-              }}
-            />
+            {/* Mosaico Interativo */}
+            <div className="hero-mosaic-container">
+              {/* Foto 1 (Destaque grande) */}
+              <div className="hero-mosaic-item">
+                <Image src="/images/mosaic_1.png" alt="Reunião estratégica" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} className="hero-mosaic-img" />
+                <div className="hero-mosaic-overlay">
+                  <p className="hero-mosaic-caption">Imersao: Entendendo a cultura interna</p>
+                </div>
+              </div>
+              {/* Foto 2 (Larga) */}
+              <div className="hero-mosaic-item">
+                <Image src="/images/mosaic_2.png" alt="Análise no PDV" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} className="hero-mosaic-img" />
+                <div className="hero-mosaic-overlay">
+                  <p className="hero-mosaic-caption">Analise de comportamento no PDV</p>
+                </div>
+              </div>
+              {/* Foto 3 */}
+              <div className="hero-mosaic-item">
+                <Image src="/images/mosaic_3.png" alt="Mapeamento de jornada" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} className="hero-mosaic-img" />
+                <div className="hero-mosaic-overlay">
+                  <p className="hero-mosaic-caption">Mapeamento de jornada</p>
+                </div>
+              </div>
+              {/* Foto 4 */}
+              <div className="hero-mosaic-item">
+                <Image src="/images/mosaic_4.png" alt="Entrevista com fundadores" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} className="hero-mosaic-img" />
+                <div className="hero-mosaic-overlay">
+                  <p className="hero-mosaic-caption">Entrevista com fundadores</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
     </>
   )
 }

@@ -1,66 +1,92 @@
 'use client'
 
 import { useScrollReveal } from '@/hooks/useScrollReveal'
-import Image from 'next/image'
+import { useState } from 'react'
+
+// ─── DEPOIMENTOS (genéricos por enquanto — substituir por reais) ────
+// TODO: substituir por depoimentos reais dos clientes
+const TESTIMONIALS = [
+  {
+    quote: 'A Ticker entendeu em semanas o que agencias anteriores nao conseguiram em meses. O Mapa mudou a forma como a gente enxerga o proprio negocio.',
+    name: 'Cliente 1',
+    role: 'CEO',
+    company: 'Empresa A',
+  },
+  {
+    quote: 'Pela primeira vez, marketing e vendas falam a mesma lingua. Os resultados apareceram antes do esperado.',
+    name: 'Cliente 2',
+    role: 'Diretora de Marketing',
+    company: 'Empresa B',
+  },
+  {
+    quote: 'O diferencial e a profundidade. Eles mergulham no negocio antes de propor qualquer coisa. Isso muda tudo.',
+    name: 'Cliente 3',
+    role: 'Fundador',
+    company: 'Empresa C',
+  },
+]
 
 export default function QuemSomos() {
-  const refContent = useScrollReveal<HTMLDivElement>()
+  const ref = useScrollReveal<HTMLDivElement>()
+  const [activeIndex, setActiveIndex] = useState(0)
 
   return (
-    <section 
-      id="quem-somos" 
-      aria-label="Quem Somos" 
-      className="qs-section"
+    <section
+      id="quem-somos"
+      aria-label="Depoimentos"
+      className="section-massive"
+      style={{
+        background: 'var(--color-bg-muted)',
+        color: 'var(--color-text-default)',
+      }}
     >
-      <div className="qs-grid">
-        {/* Coluna Esquerda: Imagem */}
-        <div className="qs-image-col">
-          <Image 
-            src="/images/Bruno e Priscila.png" 
-            alt="Bruno Barroso e Priscila Lima" 
-            fill 
-            priority
-            className="qs-image"
-          />
-        </div>
+      <div ref={ref} className="reveal container-content">
+        {/* Rótulo */}
+        <span className="section-label">(Depoimentos)</span>
 
-        {/* Coluna Direita: Informações */}
-        <div ref={refContent} className="qs-content-col reveal">
-          <div className="qs-content-wrapper">
-            {/* Rótulo e Índice */}
-            <div className="qs-eyebrow" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', marginBottom: '32px' }}>
-              <span>(Os Sócios)</span>
-              <span style={{ color: 'var(--accent)' }}>(07)</span>
+        {/* Statement */}
+        <h2 className="section-statement" style={{ marginBottom: 'var(--space-4)' }}>
+          Quem ja trabalhou com a Ticker.
+        </h2>
+
+        {/* Depoimento ativo — destaque grande */}
+        <div className="depo-featured depo-featured--light" key={activeIndex}>
+          {/* Aspas decorativas */}
+          <span className="depo-quote-mark depo-quote-mark--light" aria-hidden="true">&ldquo;</span>
+
+          <blockquote className="depo-quote">
+            <p className="depo-quote-text--light">{TESTIMONIALS[activeIndex].quote}</p>
+          </blockquote>
+
+          <div className="depo-attribution">
+            {/* Iniciais como avatar */}
+            <div className="depo-avatar depo-avatar--light">
+              {TESTIMONIALS[activeIndex].name.split(' ').map(w => w[0]).join('')}
             </div>
-
-            {/* Título Principal */}
-            <h2 className="qs-title">
-              Por trás<br />da Ticker
-            </h2>
-
-            {/* Subtítulo / Descrição Principal */}
-            <p className="qs-intro" style={{ color: 'rgba(14,16,17,0.7)', maxWidth: '650px', marginBottom: '48px' }}>
-              A Ticker foi fundada por dois profissionais com experiências complementares em marketing, marca e crescimento, formadas ao longo de atuação direta no mercado.
-            </p>
-
-            {/* Cartão: Priscila Lima */}
-            <div className="qs-card">
-              <span className="qs-card-label" style={{ color: 'rgba(14,16,17,0.6)' }}>(Comunicação e Marca)</span>
-              <h3 className="qs-card-name">Priscila Lima</h3>
-              <p className="qs-card-desc" style={{ color: 'rgba(14,16,17,0.7)', lineHeight: 1.6 }}>
-                Desenvolvimento de marca, conteúdo e posicionamento para alinhar a comunicação interna e externa ao objetivo de negócio.
-              </p>
-            </div>
-
-            {/* Cartão: Bruno Barroso */}
-            <div className="qs-card">
-              <span className="qs-card-label" style={{ color: 'rgba(14,16,17,0.6)' }}>(Growth e Performance)</span>
-              <h3 className="qs-card-name">Bruno Barroso</h3>
-              <p className="qs-card-desc" style={{ color: 'rgba(14,16,17,0.7)', lineHeight: 1.6 }}>
-                Estruturação de dados, processos de vendas e ferramentas para garantir a previsibilidade e a eficiência das operações.
-              </p>
+            <div>
+              <cite className="depo-name depo-name--light">{TESTIMONIALS[activeIndex].name}</cite>
+              <span className="depo-role depo-role--light">
+                {TESTIMONIALS[activeIndex].role}, {TESTIMONIALS[activeIndex].company}
+              </span>
             </div>
           </div>
+        </div>
+
+        {/* Navegação entre depoimentos */}
+        <div className="depo-nav depo-nav--light" role="tablist" aria-label="Navegar depoimentos">
+          {TESTIMONIALS.map((t, i) => (
+            <button
+              key={i}
+              role="tab"
+              aria-selected={activeIndex === i}
+              aria-label={`Depoimento de ${t.name}`}
+              className={`depo-nav-btn depo-nav-btn--light ${activeIndex === i ? 'active' : ''}`}
+              onClick={() => setActiveIndex(i)}
+            >
+              <span className="depo-nav-name depo-nav-name--light">{t.name}</span>
+              <span className="depo-nav-company depo-nav-company--light">{t.company}</span>
+            </button>
+          ))}
         </div>
       </div>
     </section>

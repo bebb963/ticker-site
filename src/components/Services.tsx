@@ -3,73 +3,85 @@
 import { useState } from 'react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
-const SECTION_SUBTITLE =
-  'Três formatos de atuação. Todos\npartem do mesmo princípio:\ndiagnóstico antes de execução.'
-
 interface ServiceItem {
   id: string
   name: string
-  tagline: string
   description: string
-  categoryLabel: string
   subItems: string[]
+  icon: React.ReactNode
 }
 
 const SERVICES: ServiceItem[] = [
   {
     id: '(01)',
-    name: 'Consultoria',
-    tagline: 'Visão e Direção',
-    description:
-      'Para empresas que precisam de direção estratégica e preferem executar com equipe própria.',
-    categoryLabel: '(Visão e Direção)',
+    name: 'BPO Completo',
+    description: 'A operacao de marketing inteira conduzida pela Ticker.',
     subItems: [
-      'Mapa de Direção de Marketing (modelo de negócio, público, produto, posicionamento e canais)',
-      'Apresentação executiva e direcionamento',
-      '2 mentorias para auxílio da aplicabilidade de cada etapa',
+      'Operação completa de mídia, conteúdo e campanhas',
+      'Gestão integrada de performance',
+      'Execução alinhada ao plano e metas de negócio',
+      'Análises, previsões e melhorias contínuas',
     ],
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" opacity="0.5" />
+        <circle cx="16" cy="16" r="8" stroke="currentColor" strokeWidth="2" />
+        <circle cx="16" cy="16" r="2" fill="currentColor" />
+      </svg>
+    ),
   },
   {
     id: '(02)',
     name: 'BPO Gerencial',
-    tagline: 'Gestão Estratégica',
-    description:
-      'Para empresas com equipe própria ou terceirizada que precisam de método e governança sobre os processos de marketing.',
-    categoryLabel: '(Gestão Estratégica)',
+    description: 'Gestao e metodo para o seu time interno evoluir com ritmo.',
     subItems: [
-      'Levantamento de iniciativas primordiais para o negócio',
-      'Coordenação do time interno e suporte consultivo',
+      'Levantamento de iniciativas primordiais',
+      'Coordenação do time interno',
       'Governança entre marketing, comercial e diretoria',
-      'Gestão e acompanhamento contínuo',
+      'Acompanhamento contínuo',
     ],
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="8" cy="16" r="3" stroke="currentColor" strokeWidth="2" />
+        <circle cx="24" cy="8" r="3" stroke="currentColor" strokeWidth="2" />
+        <circle cx="24" cy="24" r="3" stroke="currentColor" strokeWidth="2" />
+        <path d="M10.5 14.5L21.5 9.5M10.5 17.5L21.5 22.5" stroke="currentColor" strokeWidth="2" opacity="0.5" />
+      </svg>
+    ),
   },
   {
     id: '(03)',
-    name: 'BPO Completo',
-    tagline: 'Operação Integrada',
-    description:
-      'Para empresas que precisam de operação completa de marketing, da estratégia à execução.',
-    categoryLabel: '(Operação Integrada)',
+    name: 'Consultoria',
+    description: 'Direcao e clareza para quem quer executar por conta propria.',
     subItems: [
-      'Operação completa de mídia, conteúdo, copy, design e campanhas',
-      'Gestão integrada de performance, relatórios e otimizações',
-      'Execução consultiva e estratégica, alinhada ao plano e às metas de negócio',
-      'Acompanhamento próximo com análises, previsões e melhorias contínuas',
+      'Mapa de Direção de Marketing',
+      'Apresentação executiva e direcionamento',
+      '2 mentorias para aplicação',
     ],
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 26L26 6M26 6H12M26 6V20" stroke="currentColor" strokeWidth="2" strokeLinecap="square" />
+      </svg>
+    ),
   },
   {
     id: '(04)',
     name: 'Módulos Complementares',
-    tagline: 'Projetos Pontuais',
-    description:
-      'Projetos específicos que complementam a operação de marketing com frentes técnicas.',
-    categoryLabel: '(Projetos Pontuais)',
+    description: 'Frentes pontuais: branding, sites, CRM, campanhas.',
     subItems: [
       'Branding e Comunicação Visual',
-      'Composição Digital (Sites, e-commerces, SEO)',
-      'Vendas e CRM (Chatbots, playbooks, funis)',
+      'Sites, e-commerces, SEO',
+      'Vendas e CRM',
       'Campanhas e Ativações Sazonais',
     ],
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="6" width="8" height="8" stroke="currentColor" strokeWidth="2" />
+        <rect x="18" y="6" width="8" height="8" stroke="currentColor" strokeWidth="2" opacity="0.5" />
+        <rect x="6" y="18" width="8" height="8" stroke="currentColor" strokeWidth="2" opacity="0.5" />
+        <rect x="18" y="18" width="8" height="8" stroke="currentColor" strokeWidth="2" />
+      </svg>
+    ),
   },
 ]
 
@@ -91,7 +103,7 @@ const MICRO_SERVICES = [
 export default function Services() {
   const refHeader = useScrollReveal<HTMLDivElement>()
   const refList   = useScrollReveal<HTMLDivElement>()
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   const toggle = (i: number) => {
     setOpenIndex(prev => prev === i ? null : i)
@@ -99,52 +111,23 @@ export default function Services() {
 
   return (
     <>
-     <section id="servicos" aria-label="Serviços" className="section-massive" style={{ background: '#0E1011', paddingBottom: '0' }}>
+     <section id="servicos" aria-label="Serviços" className="section-massive" style={{ background: 'var(--color-bg-primary)', paddingBottom: '0' }}>
       <div className="container-content">
-        {/* ─── CABEÇALHO ─────────────────────────────────────────────────── */}
-        <div ref={refHeader} className="services-header reveal" style={{ paddingBottom: '64px' }}>
+        {/* ─── CABEÇALHO ─── */}
+        <div ref={refHeader} className="reveal" style={{ paddingBottom: 'var(--space-4)' }}>
+          <span className="section-label section-label--inverse">(Servicos)</span>
 
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-start',
-          }}>
-            <span style={{
-              fontFamily: "'DM Serif Text', serif",
-              fontStyle: 'italic',
-              fontSize: '32px',
-              lineHeight: 1,
-              color: 'rgba(255,255,255,0.4)',
-            }}>
-              (O que fazemos)
-            </span>
-            <span style={{
-              fontFamily: "'DM Serif Text', serif",
-              fontStyle: 'italic',
-              fontSize: '32px',
-              lineHeight: 1,
-              color: 'var(--accent)',
-            }}>
-              (06)
-            </span>
-          </div>
-
-          <h2
-            aria-hidden
-            className="services-title-display"
-            style={{ color: '#FFFFFF' }}
-          >
-            Serviços
+          <h2 className="section-statement" style={{ color: 'var(--color-text-inverse)' }}>
+            Tres formas de trabalhar juntos.
           </h2>
 
-          <p className="services-subtitle" style={{ color: '#FFFFFF' }}>
-            {SECTION_SUBTITLE}
+          <p className="section-support section-support--inverse">
+            Da direcao a operacao completa. Sempre a partir do Mapa.
           </p>
-
         </div>
 
-        {/* ─── ACCORDION DE SERVIÇOS ─────────────────────────────────────── */}
-        <div ref={refList} style={{ padding: '0 0 96px' }} className="services-list-wrap stagger reveal">
+        {/* ─── ACCORDION ─── */}
+        <div ref={refList} style={{ padding: '0 0 96px' }} className="stagger reveal">
         {SERVICES.map((service, index) => {
           const isOpen = openIndex === index
 
@@ -156,7 +139,7 @@ export default function Services() {
                 borderBottom: index === SERVICES.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none',
               }}
             >
-              {/* ── Toggle row ──────────────────────────────────────────── */}
+              {/* Toggle row */}
               <button
                 onClick={() => toggle(index)}
                 aria-expanded={isOpen}
@@ -172,18 +155,17 @@ export default function Services() {
                   textAlign: 'left',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: '24px' }}>
-                  <span style={{
-                    fontFamily: "'DM Serif Text', serif",
-                    fontStyle: 'italic',
-                    fontSize: '28px',
-                    lineHeight: 1,
+                <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+                  <div style={{
                     color: 'rgba(255,255,255,0.25)',
                     flexShrink: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}>
-                    {service.id}
-                  </span>
-                  <h3 className="services-item-name" style={{ color: '#FFFFFF' }}>
+                    {service.icon}
+                  </div>
+                  <h3 className="services-item-name" style={{ color: '#FFFFFF', margin: 0 }}>
                     {service.name}
                   </h3>
                 </div>
@@ -212,7 +194,7 @@ export default function Services() {
                 </span>
               </button>
 
-              {/* ── Collapsible content ─────────────────────────────────── */}
+              {/* Collapsible content */}
               <div
                 className="accordion-body"
                 style={{
@@ -223,23 +205,11 @@ export default function Services() {
                 }}
               >
                 <div style={{ paddingBottom: '48px' }}>
-                  {/* Tagline */}
+                  {/* Descrição curta (1 linha) */}
                   <p style={{
-                    fontFamily: "'DM Serif Text', serif",
-                    fontStyle: 'italic',
-                    fontSize: '24px',
-                    lineHeight: 1.4,
-                    color: 'rgba(255,255,255,0.5)',
-                    margin: '0 0 20px',
-                  }}>
-                    {service.tagline}
-                  </p>
-
-                  {/* Descrição */}
-                  <p style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Open Sauce One', sans-serif",
                     fontWeight: 400,
-                    fontSize: '20px',
+                    fontSize: '22px',
                     lineHeight: 1.7,
                     color: 'rgba(255,255,255,0.5)',
                     maxWidth: '768px',
@@ -248,28 +218,17 @@ export default function Services() {
                     {service.description}
                   </p>
 
-                  {/* Categoria + sub-itens */}
-                  <span style={{
-                    fontFamily: "'DM Serif Text', serif",
-                    fontStyle: 'italic',
-                    fontSize: '24px',
-                    lineHeight: 1,
-                    color: 'rgba(255,255,255,0.3)',
-                    display: 'block',
-                    marginBottom: '16px',
-                  }}>
-                    {service.categoryLabel}
-                  </span>
+                  {/* Sub-itens */}
                   <div className="services-subitems">
                     {service.subItems.map((item, i) => (
                       <span key={i} style={{
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Open Sauce One', sans-serif",
                         fontWeight: 600,
                         fontSize: '18px',
                         lineHeight: 1.5,
                         color: 'rgba(255,255,255,0.85)',
                       }}>
-                        - {item}
+                        {item}
                       </span>
                     ))}
                   </div>
@@ -282,7 +241,7 @@ export default function Services() {
       </div>
       </section>
 
-      {/* ─── FAIXA MARQUEE — Micro Serviços ────────────────────────────── */}
+      {/* ─── FAIXA MARQUEE — Micro Serviços ──────────────── */}
       <div
         aria-label="Micro serviços"
         style={{
@@ -290,7 +249,7 @@ export default function Services() {
           borderBottom: '1px solid rgba(255,255,255,0.1)',
           overflow: 'hidden',
           padding: '28px 0',
-          background: '#0E1011',
+          background: 'var(--color-bg-primary)',
         }}
       >
         <div
@@ -324,12 +283,11 @@ export default function Services() {
                 >
                   <span
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Open Sauce One', sans-serif",
                       fontWeight: 600,
                       fontSize: '18px',
                       color: 'rgba(255,255,255,0.7)',
                       whiteSpace: 'nowrap',
-                      textTransform: 'uppercase',
                       letterSpacing: '1px',
                     }}
                   >

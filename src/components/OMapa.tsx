@@ -6,70 +6,79 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 const WAYPOINTS = [
   {
     step: '01',
-    title: 'Quem?',
-    subtitle: 'Mapeamento de Persona',
-    desc: 'Mapeamento do perfil de compra e das motivações reais de decisão.',
-    coords: 'LAT: HUMANO // LONG: INSTINTO',
-    pin: { x: '22%', y: '25%' }
+    title: 'Qual é o projeto?',
+    subtitle: 'Diagnóstico de Negócio',
+    desc: 'Análise do modelo de negócio e do mercado. Posicionamento, JTBD e PUV.',
+    coords: 'LAT: NEGÓCIO // LONG: MERCADO',
+    pin: { x: '15%', y: '22%' }
   },
   {
     step: '02',
-    title: 'Onde?',
-    subtitle: 'Presença e Contexto',
-    desc: 'Identificação de canais, territórios e contextos de influência relevantes para o negócio.',
-    coords: 'LAT: TERRITÓRIO // LONG: INFLUÊNCIA',
-    pin: { x: '46%', y: '18%' }
+    title: 'Quem é o cliente?',
+    subtitle: 'Mapeamento de Persona',
+    desc: 'Quem é o seu cliente de verdade e o que move a decisão dele.',
+    coords: 'LAT: HUMANO // LONG: INSTINTO',
+    pin: { x: '32%', y: '14%' }
   },
   {
     step: '03',
-    title: 'Como atrair?',
-    subtitle: 'Estratégia de Aquisição',
-    desc: 'Definição de estratégias de aquisição alinhadas ao contexto e ao custo de aquisição sustentável.',
-    coords: 'LAT: AQUISIÇÃO // LONG: CAC_IDEAL',
-    pin: { x: '72%', y: '28%' }
+    title: 'Onde?',
+    subtitle: 'Presença e Contexto',
+    desc: 'Em quais canais, territórios e contextos a sua empresa precisa estar presente.',
+    coords: 'LAT: TERRITÓRIO // LONG: INFLUÊNCIA',
+    pin: { x: '52%', y: '22%' }
   },
   {
     step: '04',
-    title: 'Como converter?',
-    subtitle: 'Desenho de Funil',
-    desc: 'Desenho de funis que constroem confiança antes da oferta e entregam valor em cada etapa.',
-    coords: 'LAT: CONFIANÇA // LONG: CONVERSÃO',
-    pin: { x: '82%', y: '55%' }
+    title: 'Como atrair?',
+    subtitle: 'Estratégia de Aquisição',
+    desc: 'Estratégias de aquisição realistas para o seu contexto e o custo ideal por cliente.',
+    coords: 'LAT: AQUISIÇÃO // LONG: CAC_IDEAL',
+    pin: { x: '72%', y: '32%' }
   },
   {
     step: '05',
-    title: 'Como reter?',
-    subtitle: 'Relacionamento e LTV',
-    desc: 'Estruturação de CRM, comunidade e experiências orientadas a maximizar LTV e retenção líquida.',
-    coords: 'LAT: RETENÇÃO // LONG: LTV_NRR',
-    pin: { x: '62%', y: '78%' }
+    title: 'Como converter?',
+    subtitle: 'Desenho de Funil',
+    desc: 'Funis que constroem confiança antes da oferta e entregam valor em cada etapa.',
+    coords: 'LAT: CONFIANÇA // LONG: CONVERSÃO',
+    pin: { x: '80%', y: '52%' }
   },
   {
     step: '06',
-    title: 'Como monetizar?',
-    subtitle: 'Previsibilidade Comercial',
-    desc: 'Integração entre marketing e vendas para gerar previsibilidade e eficiência de receita.',
-    coords: 'LAT: SLA_RECEITA // LONG: COMERCIAL',
-    pin: { x: '35%', y: '70%' }
+    title: 'Como reter?',
+    subtitle: 'Relacionamento e LTV',
+    desc: 'CRM, comunidade e experiência para o cliente ficar, voltar e gastar mais.',
+    coords: 'LAT: RETENÇÃO // LONG: LTV_NRR',
+    pin: { x: '62%', y: '72%' }
   },
   {
     step: '07',
+    title: 'Como monetizar?',
+    subtitle: 'Previsibilidade Comercial',
+    desc: 'Marketing e comercial jogando o mesmo jogo, com previsibilidade de receita.',
+    coords: 'LAT: SLA_RECEITA // LONG: COMERCIAL',
+    pin: { x: '38%', y: '78%' }
+  },
+  {
+    step: '08',
     title: 'Como gerenciar?',
     subtitle: 'Ritmo e Governança',
-    desc: 'Ritmo operacional, governança e ciclos de melhoria contínua por meio de sprints.',
+    desc: 'Ritmo, prioridade e evolução contínua, para a estratégia não morrer no papel.',
     coords: 'LAT: GOVERNANÇA // LONG: AGILIDADE',
-    pin: { x: '25%', y: '48%' }
+    pin: { x: '20%', y: '55%' }
   }
 ]
 
 const PIN_COORDS = [
-  { x: 110, y: 125 },
-  { x: 230, y: 90 },
-  { x: 360, y: 140 },
-  { x: 410, y: 275 },
-  { x: 310, y: 390 },
-  { x: 175, y: 350 },
-  { x: 125, y: 240 }
+  { x: 75, y: 110 },
+  { x: 160, y: 70 },
+  { x: 260, y: 110 },
+  { x: 360, y: 160 },
+  { x: 400, y: 260 },
+  { x: 310, y: 360 },
+  { x: 190, y: 390 },
+  { x: 100, y: 275 }
 ]
 
 const TreasureMapSVG = ({ activeIndex }: { activeIndex: number }) => (
@@ -85,14 +94,13 @@ const TreasureMapSVG = ({ activeIndex }: { activeIndex: number }) => (
       position: 'relative',
     }}
   >
-    {/* Rosa dos Ventos no Canto Superior Direito */}
-    <g transform="translate(420, 80)" className="compass-rose">
+    {/* Rosa dos Ventos */}
+    <g transform="translate(430, 70)" className="compass-rose">
       <circle r="30" stroke="rgba(14,16,17,0.06)" strokeWidth="1" fill="none" />
       <circle r="4" stroke="rgba(14,16,17,0.2)" strokeWidth="1" fill="none" />
       <line x1="0" y1="-36" x2="0" y2="36" stroke="rgba(14,16,17,0.1)" strokeWidth="1" />
       <line x1="-36" y1="0" x2="36" y2="0" stroke="rgba(14,16,17,0.1)" strokeWidth="1" />
       
-      {/* Grupo de ponteiros rotativo */}
       <g className="compass-rose-pointer">
         <polygon points="0,-28 4,-4 -4,-4" fill="var(--accent)" />
         <polygon points="0,28 4,4 -4,4" fill="rgba(14,16,17,0.7)" />
@@ -103,7 +111,7 @@ const TreasureMapSVG = ({ activeIndex }: { activeIndex: number }) => (
       <text x="0" y="-40" textAnchor="middle" fontSize="9" fontFamily="monospace" fill="rgba(14,16,17,0.4)">N</text>
     </g>
 
-    {/* Linhas de Grade de Coordenadas Táticas */}
+    {/* Grid de Coordenadas */}
     <line x1="50" y1="0" x2="50" y2="500" stroke="rgba(14,16,17,0.02)" strokeWidth="1" strokeDasharray="4 8" />
     <line x1="150" y1="0" x2="150" y2="500" stroke="rgba(14,16,17,0.02)" strokeWidth="1" strokeDasharray="4 8" />
     <line x1="250" y1="0" x2="250" y2="500" stroke="rgba(14,16,17,0.02)" strokeWidth="1" strokeDasharray="4 8" />
@@ -115,13 +123,12 @@ const TreasureMapSVG = ({ activeIndex }: { activeIndex: number }) => (
     <line x1="0" y1="300" x2="500" y2="300" stroke="rgba(14,16,17,0.02)" strokeWidth="1" strokeDasharray="4 8" />
     <line x1="0" y1="400" x2="500" y2="400" stroke="rgba(14,16,17,0.02)" strokeWidth="1" strokeDasharray="4 8" />
 
-    {/* Moldura de Blueprint (Cantoneiras) */}
+    {/* Cantoneiras Blueprint */}
     <path d="M 20,40 L 20,20 L 40,20" stroke="rgba(14,16,17,0.12)" strokeWidth="1" fill="none" />
     <path d="M 480,40 L 480,20 L 460,20" stroke="rgba(14,16,17,0.12)" strokeWidth="1" fill="none" />
     <path d="M 20,460 L 20,480 L 40,480" stroke="rgba(14,16,17,0.12)" strokeWidth="1" fill="none" />
     <path d="M 480,460 L 480,480 L 460,480" stroke="rgba(14,16,17,0.12)" strokeWidth="1" fill="none" />
 
-    {/* ── CONTORNO DO MAPA DA ILHA (Treasure Map Coastline) ── */}
     {/* Ondas / Linhas de maré externas */}
     <path 
       className="map-coastline-outer-1"
@@ -129,12 +136,14 @@ const TreasureMapSVG = ({ activeIndex }: { activeIndex: number }) => (
       stroke="rgba(14,16,17,0.05)" 
       strokeWidth="1.2" 
       strokeDasharray="5 5"
+      fill="none"
     />
     <path 
       className="map-coastline-outer-2"
       d="M 110,150 C 130,110 170,80 220,70 C 250,60 290,40 330,60 C 370,80 400,120 410,150 C 420,180 440,200 430,240 C 420,280 450,310 430,350 C 410,390 370,410 330,420 C 290,430 240,440 190,420 C 140,400 100,410 80,370 C 60,330 80,300 70,260 C 60,220 50,180 90,160 Z" 
       stroke="rgba(255,90,0,0.03)" 
       strokeWidth="1" 
+      fill="none"
     />
     
     {/* Contorno principal da Ilha */}
@@ -145,9 +154,10 @@ const TreasureMapSVG = ({ activeIndex }: { activeIndex: number }) => (
       strokeWidth="2" 
       strokeLinecap="round"
       strokeLinejoin="round"
+      fill="none"
     />
 
-    {/* Ilhotas Secundárias (Arquipélago) */}
+    {/* Ilhotas Secundárias */}
     <path 
       d="M 70,80 C 85,70 100,80 95,95 C 90,110 75,105 70,90 C 65,85 65,82 70,80 Z" 
       stroke="rgba(14,16,17,0.15)" 
@@ -167,27 +177,29 @@ const TreasureMapSVG = ({ activeIndex }: { activeIndex: number }) => (
       stroke="rgba(14,16,17,0.08)" 
       strokeWidth="1" 
       strokeDasharray="4 4"
+      fill="none"
     />
     <path 
       d="M 160,200 C 180,180 200,150 240,140 C 255,135 275,120 300,130 C 325,140 345,170 355,190 C 365,210 380,225 375,250 C 370,275 380,290 375,310 C 370,330 350,350 325,360 C 300,370 275,380 240,360 C 205,340 175,350 160,325 C 145,300 160,280 155,260 C 150,240 140,220 160,205 Z" 
       stroke="rgba(14,16,17,0.04)" 
       strokeWidth="0.8" 
+      fill="none"
     />
 
-    {/* ── TRILHA DE EXPEDIÇÃO (Dashed Journey Path) ── */}
+    {/* Trilha de Expedição */}
     <path
       className="map-expedition-path"
-      d="M 110,125 C 160,90 190,80 230,90 C 280,100 320,110 360,140 C 400,180 410,220 410,275 C 410,330 360,360 310,390 C 250,420 190,380 175,350 C 150,310 110,280 125,240"
+      d="M 75,110 C 100,60 140,50 200,70 C 260,90 320,100 360,160 C 400,220 410,260 400,260 C 390,320 340,370 310,360 C 260,400 200,410 190,390 C 160,360 100,330 100,275"
       stroke="var(--accent)"
       strokeWidth="2"
       strokeLinecap="round"
       strokeDasharray="6 8"
+      fill="none"
     />
 
     {/* Crosshair de Coordenadas Ativas */}
     {activeIndex >= 0 && activeIndex < PIN_COORDS.length && (
       <g className="map-crosshair">
-        {/* Linha Horizontal */}
         <line
           x1="0"
           y1={PIN_COORDS[activeIndex].y}
@@ -197,7 +209,6 @@ const TreasureMapSVG = ({ activeIndex }: { activeIndex: number }) => (
           strokeWidth="0.8"
           strokeDasharray="2 4"
         />
-        {/* Linha Vertical */}
         <line
           x1={PIN_COORDS[activeIndex].x}
           y1="0"
@@ -215,6 +226,7 @@ const TreasureMapSVG = ({ activeIndex }: { activeIndex: number }) => (
           stroke="var(--accent)"
           strokeWidth="1.2"
           strokeDasharray="2 2"
+          fill="none"
           style={{
             transformOrigin: `${PIN_COORDS[activeIndex].x}px ${PIN_COORDS[activeIndex].y}px`,
             animation: 'sonar-pulse 2s infinite ease-out'
@@ -226,41 +238,49 @@ const TreasureMapSVG = ({ activeIndex }: { activeIndex: number }) => (
 )
 
 export default function OMapa() {
-  const refHeader = useScrollReveal<HTMLDivElement>()
   const refContent = useScrollReveal<HTMLDivElement>()
   const [activeIndex, setActiveIndex] = useState<number>(0)
 
   return (
     <section 
       id="mapa" 
-      aria-label="O Mapa e as Sete Perguntas" 
-      className="section-massive"
+      aria-label="O Mapa e as Oito Perguntas" 
       style={{ 
         background: '#F8F8F8', 
         color: '#0E1011',
         position: 'relative',
         overflow: 'hidden',
-        paddingBottom: '120px',
+        padding: '128px 0 120px',
         backgroundImage: 'linear-gradient(rgba(14, 16, 17, 0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(14, 16, 17, 0.015) 1px, transparent 1px)',
         backgroundSize: '40px 40px'
       }}
     >
 
-      {/* ─── GRID DE LAYOUT DE 3 COLUNAS ─── */}
+      {/* Grid de Layout de 3 colunas */}
       <div ref={refContent} className="reveal container-content" style={{ position: 'relative', zIndex: 2 }}>
         <div className="map-3col-grid">
           
           {/* Coluna 1 (Esquerda): Cabeçalho & Descrição */}
           <div className="map-left-col">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-              <span className="font-meta" style={{ fontSize: '18px' }}>(O Mapa)</span>
-              <span className="font-meta" style={{ fontSize: '18px', color: 'var(--accent)' }}>(04)</span>
+              <span style={{ 
+                fontFamily: "'Anantason Expanded Italic', serif",
+                fontStyle: 'italic',
+                fontSize: '18px',
+                color: 'rgba(14,16,17,0.6)'
+              }}>(O Mapa)</span>
+              <span style={{ 
+                fontFamily: "'Anantason Expanded Italic', serif",
+                fontStyle: 'italic',
+                fontSize: '18px',
+                color: 'var(--accent)'
+              }}>(04)</span>
             </div>
 
             <h2 style={{
-              fontFamily: "'Anton SC', sans-serif",
+              fontFamily: "'Anantason Expanded', sans-serif",
               fontSize: 'clamp(40px, 4.5vw, 64px)',
-              fontWeight: 400,
+              fontWeight: 500,
               textTransform: 'uppercase',
               lineHeight: 1,
               letterSpacing: '-1.5px',
@@ -270,23 +290,30 @@ export default function OMapa() {
               O Mapa
             </h2>
 
-            <span className="font-meta" style={{ fontSize: '20px', display: 'block', marginBottom: '24px' }}>
-              (As 7 perguntas)
+            <span style={{ 
+              fontFamily: "'Anantason Expanded Italic', serif",
+              fontStyle: 'italic',
+              fontSize: '20px',
+              color: 'rgba(14,16,17,0.6)',
+              display: 'block', 
+              marginBottom: '24px' 
+            }}>
+              (As 8 perguntas)
             </span>
 
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Open Sauce One', sans-serif",
               fontWeight: 400,
               fontSize: '16px',
               lineHeight: 1.7,
               color: 'rgba(14,16,17,0.7)',
               marginBottom: '32px'
             }}>
-              O Mapa é o diagnóstico estruturado que a Ticker entrega antes de qualquer execução. Ele é construído a partir de sete perguntas que mapeiam o negócio, identificam gargalos e definem os próximos passos.
+              O Mapa é o diagnóstico estruturado que a Ticker entrega antes de qualquer execução. Ele é construído a partir de oito perguntas que mapeiam o negócio, identificam gargalos e definem os próximos passos.
             </p>
 
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Open Sauce One', sans-serif",
               fontWeight: 400,
               fontSize: '15px',
               lineHeight: 1.6,
@@ -299,12 +326,10 @@ export default function OMapa() {
 
           {/* Coluna 2 (Centro): Mapa Interativo */}
           <div className="map-center-col">
-            {/* Microcopy Instrução de Interabilidade */}
-            <div style={{
-              marginBottom: '24px'
-            }}>
+            {/* Microcopy de instrução */}
+            <div style={{ marginBottom: '24px' }}>
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Open Sauce One', sans-serif",
                 fontWeight: 500,
                 fontSize: '11px',
                 textTransform: 'uppercase',
@@ -326,7 +351,7 @@ export default function OMapa() {
             <div className="map-graphic-container">
               <TreasureMapSVG activeIndex={activeIndex} />
 
-              {/* Pinos GPS absolutos sobrepostos ao SVG */}
+              {/* Pinos GPS sobrepostos ao SVG */}
               {WAYPOINTS.map((wp, i) => (
                 <div
                   key={i}
@@ -361,11 +386,11 @@ export default function OMapa() {
                   <p className="card-desc">{WAYPOINTS[activeIndex].desc}</p>
                 </div>
                 
-                {/* Navegação Sequencial e Indicador de Progresso */}
+                {/* Navegação Sequencial e Progresso */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '24px' }}>
                   <div style={{ width: '100%', height: '1px', background: 'rgba(14, 16, 17, 0.08)', margin: '4px 0' }} />
                   
-                  {/* Linha de Progresso Contínuo */}
+                  {/* Indicador de Progresso */}
                   <div style={{ display: 'flex', justifyContent: 'center', gap: '6px' }}>
                     {WAYPOINTS.map((_, idx) => (
                       <span
@@ -392,7 +417,7 @@ export default function OMapa() {
                       style={{
                         background: 'none',
                         border: 'none',
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Open Sauce One', sans-serif",
                         fontWeight: 600,
                         fontSize: '12px',
                         textTransform: 'uppercase',
@@ -420,13 +445,13 @@ export default function OMapa() {
                         if (activeIndex < WAYPOINTS.length - 1) {
                           setActiveIndex(activeIndex + 1)
                         } else {
-                          setActiveIndex(0) // restart
+                          setActiveIndex(0)
                         }
                       }}
                       style={{
                         background: 'none',
                         border: 'none',
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Open Sauce One', sans-serif",
                         fontWeight: 700,
                         fontSize: '12px',
                         textTransform: 'uppercase',
