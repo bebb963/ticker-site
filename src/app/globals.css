@@ -168,7 +168,6 @@ body {
 img, video, svg, canvas, audio, iframe, embed, object {
   display: block;
   max-width: 100%;
-  vertical-align: middle;
 }
 
 img, video {
