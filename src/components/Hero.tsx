@@ -146,8 +146,8 @@ export default function Hero() {
 
           <a href="#ticker-os" className="hero-bubble">
             <div className="hero-bubble-content">
-              <span className="hero-bubble-label">Ticker OS</span>
-              <span className="hero-bubble-title">Acesse o APP</span>
+              <span className="hero-bubble-label">Acesse o APP</span>
+              <span className="hero-bubble-title">Ticker OS</span>
             </div>
             <div className="hero-bubble-icon">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
