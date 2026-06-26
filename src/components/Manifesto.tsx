@@ -1,10 +1,8 @@
 'use client'
 
-import { useScrollReveal } from '@/hooks/useScrollReveal'
+import { useEffect, useRef, useState, useCallback } from 'react'
 
 // ─── Frases do manifesto com trechos em destaque ────────────────────────────
-// Cada frase é um array de segmentos: { text, highlight? }
-// highlight = true → renderizado em Itálico para destaque
 const MANIFESTO_PHRASES = [
   [
     { text: 'A Ticker nasceu da ' },
@@ -29,6 +27,46 @@ const MANIFESTO_PHRASES = [
   ],
 ]
 
+// ─── Hook: opacidade progressiva baseada na posição no viewport ─────────────
+function useProgressiveReveal<T extends HTMLElement>(offset = 0.3) {
+  const ref = useRef<T>(null)
+  const [progress, setProgress] = useState(0)
+
+  const handleScroll = useCallback(() => {
+    const el = ref.current
+    if (!el) return
+
+    const rect = el.getBoundingClientRect()
+    const windowH = window.innerHeight
+
+    // Começa a revelar quando o elemento entra no viewport inferior
+    // Totalmente revelado quando chega no centro
+    const start = windowH * (1 - offset)
+    const end = windowH * offset
+
+    if (rect.top >= start) {
+      setProgress(0)
+    } else if (rect.top <= end) {
+      setProgress(1)
+    } else {
+      const p = 1 - (rect.top - end) / (start - end)
+      setProgress(Math.max(0, Math.min(1, p)))
+    }
+  }, [offset])
+
+  useEffect(() => {
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
+  }, [handleScroll])
+
+  return { ref, progress }
+}
+
 type Segment = { text: string; highlight?: boolean }
 
 function ManifestoPhrase({
@@ -38,13 +76,19 @@ function ManifestoPhrase({
   segments: Segment[]
   index: number
 }) {
-  const ref = useScrollReveal<HTMLDivElement>(0.2)
+  const { ref, progress } = useProgressiveReveal<HTMLDivElement>(0.35)
+
+  // Transforma o progresso em opacidade e translateY
+  const opacity = Math.max(0.15, progress) // Mantém pelo menos 15% visível para não ficar sumido no load
+  const translateY = (1 - progress) * 40
 
   return (
     <div
       ref={ref}
-      className="reveal"
       style={{
+        opacity,
+        transform: `translateY(${translateY}px)`,
+        transition: 'opacity 0.1s ease-out, transform 0.1s ease-out',
         paddingBottom: '56px',
         position: 'relative',
       }}
@@ -84,13 +128,18 @@ function ManifestoPhrase({
                 fontFamily: "'Anantason Expanded Italic', serif",
                 fontStyle: 'italic',
                 fontWeight: 400,
-                color: '#FFFFFF',
+                color: 'rgba(255,255,255,0.95)',
+                backgroundImage:
+                  'linear-gradient(transparent 85%, rgba(255,255,255,0.15) 85%)',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: `${progress * 100}% 100%`,
+                transition: 'background-size 0.6s ease-out',
               }}
             >
               {seg.text}
             </span>
           ) : (
-            <span key={i} style={{ color: '#FFFFFF' }}>{seg.text}</span>
+            <span key={i}>{seg.text}</span>
           )
         )}
       </h2>
@@ -102,9 +151,11 @@ function ManifestoPhrase({
             position: 'absolute',
             bottom: '0',
             left: '0',
-            width: '200px',
+            width: `${progress * 100}%`,
+            maxWidth: '200px',
             height: '1px',
             background: 'rgba(255,255,255,0.1)',
+            transition: 'width 0.8s ease-out',
           }}
         />
       )}
@@ -122,7 +173,10 @@ export default function Manifesto() {
       style={{
         background: 'var(--color-bg-primary)',
         color: 'var(--color-text-inverse)',
-        minHeight: '100vh',
+        // Aumentado para garantir que a rolagem seja longa o suficiente 
+        // para dar o espaçamento necessário entre os parágrafos
+        paddingTop: '150px',
+        paddingBottom: '150px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -137,7 +191,7 @@ export default function Manifesto() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            marginBottom: '48px',
+            marginBottom: '96px',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flex: 1 }}>
