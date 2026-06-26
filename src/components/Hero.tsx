@@ -129,9 +129,9 @@ export default function Hero() {
           }} />
         </div>
 
-        {/* ─── Bolhas Interativas (Estilo The Simple Gym) ─── */}
+        {/* ─── Bolhas Interativas — Nascem como notificações ─── */}
         <div className="hero-bubbles-container">
-          <a href="#trabalhe-conosco" className="hero-bubble">
+          <a href="#trabalhe-conosco" className="hero-bubble hero-bubble-notify" style={{ animationDelay: '0.8s' }}>
             <div className="hero-bubble-content">
               <span className="hero-bubble-label">Faça parte do time</span>
               <span className="hero-bubble-title">Trabalhe Conosco</span>
@@ -144,7 +144,7 @@ export default function Hero() {
             </div>
           </a>
 
-          <a href="#ticker-os" className="hero-bubble">
+          <a href="#ticker-os" className="hero-bubble hero-bubble-notify" style={{ animationDelay: '1.4s' }}>
             <div className="hero-bubble-content">
               <span className="hero-bubble-label">Acesse o APP</span>
               <span className="hero-bubble-title">Ticker OS</span>
@@ -157,7 +157,7 @@ export default function Hero() {
             </div>
           </a>
 
-          <a href="#ticker-news" className="hero-bubble">
+          <a href="#ticker-news" className="hero-bubble hero-bubble-notify" style={{ animationDelay: '2.0s' }}>
             <div className="hero-bubble-content">
               <span className="hero-bubble-label">Newsletter</span>
               <span className="hero-bubble-title">Ticker News</span>
@@ -170,7 +170,7 @@ export default function Hero() {
             </div>
           </a>
 
-          <a href="#ticker-creators" className="hero-bubble">
+          <a href="#ticker-creators" className="hero-bubble hero-bubble-notify" style={{ animationDelay: '2.6s' }}>
             <div className="hero-bubble-content">
               <span className="hero-bubble-label">Portal de Influencers</span>
               <span className="hero-bubble-title">Ticker Creators</span>
@@ -183,7 +183,7 @@ export default function Hero() {
             </div>
           </a>
 
-          <a href="#ticker-research" className="hero-bubble">
+          <a href="#ticker-research" className="hero-bubble hero-bubble-notify" style={{ animationDelay: '3.2s' }}>
             <div className="hero-bubble-content">
               <span className="hero-bubble-label">Pesquisa de Mercado</span>
               <span className="hero-bubble-title">Ticker Research</span>
