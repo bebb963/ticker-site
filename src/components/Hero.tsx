@@ -144,10 +144,10 @@ export default function Hero() {
             </div>
           </a>
 
-          <a href="#blog" className="hero-bubble">
+          <a href="#ticker-os" className="hero-bubble">
             <div className="hero-bubble-content">
-              <span className="hero-bubble-label">Últimos artigos</span>
-              <span className="hero-bubble-title">Blog da Ticker</span>
+              <span className="hero-bubble-label">Ticker OS</span>
+              <span className="hero-bubble-title">Acesse o APP</span>
             </div>
             <div className="hero-bubble-icon">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -157,10 +157,10 @@ export default function Hero() {
             </div>
           </a>
 
-          <a href="#redes-sociais" className="hero-bubble">
+          <a href="#ticker-news" className="hero-bubble">
             <div className="hero-bubble-content">
-              <span className="hero-bubble-label">Acompanhe</span>
-              <span className="hero-bubble-title">Redes Sociais</span>
+              <span className="hero-bubble-label">Newsletter</span>
+              <span className="hero-bubble-title">Ticker News</span>
             </div>
             <div className="hero-bubble-icon">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -170,10 +170,23 @@ export default function Hero() {
             </div>
           </a>
 
-          <a href="#youtube" className="hero-bubble">
+          <a href="#ticker-creators" className="hero-bubble">
             <div className="hero-bubble-content">
-              <span className="hero-bubble-label">Conteúdo exclusivo</span>
-              <span className="hero-bubble-title">YouTube</span>
+              <span className="hero-bubble-label">Portal de Influencers</span>
+              <span className="hero-bubble-title">Ticker Creators</span>
+            </div>
+            <div className="hero-bubble-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+          </a>
+
+          <a href="#ticker-research" className="hero-bubble">
+            <div className="hero-bubble-content">
+              <span className="hero-bubble-label">Pesquisa de Mercado</span>
+              <span className="hero-bubble-title">Ticker Research</span>
             </div>
             <div className="hero-bubble-icon">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
