@@ -10,7 +10,6 @@ import Contato from '@/components/Contato'
 import Footer from '@/components/Footer'
 
 
-import AppChecker from '@/components/AppChecker'
 
 export default function Home() {
   return (
@@ -19,7 +18,7 @@ export default function Home() {
       <Hero />
       <MarketingInstintivo />
       <OMapa />
-      <AppChecker />
+
       <Services />
       <QuemSomos />
       <Manifesto />
