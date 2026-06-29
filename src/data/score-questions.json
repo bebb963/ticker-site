@@ -1,14 +1,14 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "questions": [
     {
       "id": "q1",
       "category": "Descoberta",
       "text": "Como seus clientes descobrem sua empresa pela primeira vez?",
       "answers": [
-        { "id": "q1a", "text": "Indicação boca a boca, sem nenhum canal digital estruturado", "value": 0 },
-        { "id": "q1b", "text": "Temos redes sociais e site, mas sem estratégia definida", "value": 50 },
-        { "id": "q1c", "text": "Temos canais ativos com tráfego pago, conteúdo e SEO gerando demanda recorrente", "value": 100 }
+        { "id": "q1a", "text": "Principalmente por indicações e relacionamentos pessoais, sem canais digitais ativos no momento", "value": 0 },
+        { "id": "q1b", "text": "Contamos com presença em redes sociais e site, ainda em fase de consolidação estratégica", "value": 50 },
+        { "id": "q1c", "text": "Operamos canais ativos de aquisição — tráfego pago, conteúdo e SEO — gerando demanda de forma recorrente", "value": 100 }
       ],
       "weight": 1,
       "relatedProducts": ["Presença Digital", "Tráfego Pago", "SEO"]
@@ -18,9 +18,9 @@
       "category": "Descoberta",
       "text": "Sua empresa possui um posicionamento de marca claro e diferenciado no mercado?",
       "answers": [
-        { "id": "q2a", "text": "Não, comunicamos de forma genérica, sem diferenciação clara", "value": 0 },
-        { "id": "q2b", "text": "Temos uma ideia, mas não está formalizada nem é aplicada de forma consistente", "value": 50 },
-        { "id": "q2c", "text": "Sim, temos posicionamento definido, aplicado em todos os canais e pontos de contato", "value": 100 }
+        { "id": "q2a", "text": "O posicionamento ainda está em construção — a comunicação tende a ser mais generalista", "value": 0 },
+        { "id": "q2b", "text": "Existe uma direção de posicionamento, porém ainda não está formalizada nem aplicada de forma consistente", "value": 50 },
+        { "id": "q2c", "text": "O posicionamento está definido e é aplicado de forma coerente em todos os canais e pontos de contato", "value": 100 }
       ],
       "weight": 1,
       "relatedProducts": ["Branding", "Estratégia de Marca"]
@@ -30,9 +30,9 @@
       "category": "Percepção",
       "text": "Você sabe exatamente quem é o seu cliente ideal e por que ele compra de você?",
       "answers": [
-        { "id": "q3a", "text": "Vendemos para quem aparece, sem perfil definido", "value": 0 },
-        { "id": "q3b", "text": "Temos uma noção, mas nunca fizemos um estudo formal", "value": 50 },
-        { "id": "q3c", "text": "Sim, temos personas definidas com base em dados reais e pesquisa de mercado", "value": 100 }
+        { "id": "q3a", "text": "Ainda não temos um perfil de cliente ideal formalizado — a base de clientes é bastante diversa", "value": 0 },
+        { "id": "q3b", "text": "Temos uma percepção intuitiva do público, mas sem um estudo formal que a sustente", "value": 50 },
+        { "id": "q3c", "text": "Trabalhamos com personas definidas a partir de dados reais e pesquisa de mercado", "value": 100 }
       ],
       "weight": 1,
       "relatedProducts": ["Pesquisa de Mercado", "Ticker Research"]
@@ -42,9 +42,9 @@
       "category": "Percepção",
       "text": "Sua empresa monitora a percepção dos clientes sobre sua marca (NPS, avaliações, feedbacks)?",
       "answers": [
-        { "id": "q4a", "text": "Não coletamos feedback de forma estruturada", "value": 0 },
-        { "id": "q4b", "text": "Recebemos feedbacks pontuais, mas sem processo contínuo", "value": 50 },
-        { "id": "q4c", "text": "Sim, temos pesquisas e indicadores de satisfação acompanhados regularmente", "value": 100 }
+        { "id": "q4a", "text": "A coleta de feedbacks ainda acontece de forma espontânea, sem um processo estruturado", "value": 0 },
+        { "id": "q4b", "text": "Recebemos feedbacks em momentos pontuais, mas sem acompanhamento contínuo ou indicadores", "value": 50 },
+        { "id": "q4c", "text": "Mantemos pesquisas de satisfação e indicadores acompanhados de forma regular e sistemática", "value": 100 }
       ],
       "weight": 1,
       "relatedProducts": ["NPS", "CRM", "Ticker Research"]
@@ -54,9 +54,9 @@
       "category": "Relacionamento",
       "text": "Como sua empresa mantém relacionamento com clientes após a venda?",
       "answers": [
-        { "id": "q5a", "text": "Não temos nenhuma estratégia de pós-venda", "value": 0 },
-        { "id": "q5b", "text": "Enviamos comunicações esporádicas (e-mails, promoções)", "value": 50 },
-        { "id": "q5c", "text": "Temos um fluxo estruturado de relacionamento, nutrição e recompra", "value": 100 }
+        { "id": "q5a", "text": "O relacionamento pós-venda ainda não conta com uma estratégia definida", "value": 0 },
+        { "id": "q5b", "text": "Realizamos comunicações pontuais, como e-mails ou promoções, de forma não recorrente", "value": 50 },
+        { "id": "q5c", "text": "Operamos um fluxo estruturado de relacionamento, nutrição e incentivo à recompra", "value": 100 }
       ],
       "weight": 1,
       "relatedProducts": ["CRM", "E-mail Marketing", "Ticker News"]
@@ -66,9 +66,9 @@
       "category": "Atendimento",
       "text": "Como funciona o atendimento ao cliente na sua empresa?",
       "answers": [
-        { "id": "q6a", "text": "Não existe processo definido, cada um atende de um jeito", "value": 0 },
-        { "id": "q6b", "text": "Temos um canal principal (WhatsApp, telefone), mas sem roteiro ou SLA", "value": 50 },
-        { "id": "q6c", "text": "Temos processos documentados, scripts e indicadores de atendimento", "value": 100 }
+        { "id": "q6a", "text": "O atendimento ainda não segue um processo padronizado — a abordagem pode variar conforme a situação ou responsável", "value": 0 },
+        { "id": "q6b", "text": "Utilizamos um canal principal (WhatsApp ou telefone), porém sem roteiro formal ou metas de tempo de resposta", "value": 50 },
+        { "id": "q6c", "text": "O atendimento segue processos documentados, com scripts de abordagem e indicadores de performance", "value": 100 }
       ],
       "weight": 1,
       "relatedProducts": ["WhatsApp Business", "Chatbot", "Processos"]
@@ -78,9 +78,9 @@
       "category": "Comercial",
       "text": "Sua empresa possui um processo comercial estruturado (funil de vendas)?",
       "answers": [
-        { "id": "q7a", "text": "Não, vendas acontecem de forma reativa e desorganizada", "value": 0 },
-        { "id": "q7b", "text": "Temos etapas definidas, mas sem ferramentas ou acompanhamento consistente", "value": 50 },
-        { "id": "q7c", "text": "Sim, temos CRM ativo com pipeline definido e indicadores de conversão", "value": 100 }
+        { "id": "q7a", "text": "O processo comercial ainda opera de forma mais orgânica, sem etapas formalizadas", "value": 0 },
+        { "id": "q7b", "text": "Existem etapas definidas, mas as ferramentas e o acompanhamento ainda estão em fase de implantação", "value": 50 },
+        { "id": "q7c", "text": "Operamos com CRM ativo, pipeline definido e indicadores de conversão acompanhados regularmente", "value": 100 }
       ],
       "weight": 2,
       "relatedProducts": ["CRM", "Pipeline Comercial", "Ticker OS"]
@@ -90,9 +90,9 @@
       "category": "Comercial",
       "text": "Você consegue prever com razoável precisão o faturamento do próximo mês?",
       "answers": [
-        { "id": "q8a", "text": "Não, o faturamento varia muito e não tenho previsibilidade", "value": 0 },
-        { "id": "q8b", "text": "Consigo ter uma estimativa, mas sem base em dados concretos", "value": 50 },
-        { "id": "q8c", "text": "Sim, acompanho indicadores que permitem projeções com boa margem de acerto", "value": 100 }
+        { "id": "q8a", "text": "A previsibilidade ainda é um desafio — o faturamento tende a oscilar sem uma projeção clara", "value": 0 },
+        { "id": "q8b", "text": "Conseguimos fazer estimativas gerais, porém ainda sem base consolidada em dados históricos", "value": 50 },
+        { "id": "q8c", "text": "Acompanhamos indicadores que nos permitem projetar o faturamento com boa margem de precisão", "value": 100 }
       ],
       "weight": 2,
       "relatedProducts": ["BI", "Dashboard Comercial", "Ticker OS"]
@@ -102,9 +102,9 @@
       "category": "Tecnologia",
       "text": "Quais ferramentas de tecnologia sua empresa utiliza na operação comercial e de marketing?",
       "answers": [
-        { "id": "q9a", "text": "Basicamente planilhas e WhatsApp pessoal", "value": 0 },
-        { "id": "q9b", "text": "Temos algumas ferramentas (CRM, e-mail), mas não estão integradas", "value": 50 },
-        { "id": "q9c", "text": "Temos um stack integrado (CRM, automação, analytics, BI) funcionando em conjunto", "value": 100 }
+        { "id": "q9a", "text": "A operação utiliza ferramentas básicas como planilhas e aplicativos de mensagens", "value": 0 },
+        { "id": "q9b", "text": "Contamos com algumas ferramentas especializadas (CRM, e-mail), porém ainda sem integração entre elas", "value": 50 },
+        { "id": "q9c", "text": "Operamos com um stack integrado — CRM, automação, analytics e BI — funcionando em conjunto", "value": 100 }
       ],
       "weight": 1,
       "relatedProducts": ["Integração de Sistemas", "Automação", "Ticker OS"]
@@ -114,9 +114,9 @@
       "category": "Conteúdo",
       "text": "Sua empresa produz conteúdo de forma recorrente (blog, redes sociais, newsletter)?",
       "answers": [
-        { "id": "q10a", "text": "Não produzimos conteúdo ou fazemos de forma muito irregular", "value": 0 },
-        { "id": "q10b", "text": "Publicamos nas redes sociais, mas sem calendário editorial nem estratégia", "value": 50 },
-        { "id": "q10c", "text": "Temos produção recorrente com calendário, pauta estratégica e métricas de resultado", "value": 100 }
+        { "id": "q10a", "text": "A produção de conteúdo ainda é pontual ou está em fase inicial de organização", "value": 0 },
+        { "id": "q10b", "text": "Publicamos nas redes sociais com certa frequência, mas ainda sem calendário editorial ou estratégia definida", "value": 50 },
+        { "id": "q10c", "text": "Mantemos produção recorrente com calendário editorial, pauta estratégica e acompanhamento de métricas", "value": 100 }
       ],
       "weight": 1,
       "relatedProducts": ["Conteúdo", "Social Media", "Ticker News", "Ticker Creators"]
@@ -126,9 +126,9 @@
       "category": "Inteligência",
       "text": "Sua empresa toma decisões de marketing e vendas baseada em dados?",
       "answers": [
-        { "id": "q11a", "text": "Decisões são tomadas por intuição ou experiência pessoal", "value": 0 },
-        { "id": "q11b", "text": "Olhamos métricas básicas (seguidores, curtidas), mas sem análise profunda", "value": 50 },
-        { "id": "q11c", "text": "Temos dashboards com KPIs definidos que guiam as decisões estratégicas", "value": 100 }
+        { "id": "q11a", "text": "As decisões se baseiam principalmente na experiência e percepção da equipe", "value": 0 },
+        { "id": "q11b", "text": "Acompanhamos algumas métricas (seguidores, curtidas), mas a análise ainda é superficial", "value": 50 },
+        { "id": "q11c", "text": "Trabalhamos com dashboards e KPIs definidos que direcionam as decisões estratégicas", "value": 100 }
       ],
       "weight": 2,
       "relatedProducts": ["BI", "Ticker Research", "Analytics"]
@@ -138,9 +138,9 @@
       "category": "Inteligência",
       "text": "Sua empresa realiza testes e experimentos para validar hipóteses de marketing e vendas?",
       "answers": [
-        { "id": "q12a", "text": "Não, replicamos o que achamos que funciona sem testar", "value": 0 },
-        { "id": "q12b", "text": "Fazemos testes pontuais, mas sem metodologia estruturada", "value": 50 },
-        { "id": "q12c", "text": "Sim, temos ciclos de teste, mensuração e aprendizado contínuo", "value": 100 }
+        { "id": "q12a", "text": "Ainda não temos uma rotina de testes — as ações se baseiam no que consideramos eficaz", "value": 0 },
+        { "id": "q12b", "text": "Realizamos testes de forma pontual, mas sem uma metodologia estruturada de acompanhamento", "value": 50 },
+        { "id": "q12c", "text": "Operamos ciclos contínuos de teste, mensuração e aprendizado integrados à operação", "value": 100 }
       ],
       "weight": 1,
       "relatedProducts": ["Growth", "Ticker Research", "Testes A/B"]
