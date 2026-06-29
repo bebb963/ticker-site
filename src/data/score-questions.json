@@ -1,0 +1,149 @@
+{
+  "version": "1.0.0",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "Descoberta",
+      "text": "Como seus clientes descobrem sua empresa pela primeira vez?",
+      "answers": [
+        { "id": "q1a", "text": "Indicação boca a boca, sem nenhum canal digital estruturado", "value": 0 },
+        { "id": "q1b", "text": "Temos redes sociais e site, mas sem estratégia definida", "value": 50 },
+        { "id": "q1c", "text": "Temos canais ativos com tráfego pago, conteúdo e SEO gerando demanda recorrente", "value": 100 }
+      ],
+      "weight": 1,
+      "relatedProducts": ["Presença Digital", "Tráfego Pago", "SEO"]
+    },
+    {
+      "id": "q2",
+      "category": "Descoberta",
+      "text": "Sua empresa possui um posicionamento de marca claro e diferenciado no mercado?",
+      "answers": [
+        { "id": "q2a", "text": "Não, comunicamos de forma genérica, sem diferenciação clara", "value": 0 },
+        { "id": "q2b", "text": "Temos uma ideia, mas não está formalizada nem é aplicada de forma consistente", "value": 50 },
+        { "id": "q2c", "text": "Sim, temos posicionamento definido, aplicado em todos os canais e pontos de contato", "value": 100 }
+      ],
+      "weight": 1,
+      "relatedProducts": ["Branding", "Estratégia de Marca"]
+    },
+    {
+      "id": "q3",
+      "category": "Percepção",
+      "text": "Você sabe exatamente quem é o seu cliente ideal e por que ele compra de você?",
+      "answers": [
+        { "id": "q3a", "text": "Vendemos para quem aparece, sem perfil definido", "value": 0 },
+        { "id": "q3b", "text": "Temos uma noção, mas nunca fizemos um estudo formal", "value": 50 },
+        { "id": "q3c", "text": "Sim, temos personas definidas com base em dados reais e pesquisa de mercado", "value": 100 }
+      ],
+      "weight": 1,
+      "relatedProducts": ["Pesquisa de Mercado", "Ticker Research"]
+    },
+    {
+      "id": "q4",
+      "category": "Percepção",
+      "text": "Sua empresa monitora a percepção dos clientes sobre sua marca (NPS, avaliações, feedbacks)?",
+      "answers": [
+        { "id": "q4a", "text": "Não coletamos feedback de forma estruturada", "value": 0 },
+        { "id": "q4b", "text": "Recebemos feedbacks pontuais, mas sem processo contínuo", "value": 50 },
+        { "id": "q4c", "text": "Sim, temos pesquisas e indicadores de satisfação acompanhados regularmente", "value": 100 }
+      ],
+      "weight": 1,
+      "relatedProducts": ["NPS", "CRM", "Ticker Research"]
+    },
+    {
+      "id": "q5",
+      "category": "Relacionamento",
+      "text": "Como sua empresa mantém relacionamento com clientes após a venda?",
+      "answers": [
+        { "id": "q5a", "text": "Não temos nenhuma estratégia de pós-venda", "value": 0 },
+        { "id": "q5b", "text": "Enviamos comunicações esporádicas (e-mails, promoções)", "value": 50 },
+        { "id": "q5c", "text": "Temos um fluxo estruturado de relacionamento, nutrição e recompra", "value": 100 }
+      ],
+      "weight": 1,
+      "relatedProducts": ["CRM", "E-mail Marketing", "Ticker News"]
+    },
+    {
+      "id": "q6",
+      "category": "Atendimento",
+      "text": "Como funciona o atendimento ao cliente na sua empresa?",
+      "answers": [
+        { "id": "q6a", "text": "Não existe processo definido, cada um atende de um jeito", "value": 0 },
+        { "id": "q6b", "text": "Temos um canal principal (WhatsApp, telefone), mas sem roteiro ou SLA", "value": 50 },
+        { "id": "q6c", "text": "Temos processos documentados, scripts e indicadores de atendimento", "value": 100 }
+      ],
+      "weight": 1,
+      "relatedProducts": ["WhatsApp Business", "Chatbot", "Processos"]
+    },
+    {
+      "id": "q7",
+      "category": "Comercial",
+      "text": "Sua empresa possui um processo comercial estruturado (funil de vendas)?",
+      "answers": [
+        { "id": "q7a", "text": "Não, vendas acontecem de forma reativa e desorganizada", "value": 0 },
+        { "id": "q7b", "text": "Temos etapas definidas, mas sem ferramentas ou acompanhamento consistente", "value": 50 },
+        { "id": "q7c", "text": "Sim, temos CRM ativo com pipeline definido e indicadores de conversão", "value": 100 }
+      ],
+      "weight": 2,
+      "relatedProducts": ["CRM", "Pipeline Comercial", "Ticker OS"]
+    },
+    {
+      "id": "q8",
+      "category": "Comercial",
+      "text": "Você consegue prever com razoável precisão o faturamento do próximo mês?",
+      "answers": [
+        { "id": "q8a", "text": "Não, o faturamento varia muito e não tenho previsibilidade", "value": 0 },
+        { "id": "q8b", "text": "Consigo ter uma estimativa, mas sem base em dados concretos", "value": 50 },
+        { "id": "q8c", "text": "Sim, acompanho indicadores que permitem projeções com boa margem de acerto", "value": 100 }
+      ],
+      "weight": 2,
+      "relatedProducts": ["BI", "Dashboard Comercial", "Ticker OS"]
+    },
+    {
+      "id": "q9",
+      "category": "Tecnologia",
+      "text": "Quais ferramentas de tecnologia sua empresa utiliza na operação comercial e de marketing?",
+      "answers": [
+        { "id": "q9a", "text": "Basicamente planilhas e WhatsApp pessoal", "value": 0 },
+        { "id": "q9b", "text": "Temos algumas ferramentas (CRM, e-mail), mas não estão integradas", "value": 50 },
+        { "id": "q9c", "text": "Temos um stack integrado (CRM, automação, analytics, BI) funcionando em conjunto", "value": 100 }
+      ],
+      "weight": 1,
+      "relatedProducts": ["Integração de Sistemas", "Automação", "Ticker OS"]
+    },
+    {
+      "id": "q10",
+      "category": "Conteúdo",
+      "text": "Sua empresa produz conteúdo de forma recorrente (blog, redes sociais, newsletter)?",
+      "answers": [
+        { "id": "q10a", "text": "Não produzimos conteúdo ou fazemos de forma muito irregular", "value": 0 },
+        { "id": "q10b", "text": "Publicamos nas redes sociais, mas sem calendário editorial nem estratégia", "value": 50 },
+        { "id": "q10c", "text": "Temos produção recorrente com calendário, pauta estratégica e métricas de resultado", "value": 100 }
+      ],
+      "weight": 1,
+      "relatedProducts": ["Conteúdo", "Social Media", "Ticker News", "Ticker Creators"]
+    },
+    {
+      "id": "q11",
+      "category": "Inteligência",
+      "text": "Sua empresa toma decisões de marketing e vendas baseada em dados?",
+      "answers": [
+        { "id": "q11a", "text": "Decisões são tomadas por intuição ou experiência pessoal", "value": 0 },
+        { "id": "q11b", "text": "Olhamos métricas básicas (seguidores, curtidas), mas sem análise profunda", "value": 50 },
+        { "id": "q11c", "text": "Temos dashboards com KPIs definidos que guiam as decisões estratégicas", "value": 100 }
+      ],
+      "weight": 2,
+      "relatedProducts": ["BI", "Ticker Research", "Analytics"]
+    },
+    {
+      "id": "q12",
+      "category": "Inteligência",
+      "text": "Sua empresa realiza testes e experimentos para validar hipóteses de marketing e vendas?",
+      "answers": [
+        { "id": "q12a", "text": "Não, replicamos o que achamos que funciona sem testar", "value": 0 },
+        { "id": "q12b", "text": "Fazemos testes pontuais, mas sem metodologia estruturada", "value": 50 },
+        { "id": "q12c", "text": "Sim, temos ciclos de teste, mensuração e aprendizado contínuo", "value": 100 }
+      ],
+      "weight": 1,
+      "relatedProducts": ["Growth", "Ticker Research", "Testes A/B"]
+    }
+  ]
+}

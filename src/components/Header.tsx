@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: 'O Mapa',               href: '#mapa' },
   { label: 'Serviços',             href: '#servicos' },
   { label: 'Quem Somos',           href: '#quem-somos' },
+  { label: 'Ticker Score',         href: '/score' },
 ]
 
 const CTA_LABEL = 'Vamos conversar'
