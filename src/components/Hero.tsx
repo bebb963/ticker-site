@@ -341,28 +341,28 @@ export default function Hero() {
             <div className="hero-mosaic-container">
               {/* Foto 1 (Destaque grande) */}
               <div className="hero-mosaic-item">
-                <Image src="/images/mosaic_1.png" alt="Reunião estratégica" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} className="hero-mosaic-img" />
+                <Image src="/images/mosaic_1.png" alt="Reunião estratégica" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} className="hero-mosaic-img" loading="lazy" />
                 <div className="hero-mosaic-overlay">
                   <p className="hero-mosaic-caption">Imersao: Entendendo a cultura interna</p>
                 </div>
               </div>
               {/* Foto 2 (Larga) */}
               <div className="hero-mosaic-item">
-                <Image src="/images/mosaic_2.png" alt="Análise no PDV" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} className="hero-mosaic-img" />
+                <Image src="/images/mosaic_2.png" alt="Análise no PDV" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} className="hero-mosaic-img" loading="lazy" />
                 <div className="hero-mosaic-overlay">
                   <p className="hero-mosaic-caption">Analise de comportamento no PDV</p>
                 </div>
               </div>
               {/* Foto 3 */}
               <div className="hero-mosaic-item">
-                <Image src="/images/mosaic_3.png" alt="Mapeamento de jornada" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} className="hero-mosaic-img" />
+                <Image src="/images/mosaic_3.png" alt="Mapeamento de jornada" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} className="hero-mosaic-img" loading="lazy" />
                 <div className="hero-mosaic-overlay">
                   <p className="hero-mosaic-caption">Mapeamento de jornada</p>
                 </div>
               </div>
               {/* Foto 4 */}
               <div className="hero-mosaic-item">
-                <Image src="/images/mosaic_4.png" alt="Entrevista com fundadores" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} className="hero-mosaic-img" />
+                <Image src="/images/mosaic_4.png" alt="Entrevista com fundadores" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} className="hero-mosaic-img" loading="lazy" />
                 <div className="hero-mosaic-overlay">
                   <p className="hero-mosaic-caption">Entrevista com fundadores</p>
                 </div>

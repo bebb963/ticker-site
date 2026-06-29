@@ -10,7 +10,6 @@ const NAV_LINKS = [
   { label: 'O Mapa',               href: '#mapa' },
   { label: 'Serviços',             href: '#servicos' },
   { label: 'Quem Somos',           href: '#quem-somos' },
-  { label: 'Ticker Score',         href: '/score' },
 ]
 
 const CTA_LABEL = 'Vamos conversar'
@@ -69,6 +68,11 @@ export default function Header({ variant = 'small' }: HeaderProps) {
                   {link.label}
                 </Link>
               ))}
+              {/* Ticker Score — Destaque visual */}
+              <Link href="/score" className="nav-score-highlight">
+                <span>Ticker Score</span>
+                <span className="nav-score-badge">Grátis</span>
+              </Link>
             </nav>
 
             {/* CTA - direita */}
@@ -151,6 +155,14 @@ export default function Header({ variant = 'small' }: HeaderProps) {
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/score"
+            onClick={() => setDrawerOpen(false)}
+            className="nav-score-highlight-mobile"
+          >
+            <span>Ticker Score</span>
+            <span className="nav-score-badge">Grátis</span>
+          </Link>
         </nav>
       </aside>
     </>
