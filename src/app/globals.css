@@ -2664,9 +2664,23 @@ fieldset {
 }
 @media (max-width: 767px) {
   .hero-bubbles-container {
-    left: 16px;
-    top: 100px;
-    gap: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 72px;
+    transform: none;
+    flex-direction: row;
+    gap: 8px;
+    padding: 0 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .hero-bubbles-container::-webkit-scrollbar {
+    display: none;
   }
 }
 .hero-bubble {
@@ -2687,8 +2701,29 @@ fieldset {
 }
 @media (max-width: 767px) {
   .hero-bubble {
-    width: 250px;
-    padding: 12px 16px 12px 20px;
+    width: auto;
+    min-width: max-content;
+    flex-shrink: 0;
+    padding: 8px 14px;
+    gap: 6px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  }
+  .hero-bubble-label {
+    display: none;
+  }
+  .hero-bubble-title {
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+  .hero-bubble-icon {
+    width: 22px;
+    height: 22px;
+  }
+  .hero-bubble-icon svg {
+    width: 10px;
+    height: 10px;
   }
 }
 .hero-bubble:hover {
