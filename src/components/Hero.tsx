@@ -130,21 +130,7 @@ export default function Hero() {
         </div>
 
         {/* ─── Bolhas Interativas — Nascem como notificações ─── */}
-        <div className="hero-bubbles-container">
-          <a href="#trabalhe-conosco" className="hero-bubble hero-bubble-notify" style={{ animationDelay: '0.8s' }}>
-            <div className="hero-bubble-content">
-              <span className="hero-bubble-label">Faça parte do time</span>
-              <span className="hero-bubble-title">Trabalhe Conosco</span>
-            </div>
-            <div className="hero-bubble-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="7" y1="17" x2="17" y2="7"></line>
-                <polyline points="7 7 17 7 17 17"></polyline>
-              </svg>
-            </div>
-          </a>
-
-          <a href="#ticker-os" className="hero-bubble hero-bubble-notify" style={{ animationDelay: '1.4s' }}>
+        <div className="hero-bubbles-container">          <a href="#ticker-os" className="hero-bubble hero-bubble-notify" style={{ animationDelay: '1.4s' }}>
             <div className="hero-bubble-content">
               <span className="hero-bubble-label">Acesse o APP</span>
               <span className="hero-bubble-title">Ticker OS</span>
@@ -221,7 +207,7 @@ export default function Hero() {
                 <span style={{ position: 'relative', width: '8px', height: '8px', background: '#52c41a', borderRadius: '50%' }} />
               </span>
               <span style={{ color: 'rgba(255,255,255,0.5)', fontFamily: "'Open Sauce One', sans-serif", fontSize: '12px', fontWeight: 500, letterSpacing: '0.5px', whiteSpace: 'nowrap' }}>
-                Estratégia e Execução de Marketing
+                Sistemas de marketing personalizados
               </span>
             </div>
             
@@ -316,11 +302,11 @@ export default function Hero() {
             {/* Coluna Esquerda: Texto */}
             <div>
               <h1 className="section-statement" style={{ color: 'var(--color-text-default)' }}>
-                Entendemos o seu negócio antes de fazer o seu marketing.
+                Construímos sistemas de marketing a partir do estudo profundo de cada negócio.
               </h1>
     
               <p className="section-support" style={{ marginBottom: '48px', fontSize: '24px', textAlign: 'justify' }}>
-                A Ticker le o que move a sua empresa, pessoas, mercado e marca, e transforma isso em direcao.
+                Não somos uma agência tradicional. Somos parceiros estratégicos que entram na sua operação para estruturar, validar e escalar o seu crescimento.
               </p>
     
               {/* CTAs */}
@@ -343,14 +329,14 @@ export default function Hero() {
               <div className="hero-mosaic-item">
                 <Image src="/images/mosaic_1.png" alt="Reunião estratégica" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} className="hero-mosaic-img" loading="lazy" />
                 <div className="hero-mosaic-overlay">
-                  <p className="hero-mosaic-caption">Imersao: Entendendo a cultura interna</p>
+                  <p className="hero-mosaic-caption">Imersão: Entendendo a cultura interna</p>
                 </div>
               </div>
               {/* Foto 2 (Larga) */}
               <div className="hero-mosaic-item">
                 <Image src="/images/mosaic_2.png" alt="Análise no PDV" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} className="hero-mosaic-img" loading="lazy" />
                 <div className="hero-mosaic-overlay">
-                  <p className="hero-mosaic-caption">Analise de comportamento no PDV</p>
+                  <p className="hero-mosaic-caption">Análise de comportamento no PDV</p>
                 </div>
               </div>
               {/* Foto 3 */}

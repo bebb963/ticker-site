@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: 'O Mapa',               href: '#mapa' },
   { label: 'Serviços',             href: '#servicos' },
   { label: 'Quem Somos',           href: '#quem-somos' },
+  { label: 'Trabalhe Conosco',     href: '#contato' },
 ]
 
 const CTA_LABEL = 'Vamos conversar'
@@ -60,7 +61,7 @@ export default function Header({ variant = 'small' }: HeaderProps) {
             {/* Links de nav - centro */}
             <nav
               className="header-nav"
-              style={{ gap: '24px' }}
+              style={{ gap: '20px' }}
               aria-label="Navegação principal"
             >
               {NAV_LINKS.map((link) => (

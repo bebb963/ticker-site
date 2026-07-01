@@ -1,39 +1,14 @@
 'use client'
 
 import { useScrollReveal } from '@/hooks/useScrollReveal'
-import { useState } from 'react'
-
-// ─── DEPOIMENTOS (genéricos por enquanto — substituir por reais) ────
-// TODO: substituir por depoimentos reais dos clientes
-const TESTIMONIALS = [
-  {
-    quote: 'A Ticker entendeu em semanas o que agencias anteriores nao conseguiram em meses. O Mapa mudou a forma como a gente enxerga o proprio negocio.',
-    name: 'Cliente 1',
-    role: 'CEO',
-    company: 'Empresa A',
-  },
-  {
-    quote: 'Pela primeira vez, marketing e vendas falam a mesma lingua. Os resultados apareceram antes do esperado.',
-    name: 'Cliente 2',
-    role: 'Diretora de Marketing',
-    company: 'Empresa B',
-  },
-  {
-    quote: 'O diferencial e a profundidade. Eles mergulham no negocio antes de propor qualquer coisa. Isso muda tudo.',
-    name: 'Cliente 3',
-    role: 'Fundador',
-    company: 'Empresa C',
-  },
-]
 
 export default function QuemSomos() {
   const ref = useScrollReveal<HTMLDivElement>()
-  const [activeIndex, setActiveIndex] = useState(0)
 
   return (
     <section
       id="quem-somos"
-      aria-label="Depoimentos"
+      aria-label="Avaliações"
       className="section-massive"
       style={{
         background: 'var(--color-bg-muted)',
@@ -42,51 +17,78 @@ export default function QuemSomos() {
     >
       <div ref={ref} className="reveal container-content">
         {/* Rótulo */}
-        <span className="section-label">(Depoimentos)</span>
+        <span className="section-label">(Avaliações)</span>
 
         {/* Statement */}
-        <h2 className="section-statement" style={{ marginBottom: 'var(--space-4)' }}>
-          Quem ja trabalhou com a Ticker.
+        <h2 className="section-statement" style={{ marginBottom: 'var(--space-3)' }}>
+          O que dizem quem já trabalhou com a Ticker.
         </h2>
 
-        {/* Depoimento ativo — destaque grande */}
-        <div className="depo-featured depo-featured--light" key={activeIndex}>
-          {/* Aspas decorativas */}
-          <span className="depo-quote-mark depo-quote-mark--light" aria-hidden="true">&ldquo;</span>
+        <p className="section-support" style={{ marginBottom: 'var(--space-4)' }}>
+          Avaliações reais de clientes no Google.
+        </p>
 
-          <blockquote className="depo-quote">
-            <p className="depo-quote-text--light">{TESTIMONIALS[activeIndex].quote}</p>
-          </blockquote>
-
-          <div className="depo-attribution">
-            {/* Iniciais como avatar */}
-            <div className="depo-avatar depo-avatar--light">
-              {TESTIMONIALS[activeIndex].name.split(' ').map(w => w[0]).join('')}
+        {/* Google Reviews Widget Container */}
+        <div
+          id="google-reviews-widget"
+          style={{
+            width: '100%',
+            minHeight: '300px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: '12px',
+            border: '1px dashed rgba(14,16,17,0.15)',
+            background: 'rgba(14,16,17,0.02)',
+            padding: '48px 32px',
+          }}
+        >
+          {/* 
+            TODO: Substituir este placeholder pelo widget de avaliações Google.
+            Opções:
+            - Elfsight: cole o script embed aqui
+            - Google Places embed: cole o iframe aqui
+            - Trustindex: cole o widget aqui
+            
+            Exemplo Elfsight:
+            <Script src="https://static.elfsight.com/platform/platform.js" />
+            <div className="elfsight-app-XXXXXXXX" data-elfsight-app-lazy />
+          */}
+          <div style={{
+            textAlign: 'center',
+            maxWidth: '400px',
+          }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '4px',
+              marginBottom: '16px',
+            }}>
+              {[1, 2, 3, 4, 5].map((star) => (
+                <svg key={star} width="24" height="24" viewBox="0 0 24 24" fill="var(--accent)" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                </svg>
+              ))}
             </div>
-            <div>
-              <cite className="depo-name depo-name--light">{TESTIMONIALS[activeIndex].name}</cite>
-              <span className="depo-role depo-role--light">
-                {TESTIMONIALS[activeIndex].role}, {TESTIMONIALS[activeIndex].company}
-              </span>
-            </div>
+            <p style={{
+              fontFamily: "'Open Sauce One', sans-serif",
+              fontWeight: 500,
+              fontSize: '16px',
+              color: 'rgba(14,16,17,0.4)',
+              margin: 0,
+            }}>
+              Widget de avaliações Google será integrado aqui.
+            </p>
+            <p style={{
+              fontFamily: "'Open Sauce One', sans-serif",
+              fontWeight: 400,
+              fontSize: '13px',
+              color: 'rgba(14,16,17,0.3)',
+              margin: '8px 0 0',
+            }}>
+              Configure o Elfsight, Trustindex ou embed do Google Business.
+            </p>
           </div>
-        </div>
-
-        {/* Navegação entre depoimentos */}
-        <div className="depo-nav depo-nav--light" role="tablist" aria-label="Navegar depoimentos">
-          {TESTIMONIALS.map((t, i) => (
-            <button
-              key={i}
-              role="tab"
-              aria-selected={activeIndex === i}
-              aria-label={`Depoimento de ${t.name}`}
-              className={`depo-nav-btn depo-nav-btn--light ${activeIndex === i ? 'active' : ''}`}
-              onClick={() => setActiveIndex(i)}
-            >
-              <span className="depo-nav-name depo-nav-name--light">{t.name}</span>
-              <span className="depo-nav-company depo-nav-company--light">{t.company}</span>
-            </button>
-          ))}
         </div>
       </div>
     </section>

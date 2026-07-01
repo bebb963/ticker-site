@@ -6,22 +6,56 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 interface ServiceItem {
   id: string
   name: string
-  description: string
-  subItems: string[]
+  description: {
+    happens: string
+    problem: string
+    value: string
+  }
+  subItems: React.ReactNode[]
+  modes?: string
   icon: React.ReactNode
 }
 
 const SERVICES: ServiceItem[] = [
   {
     id: '(01)',
-    name: 'BPO Completo',
-    description: 'A operacao de marketing inteira conduzida pela Ticker.',
+    name: 'Fase 1 — Estruturação',
+    description: {
+      happens: 'Auditamos processos, configuramos o CRM, desenhamos a arquitetura de dados e estruturamos os canais. Arrumamos a casa.',
+      problem: 'Evita o "balde furado" — investir em marketing e tráfego antes da empresa estar pronta comercialmente para reter e converter.',
+      value: 'Uma base sólida. O cliente recebe clareza do cenário atual e uma infraestrutura pronta para escalar sem desperdício de caixa.',
+    },
     subItems: [
-      'Operação completa de mídia, conteúdo e campanhas',
-      'Gestão integrada de performance',
-      'Execução alinhada ao plano e metas de negócio',
-      'Análises, previsões e melhorias contínuas',
+      <span key="1">Diagnóstico Estratégico <a href="/score" style={{ color: 'var(--accent)', textDecoration: 'none', marginLeft: '8px', border: '1px solid var(--accent)', padding: '2px 8px', borderRadius: '4px', fontSize: '0.85em' }}>Fazer Ticker Score Grátis</a></span>,
+      'Estrutura Digital',
+      'Estrutura Comercial',
+      'Estrutura de Conteúdo',
+      'Estrutura de Dados',
     ],
+    modes: 'Disponível como: Consultoria · BPO Gerencial · BPO Completo',
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="20" width="16" height="4" stroke="currentColor" strokeWidth="2" />
+        <rect x="10" y="14" width="12" height="4" stroke="currentColor" strokeWidth="2" opacity="0.6" />
+        <rect x="12" y="8" width="8" height="4" stroke="currentColor" strokeWidth="2" opacity="0.3" />
+      </svg>
+    ),
+  },
+  {
+    id: '(02)',
+    name: 'Fase 2 — Operação',
+    description: {
+      happens: 'Colocamos a máquina para rodar com gestão ativa de mídia, criação de conteúdo, execução de campanhas e otimização do funil de vendas.',
+      problem: 'A falta de consistência, o desalinhamento entre marketing e vendas, e a dificuldade de manter um ritmo operacional forte.',
+      value: 'Tração real. O cliente ganha uma operação constante que atrai o público certo e gera oportunidades de negócio com previsibilidade.',
+    },
+    subItems: [
+      'Comunicação e marca',
+      'Gestão dos canais',
+      'Inteligência de mercado',
+      'Melhoria contínua',
+    ],
+    modes: 'Disponível como: Consultoria · BPO Gerencial · BPO Completo',
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" opacity="0.5" />
@@ -31,48 +65,39 @@ const SERVICES: ServiceItem[] = [
     ),
   },
   {
-    id: '(02)',
-    name: 'BPO Gerencial',
-    description: 'Gestao e metodo para o seu time interno evoluir com ritmo.',
-    subItems: [
-      'Levantamento de iniciativas primordiais',
-      'Coordenação do time interno',
-      'Governança entre marketing, comercial e diretoria',
-      'Acompanhamento contínuo',
-    ],
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="8" cy="16" r="3" stroke="currentColor" strokeWidth="2" />
-        <circle cx="24" cy="8" r="3" stroke="currentColor" strokeWidth="2" />
-        <circle cx="24" cy="24" r="3" stroke="currentColor" strokeWidth="2" />
-        <path d="M10.5 14.5L21.5 9.5M10.5 17.5L21.5 22.5" stroke="currentColor" strokeWidth="2" opacity="0.5" />
-      </svg>
-    ),
-  },
-  {
     id: '(03)',
-    name: 'Consultoria',
-    description: 'Direcao e clareza para quem quer executar por conta propria.',
+    name: 'Fase 3 — Growth Intelligence',
+    description: {
+      happens: 'Usamos os dados históricos da operação para encontrar alavancas ocultas. Expansão de canais, otimização de LTV e CAC, e forecasting de receita.',
+      problem: 'O platô de crescimento. A dificuldade de saber onde alocar verba com segurança para crescer de forma sustentável.',
+      value: 'Escala com segurança. Decisões embasadas, maior margem e um modelo de crescimento previsível e validado.',
+    },
     subItems: [
-      'Mapa de Direção de Marketing',
-      'Apresentação executiva e direcionamento',
-      '2 mentorias para aplicação',
+      'Forecasting',
+      'Otimização',
+      'Expansão de canais',
+      'Inteligência de mercado aplicada',
     ],
+    modes: 'Disponível como: Consultoria · BPO Gerencial · BPO Completo',
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6 26L26 6M26 6H12M26 6V20" stroke="currentColor" strokeWidth="2" strokeLinecap="square" />
+        <path d="M6 26L13 18L19 22L26 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="26" cy="6" r="3" stroke="currentColor" strokeWidth="2" opacity="0.5" />
       </svg>
     ),
   },
   {
     id: '(04)',
-    name: 'Módulos Complementares',
-    description: 'Frentes pontuais: branding, sites, CRM, campanhas.',
+    name: 'Consultoria / Mapa de Execução',
+    description: {
+      happens: 'Desenhamos o plano estratégico, entregando o mapa completo para que a sua própria equipe execute.',
+      problem: 'Necessidade de direcionamento e validação estratégica sem a necessidade de terceirizar a execução.',
+      value: 'Clareza, roteiro prático e acompanhamento estratégico focado em resultados.',
+    },
     subItems: [
-      'Branding e Comunicação Visual',
-      'Sites, e-commerces, SEO',
-      'Vendas e CRM',
-      'Campanhas e Ativações Sazonais',
+      'Branding e Comunicação',
+      'Composição Digital',
+      'Programa de Vendas e CRM',
     ],
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -115,14 +140,14 @@ export default function Services() {
       <div className="container-content">
         {/* ─── CABEÇALHO ─── */}
         <div ref={refHeader} className="reveal" style={{ paddingBottom: 'var(--space-4)' }}>
-          <span className="section-label section-label--inverse">(Servicos)</span>
+          <span className="section-label section-label--inverse">(Serviços)</span>
 
           <h2 className="section-statement" style={{ color: 'var(--color-text-inverse)' }}>
-            Tres formas de trabalhar juntos.
+            Primeiro estruturamos, depois operamos, só então aceleramos.
           </h2>
 
           <p className="section-support section-support--inverse">
-            Da direcao a operacao completa. Sempre a partir do Mapa.
+            Um sistema de crescimento que evolui em três fases sequenciais. Cada fase constrói a base para a próxima.
           </p>
         </div>
 
@@ -205,33 +230,134 @@ export default function Services() {
                 }}
               >
                 <div style={{ paddingBottom: '48px' }}>
-                  {/* Descrição curta (1 linha) */}
-                  <p style={{
-                    fontFamily: "'Open Sauce One', sans-serif",
-                    fontWeight: 400,
-                    fontSize: '22px',
-                    lineHeight: 1.7,
-                    color: 'rgba(255,255,255,0.5)',
-                    maxWidth: '768px',
-                    margin: '0 0 32px',
+                  {/* Novo Layout de Descrição Detalhada */}
+                  <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '24px',
+                    maxWidth: '800px',
+                    marginBottom: '40px',
                   }}>
-                    {service.description}
-                  </p>
+                    {/* O que acontece */}
+                    <div>
+                      <span style={{
+                        display: 'block',
+                        fontFamily: "'Anantason Expanded Italic', serif",
+                        fontStyle: 'italic',
+                        fontSize: '14px',
+                        color: 'var(--accent)',
+                        marginBottom: '8px',
+                      }}>
+                        O que acontece
+                      </span>
+                      <p style={{
+                        fontFamily: "'Open Sauce One', sans-serif",
+                        fontWeight: 400,
+                        fontSize: '18px',
+                        lineHeight: 1.6,
+                        color: 'rgba(255,255,255,0.7)',
+                        margin: 0,
+                      }}>
+                        {service.description.happens}
+                      </p>
+                    </div>
+
+                    {/* O problema que resolve */}
+                    <div>
+                      <span style={{
+                        display: 'block',
+                        fontFamily: "'Anantason Expanded Italic', serif",
+                        fontStyle: 'italic',
+                        fontSize: '14px',
+                        color: 'var(--accent)',
+                        marginBottom: '8px',
+                      }}>
+                        O problema que resolve
+                      </span>
+                      <p style={{
+                        fontFamily: "'Open Sauce One', sans-serif",
+                        fontWeight: 400,
+                        fontSize: '18px',
+                        lineHeight: 1.6,
+                        color: 'rgba(255,255,255,0.7)',
+                        margin: 0,
+                      }}>
+                        {service.description.problem}
+                      </p>
+                    </div>
+
+                    {/* O valor gerado */}
+                    <div>
+                      <span style={{
+                        display: 'block',
+                        fontFamily: "'Anantason Expanded Italic', serif",
+                        fontStyle: 'italic',
+                        fontSize: '14px',
+                        color: 'var(--accent)',
+                        marginBottom: '8px',
+                      }}>
+                        O que você recebe
+                      </span>
+                      <p style={{
+                        fontFamily: "'Open Sauce One', sans-serif",
+                        fontWeight: 400,
+                        fontSize: '18px',
+                        lineHeight: 1.6,
+                        color: 'rgba(255,255,255,0.9)',
+                        margin: 0,
+                      }}>
+                        {service.description.value}
+                      </p>
+                    </div>
+                  </div>
 
                   {/* Sub-itens */}
-                  <div className="services-subitems">
-                    {service.subItems.map((item, i) => (
-                      <span key={i} style={{
-                        fontFamily: "'Open Sauce One', sans-serif",
-                        fontWeight: 600,
-                        fontSize: '18px',
-                        lineHeight: 1.5,
-                        color: 'rgba(255,255,255,0.85)',
-                      }}>
-                        {item}
-                      </span>
-                    ))}
+                  <div style={{ marginBottom: '24px' }}>
+                    <span style={{
+                      display: 'block',
+                      fontFamily: "'Anantason Expanded Italic', serif",
+                      fontStyle: 'italic',
+                      fontSize: '14px',
+                      color: 'rgba(255,255,255,0.4)',
+                      marginBottom: '16px',
+                    }}>
+                      Entregáveis & Frentes:
+                    </span>
+                    <div className="services-subitems">
+                      {service.subItems.map((item, i) => (
+                        <span key={i} style={{
+                          fontFamily: "'Open Sauce One', sans-serif",
+                          fontWeight: 600,
+                          fontSize: '18px',
+                          lineHeight: 1.5,
+                          color: 'rgba(255,255,255,0.85)',
+                        }}>
+                          {item}
+                        </span>
+                      ))}
+                    </div>
                   </div>
+
+                  {/* Modos de contratação — linha sutil */}
+                  {service.modes && (
+                    <>
+                      <div style={{
+                        width: '100%',
+                        height: '1px',
+                        background: 'rgba(255,255,255,0.06)',
+                        margin: '24px 0 16px',
+                      }} />
+                      <span style={{
+                        fontFamily: "'Open Sauce One', sans-serif",
+                        fontWeight: 400,
+                        fontSize: '13px',
+                        color: 'rgba(255,255,255,0.35)',
+                        letterSpacing: '0.3px',
+                      }}>
+                        {service.modes}
+                      </span>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
