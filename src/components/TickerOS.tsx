@@ -8,7 +8,7 @@ export default function TickerOS() {
   return (
     <section
       id="ticker-os"
-      className="section-massive"
+      className="section-massive section-fold"
       style={{
         background: 'var(--color-bg-primary)',
         color: 'var(--color-text-inverse)',
@@ -56,7 +56,7 @@ export default function TickerOS() {
           <div className="tf-os-media">
             {/* TODO: Asset real do Ticker OS */}
             <div className="tf-os-placeholder">
-              <span>[ Tela do Ticker OS ]</span>
+              <span>Ticker OS</span>
             </div>
           </div>
         </div>

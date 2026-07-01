@@ -70,7 +70,7 @@ export default function Contato() {
       aria-label="Contato"
       className="section-massive"
       style={{
-        background: 'var(--ds-white)',
+        background: 'var(--ds-bg-muted)',
         color: 'var(--color-text-default)',
       }}
     >

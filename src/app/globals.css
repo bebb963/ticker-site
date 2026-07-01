@@ -1102,6 +1102,93 @@ fieldset {
   }
 }
 
+/* ── COSTURA ENTRE SEÇÕES (folds) ────────────────────────────────── */
+/*
+ * Quando duas seções escuras se encontram, o preto-sobre-preto some.
+ * A "dobra" cria a sensação de dois planos empilhados: uma hairline de
+ * luz no topo + um brilho sutil que decai, dando profundidade e
+ * separação elegante sem uma linha dura.
+ */
+.section-fold {
+  position: relative;
+}
+.section-fold > * {
+  position: relative;
+  z-index: 1;
+}
+.section-fold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 22%,
+    rgba(255, 255, 255, 0.12) 78%,
+    transparent 100%
+  );
+  z-index: 2;
+}
+.section-fold::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.045) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── PREMISSA — Gráfico orbital (potencial parcialmente explorado) ── */
+.premissa-graphic {
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 1 / 1;
+  position: relative;
+}
+.premissa-graphic svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+@keyframes premissa-orbit {
+  to { transform: rotate(360deg); }
+}
+@keyframes premissa-orbit-rev {
+  to { transform: rotate(-360deg); }
+}
+.premissa-orbit {
+  transform-origin: 200px 200px;
+  animation: premissa-orbit 60s linear infinite;
+}
+.premissa-orbit-rev {
+  transform-origin: 200px 200px;
+  animation: premissa-orbit-rev 90s linear infinite;
+}
+@keyframes premissa-node-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.premissa-node-live {
+  animation: premissa-node-pulse 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .premissa-orbit,
+  .premissa-orbit-rev,
+  .premissa-node-live {
+    animation: none;
+  }
+}
+
 /* ── SERVICES — Marquee Animation ────────────────────────────────── */
 @keyframes marquee-scroll {
   0%   { transform: translateX(0); }
@@ -4100,14 +4187,36 @@ a, button, [role="button"] {
   gap: 24px;
 }
 .map-physical-image {
+  position: relative;
   width: 100%;
   aspect-ratio: 4/3;
-  background: #E5E5E5;
-  border-radius: 8px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #F4F2EE 0%, #E9E6DF 100%);
+  box-shadow: inset 0 0 0 1px rgba(14, 16, 17, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+.map-physical-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(14, 16, 17, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 16, 17, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 35%, transparent 78%);
+  mask-image: radial-gradient(circle at 50% 50%, black 35%, transparent 78%);
+}
+.map-physical-image span {
+  position: relative;
+  z-index: 1;
+  font-family: 'Anantason Expanded Italic', serif;
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: rgba(14, 16, 17, 0.4) !important;
 }
 
 /* ── COMO DECIDIMOS (Framework) ──────────────────────────────────── */
@@ -4364,15 +4473,48 @@ a, button, [role="button"] {
   padding-top: var(--space-6);
 }
 .tf-os-placeholder {
+  position: relative;
   width: 100%;
   aspect-ratio: 16/9;
-  background: #1a1c1d;
-  border-radius: 8px;
+  border-radius: 12px;
+  background:
+    radial-gradient(120% 120% at 50% 0%, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 60%),
+    linear-gradient(160deg, #17191B 0%, #0C0D0E 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 30px 60px -30px rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.3);
-  font-family: monospace;
+  overflow: hidden;
+}
+.tf-os-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.tf-os-placeholder::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 16px 0 0 rgba(255, 255, 255, 0.18), 32px 0 0 rgba(255, 255, 255, 0.12);
+}
+.tf-os-placeholder span {
+  position: relative;
+  z-index: 1;
+  font-family: 'Anantason Expanded Italic', serif;
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.28);
 }
 
 @media (max-width: 767px) {

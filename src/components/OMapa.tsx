@@ -287,7 +287,7 @@ export default function OMapa() {
           <div className="map-physical-card">
             {/* TODO: Asset real da foto do mapa impresso */}
             <div className="map-physical-image">
-              <span style={{ color: 'rgba(255,255,255,0.4)' }}>[ Imagem do Mapa Fisico ]</span>
+              <span>O Mapa</span>
             </div>
             <a href="#contato" className="cta-primary map-cta">
               Quero meu Mapa

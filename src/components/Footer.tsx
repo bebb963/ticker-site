@@ -361,7 +361,7 @@ export default function Footer({ variant = 'dark' }: FooterProps) {
                 padding: '6px 10px',
                 borderRadius: '4px'
               }}>
-                Campinas, SP (// TODO endereco)
+                Campinas, SP
               </span>
             </div>
           </div>

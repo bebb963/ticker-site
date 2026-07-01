@@ -33,7 +33,7 @@ export default function PorOndeComecar() {
       aria-label="Por onde comecar"
       className="section-massive"
       style={{
-        background: 'var(--ds-white)',
+        background: 'var(--ds-bg-muted)',
         color: 'var(--color-text-default)',
       }}
     >

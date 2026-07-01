@@ -143,7 +143,7 @@ export default function Manifesto() {
     <section
       id="manifesto"
       aria-label="Manifesto"
-      className="manifesto-section"
+      className="manifesto-section section-fold"
       style={{
         background: 'var(--color-bg-primary)',
         color: '#FFFFFF',

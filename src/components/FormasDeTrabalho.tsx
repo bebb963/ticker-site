@@ -57,7 +57,7 @@ export default function FormasDeTrabalho() {
   return (
     <section
       id="formas-de-trabalho"
-      className="section-massive"
+      className="section-massive section-fold"
       style={{
         background: 'var(--color-bg-primary)',
         color: 'var(--color-text-inverse)',
