@@ -19,20 +19,20 @@ export function useScrollReveal<T extends HTMLElement>(threshold = 0.15) {
     const el = ref.current
     if (!el) return
 
-    // Se o elemento já tem in-view, não precisa observar
-    if (el.classList.contains('in-view')) return
+    // Se o elemento já tem visible ou in-view, não precisa observar
+    if (el.classList.contains('visible') || el.classList.contains('in-view')) return
 
     // Fallback de segurança: se o observer não disparar em 1.5s, mostra o
     // elemento de qualquer forma. Isso evita conteúdo invisível permanente.
     const fallbackTimer = setTimeout(() => {
-      if (!el.classList.contains('in-view')) {
-        el.classList.add('in-view')
+      if (!el.classList.contains('visible')) {
+        el.classList.add('visible', 'in-view')
       }
     }, 1500)
 
     // Verificar se IntersectionObserver está disponível
     if (typeof IntersectionObserver === 'undefined') {
-      el.classList.add('in-view')
+      el.classList.add('visible', 'in-view')
       clearTimeout(fallbackTimer)
       return
     }
@@ -40,7 +40,7 @@ export function useScrollReveal<T extends HTMLElement>(threshold = 0.15) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.classList.add('in-view')
+          el.classList.add('visible', 'in-view')
           observer.unobserve(el) // dispara só uma vez
           clearTimeout(fallbackTimer)
         }

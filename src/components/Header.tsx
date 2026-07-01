@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import Logo from './Logo'
+import TrabalheConoscoModal from './TrabalheConoscoModal'
 
 const NAV_LINKS = [
   { label: 'Marketing Instintivo', href: '#marketing-instintivo' },
   { label: 'O Mapa',               href: '#mapa' },
-  { label: 'Serviços',             href: '#servicos' },
-  { label: 'Quem Somos',           href: '#quem-somos' },
-  { label: 'Trabalhe Conosco',     href: '#contato' },
+  { label: 'As tres fases',        href: '#fases' },
+  { label: 'Diagnostico',          href: '#diagnostico' },
 ]
 
 const CTA_LABEL = 'Vamos conversar'
@@ -21,7 +21,8 @@ interface HeaderProps {
 }
 
 export default function Header({ variant = 'small' }: HeaderProps) {
-  const [drawerOpen, setDrawerOpen]   = useState(false)
+  const [drawerOpen, setDrawerOpen]     = useState(false)
+  const [trabalheOpen, setTrabalheOpen] = useState(false)
 
   /* Fecha drawer ao redimensionar para desktop */
   useEffect(() => {
@@ -30,11 +31,11 @@ export default function Header({ variant = 'small' }: HeaderProps) {
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
-  /* Bloqueia scroll do body quando drawer estiver aberto */
+  /* Bloqueia scroll do body quando drawer ou modal estiver aberto */
   useEffect(() => {
-    document.body.style.overflow = drawerOpen ? 'hidden' : ''
+    document.body.style.overflow = (drawerOpen || trabalheOpen) ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
-  }, [drawerOpen])
+  }, [drawerOpen, trabalheOpen])
 
   return (
     <>
@@ -62,18 +63,28 @@ export default function Header({ variant = 'small' }: HeaderProps) {
             <nav
               className="header-nav"
               style={{ gap: '20px' }}
-              aria-label="Navegação principal"
+              aria-label="Navegacao principal"
             >
               {NAV_LINKS.map((link) => (
                 <Link key={link.href} href={link.href} className="nav-link-header" style={{ color: '#FFFFFF' }}>
                   {link.label}
                 </Link>
               ))}
-              {/* Ticker Score — Destaque visual */}
-              <Link href="/score" className="nav-score-highlight">
-                <span>Ticker Score</span>
-                <span className="nav-score-badge">Grátis</span>
-              </Link>
+              <button
+                onClick={() => setTrabalheOpen(true)}
+                className="nav-link-header"
+                style={{
+                  color: '#FFFFFF',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontFamily: "'Open Sauce One', sans-serif",
+                  fontWeight: 600,
+                  fontSize: '16px',
+                }}
+              >
+                Trabalhe conosco
+              </button>
             </nav>
 
             {/* CTA - direita */}
@@ -123,7 +134,7 @@ export default function Header({ variant = 'small' }: HeaderProps) {
       <aside
         role="dialog"
         aria-modal="true"
-        aria-label="Menu de navegação"
+        aria-label="Menu de navegacao"
         className="drawer-panel"
         style={{
           width: '280px',
@@ -156,16 +167,21 @@ export default function Header({ variant = 'small' }: HeaderProps) {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/score"
-            onClick={() => setDrawerOpen(false)}
-            className="nav-score-highlight-mobile"
+          <button
+            onClick={() => { setDrawerOpen(false); setTrabalheOpen(true) }}
+            className="nav-link-drawer"
+            style={{ background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
           >
-            <span>Ticker Score</span>
-            <span className="nav-score-badge">Grátis</span>
-          </Link>
+            Trabalhe conosco
+          </button>
         </nav>
       </aside>
+
+      {/* ─── MODAL TRABALHE CONOSCO ─────────────────────────────── */}
+      <TrabalheConoscoModal 
+        isOpen={trabalheOpen} 
+        onClose={() => setTrabalheOpen(false)} 
+      />
     </>
   )
 }

@@ -15,21 +15,35 @@ export const metadata: Metadata = {
     'marketing estratégico',
   ],
   authors: [{ name: 'Ticker' }],
-  metadataBase: new URL('https://www.tickermkt.com'),
+  metadataBase: new URL('https://tickermkt.com.br'),
   openGraph: {
     title: 'Ticker | Marketing estruturado a partir do negócio',
     description:
       'A Ticker estrutura o marketing a partir de um estudo do negócio: modelo, público, produto e comportamento de compra.',
-    url: 'https://www.tickermkt.com',
+    url: 'https://tickermkt.com.br',
     type: 'website',
     locale: 'pt_BR',
     siteName: 'Ticker',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Ticker - Marketing Estruturado',
+      }
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Ticker | Marketing estruturado a partir do negócio',
     description:
       'A Ticker estrutura o marketing a partir de um estudo do negócio: modelo, público, produto e comportamento de compra.',
+    images: ['/og-image.jpg'],
+  },
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
   },
   robots: {
     index: true,
