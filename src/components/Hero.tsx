@@ -16,6 +16,14 @@ const CLIENT_LOGOS = [
   { file: '22.png', alt: 'Cliente 22' },
   { file: '19.png', alt: 'Cliente 19' },
 ]
+
+// Índice do ecossistema Ticker
+const ECOSYSTEM = [
+  { label: 'Acesse o app',            title: 'TICKER OS' },
+  { label: 'Newsletter',              title: 'TICKER NEWS' },
+  { label: 'Portal de influencers',   title: 'TICKER CREATORS' },
+  { label: 'Pesquisa de mercado',     title: 'TICKER RESEARCH' },
+]
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function Hero() {
@@ -47,150 +55,89 @@ export default function Hero() {
   }, [shouldPlay])
 
   return (
-    <section
-      aria-label="Hero"
-      style={{
-        width: '100%',
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        background: '#0E1011',
-        overflow: 'hidden'
-      }}
-    >
-      {/* ─── VIDEOS (BACKGROUND) ────────────────────────────────────────── */}
-      <div style={{ flex: 1, position: 'relative', minHeight: '60vh', overflow: 'hidden' }}>
-        <div className="hero-video-desktop" style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
-          <video
-            ref={desktopVideoRef}
-            autoPlay={shouldPlay}
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster="/images/hero-poster.jpg"
-            className="protected-asset"
-            onContextMenu={(e) => e.preventDefault()}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
-            }}
-          >
-            <source src="/videos/hero-desktop.mp4" type="video/mp4" />
-          </video>
-        </div>
+    <section aria-label="Hero" className="hero-ed">
+      {/* ─── BLOCO PRINCIPAL — SPLIT EDITORIAL ─────────────────────────── */}
+      <div className="container-content hero-ed-main">
 
-        <div className="hero-video-mobile" style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
-          <video
-            ref={mobileVideoRef}
-            autoPlay={shouldPlay}
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster="/images/hero-poster.jpg"
-            className="protected-asset"
-            onContextMenu={(e) => e.preventDefault()}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
-            }}
-          >
-            <source src="/videos/hero-mobile.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
+        {/* ── COLUNA ESQUERDA: Texto ancorado ─────────────────────────── */}
+        <div className="hero-ed-text">
+          <span className="hero-ed-eyebrow hero-ed-anim hero-ed-anim-1">
+            Sistemas de marketing
+          </span>
 
-      {/* ─── BOTOES DE INICIATIVAS ─────────────────────────── */}
-      <div className="hero-initiatives">
-        {[
-          { label: 'ACESSE O APP', title: 'TICKER OS' },
-          { label: 'NEWSLETTER', title: 'TICKER NEWS' },
-          { label: 'PORTAL DE INFLUENCERS', title: 'TICKER CREATORS' },
-          { label: 'PESQUISA DE MERCADO', title: 'TICKER RESEARCH' },
-        ].map((item, idx) => (
-          <button
-            key={idx}
-            className="hero-pill-btn"
-          >
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-              <span style={{ fontSize: '8px', fontWeight: 600, color: 'rgba(14,16,17,0.5)', letterSpacing: '0.5px' }}>
-                {item.label}
-              </span>
-              <span style={{ fontSize: '11px', fontWeight: 800, color: '#0E1011' }}>
-                {item.title}
-              </span>
-            </div>
-            <div className="hero-pill-arrow" style={{ width: '20px', height: '20px', fontSize: '11px' }}>
-              ↗
-            </div>
-          </button>
-        ))}
-      </div>
+          <h1 className="hero-ed-title hero-ed-anim hero-ed-anim-2">
+            O marketing que vive seu negócio.
+          </h1>
 
-      {/* ─── FAIXA PRETA INFERIOR (HEAD + SUBHEAD + CTA) ──────────────── */}
-      <div
-        style={{
-          position: 'relative',
-          zIndex: 10,
-          background: '#0E1011',
-          borderTop: '1px solid rgba(255,255,255,0.1)',
-        }}
-        className="hero-bottom-strip"
-      >
-        <div className="container-content" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '48px', flexWrap: 'wrap' }}>
-          
-          {/* Head & Subhead */}
-          <div style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <h1
-              className="section-statement"
-              style={{
-                color: '#FFFFFF',
-                fontSize: 'clamp(28px, 3vw, 48px)',
-                margin: 0,
-              }}
-            >
-              O marketing que vive seu negócio.
-            </h1>
-            <p
-              style={{
-                fontFamily: "'Open Sauce One', sans-serif",
-                fontWeight: 400,
-                fontSize: 'clamp(15px, 1.2vw, 18px)',
-                color: 'rgba(255,255,255,0.6)',
-                margin: 0,
-                maxWidth: '600px'
-              }}
-            >
-              Construímos sistemas de marketing, baseados no estudo profundo de cada negócio.
-            </p>
-          </div>
+          <p className="hero-ed-sub hero-ed-anim hero-ed-anim-3">
+            Construímos sistemas de marketing, baseados no estudo profundo de cada negócio.
+          </p>
 
-          {/* CTA */}
-          <div style={{ flexShrink: 0 }}>
+          <div className="hero-ed-ctas hero-ed-anim hero-ed-anim-3">
             <a href="#contato" className="cta-primary" style={{ color: '#FFFFFF', fontSize: '18px' }}>
               Vamos conversar
             </a>
+            <a href="#marketing-instintivo" className="hero-ed-cta-secondary">
+              Como funciona <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        {/* ── COLUNA DIREITA: Vídeo emoldurado + índice ───────────────── */}
+        <div className="hero-ed-visual hero-ed-anim hero-ed-anim-4">
+          <div className="hero-ed-panel">
+            {/* Vídeo desktop */}
+            <div className="hero-video-desktop" style={{ position: 'absolute', inset: 0 }}>
+              <video
+                ref={desktopVideoRef}
+                autoPlay={shouldPlay}
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                poster="/images/hero-poster.jpg"
+                className="protected-asset"
+                onContextMenu={(e) => e.preventDefault()}
+              >
+                <source src="/videos/hero-desktop.mp4" type="video/mp4" />
+              </video>
+            </div>
+
+            {/* Vídeo mobile */}
+            <div className="hero-video-mobile" style={{ position: 'absolute', inset: 0 }}>
+              <video
+                ref={mobileVideoRef}
+                autoPlay={shouldPlay}
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                poster="/images/hero-poster.jpg"
+                className="protected-asset"
+                onContextMenu={(e) => e.preventDefault()}
+              >
+                <source src="/videos/hero-mobile.mp4" type="video/mp4" />
+              </video>
+            </div>
           </div>
 
+          {/* Índice do ecossistema — 2x2 editorial */}
+          <div className="hero-ed-index">
+            {ECOSYSTEM.map((item, idx) => (
+              <button key={idx} className="hero-ed-index-item" type="button">
+                <span>
+                  <span className="hero-ed-index-label">{item.label}</span>
+                  <span className="hero-ed-index-title">{item.title}</span>
+                </span>
+                <span className="hero-ed-index-arrow" aria-hidden="true">↗</span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* ─── FAIXA DE LOGOS DOS CLIENTES ──────────────────────────────── */}
-      <div
-        style={{
-          position: 'relative',
-          zIndex: 10,
-          flexShrink: 0,
-          borderTop: '1px solid rgba(255,255,255,0.05)',
-          padding: '16px 0',
-          background: '#0E1011',
-        }}
-      >
+      {/* ─── FAIXA DE LOGOS — PROVA SILENCIOSA ──────────────────────────── */}
+      <div className="hero-ed-proof">
         <div style={{
           overflow: 'hidden',
           maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
