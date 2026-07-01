@@ -113,7 +113,7 @@ export default function Hero() {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              objectPosition: 'center 70%',
+              objectPosition: 'center 85%',
             }}
           >
             <source src="/videos/hero-mobile.mp4" type="video/mp4" />
