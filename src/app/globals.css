@@ -2585,6 +2585,9 @@ fieldset {
 @media (max-width: 767px) {
   .hero-bubbles-container {
     position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
