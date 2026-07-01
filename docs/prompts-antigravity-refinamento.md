@@ -465,3 +465,71 @@ Rode npm run dev. Valide desktop e mobile. Nao commitar.
 > Pendencia para implementar R4 (Alternativa A): produzir os 4 clipes reais + 4
 > posters conforme a especificacao acima. Ate la, a secao roda com posters
 > interinos (imagens reais ja existentes em /public), nunca com caixas vazias.
+
+---
+
+## R5 — O Mapa (reorganizacao visual, mesma ideia interativa)
+
+```
+Objetivo: refinar src/components/OMapa.tsx (fundo claro). MANTER o conceito e a
+interatividade exatamente como sao (uma linha/rota que liga os pontos, cada ponto
+e uma das perguntas do Mapa; clicar num ponto atualiza a caixa de detalhe ao
+lado, com a rota se desenhando no scroll e o trecho ativo em var(--accent)).
+NAO trocar a copy. A mudanca e so de ORGANIZACAO VISUAL: a rota passa a ocupar a
+largura da secao ponta a ponta, com as perguntas sobre os proprios pontos, e o
+titulo, subtitulo e a caixa de detalhe alinhados ACIMA da rota.
+
+--------------------------------------------------------------------
+NOVO ARRANJO (desktop)
+--------------------------------------------------------------------
+1) ZONA SUPERIOR (acima da rota), em duas colunas:
+   - Coluna esquerda: rotulo "(O Mapa)" + statement "Tudo comeca no Mapa." +
+     subtitulo de apoio. O paragrafo-ponte em italico laranja ("Tudo parte de uma
+     pergunta...") fica logo abaixo, subordinado (menor que o statement), sem
+     competir. Enxugar a hierarquia do cabecalho.
+   - Coluna direita: a CAIXA de detalhe (map-panel, card branco) que mostra a
+     pergunta ATIVA: numero + titulo + descricao. Atualiza ao clicar num ponto.
+     Mantem o crossfade e aria-live="polite".
+2) ROTA PONTA A PONTA (abaixo da zona superior):
+   - O SVG da rota passa a ocupar a LARGURA TOTAL do container, ponta a ponta na
+     horizontal. Usar um caminho horizontal SUAVE (onda leve, mais gentil que a
+     serpentina apertada atual) para os rotulos assentarem bem.
+   - 8 pontos distribuidos por comprimento de arco ao longo da linha.
+   - As PERGUNTAS ficam SOBRE os pontos: cada ponto exibe o numero (kicker em
+     var(--accent)) + o titulo curto da pergunta (ex.: "Qual e o negocio?").
+     Para nao colidir, os rotulos ALTERNAM acima e abaixo da linha, ligados ao
+     ponto por um tracinho curto. O rotulo do ponto ATIVO ganha enfase (cor cheia).
+   - Estados: pontos ativo e ja percorridos + o trecho da linha ate o ativo em
+     var(--accent); os demais em rgba(14,16,17,0.4). Clicar/hover/foco num ponto
+     define o ativo, atualiza a caixa acima e anima o trecho.
+   - Manter o desenho da rota no scroll (stroke-dashoffset) e os botoes focaveis
+     invisiveis sobre os pontos (teclado com setas). Dar respiro vertical para os
+     rotulos acima/abaixo.
+   - prefers-reduced-motion: rota estatica completa, sem desenho.
+
+--------------------------------------------------------------------
+MOBILE
+--------------------------------------------------------------------
+- A rota volta a ser VERTICAL (como hoje), ocupando a altura; cada ponto com sua
+  pergunta ao lado. A caixa de detalhe fica ACIMA da rota (abaixo do cabecalho) e
+  atualiza ao tocar. Default ativo = pergunta 00. Sem overflow horizontal.
+
+--------------------------------------------------------------------
+FAIXA INFERIOR (manter proxima do atual)
+--------------------------------------------------------------------
+- Manter a grade "O que o Mapa analisa" (10 itens). Refinar de leve para parecer
+  menos checklist (container mais leve ou lista em 2 colunas com filetes).
+- Manter o card do Mapa fisico + CTA "Quero meu Mapa" (#contato). PORÉM eliminar o
+  placeholder cinza #E5E5E5: usar uma FOTO REAL do Mapa impresso. Ate a foto real
+  existir, usar imagem interina real de /public (// TODO foto real do Mapa fisico),
+  nunca o bloco cinza vazio.
+
+--------------------------------------------------------------------
+COERENCIA
+--------------------------------------------------------------------
+- A rota do Mapa deve ler como JORNADA SEQUENCIAL numerada (um roteiro de
+  diagnostico), gramatica distinta da Premissa (vias que se abrem em amplitude).
+  Sao coisas diferentes de proposito.
+
+Rode npm run dev. Valide desktop e mobile. Nao commitar.
+```
