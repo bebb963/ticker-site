@@ -295,3 +295,86 @@ PARTE 3: COSTURA PARA A PROXIMA SECAO
 
 Rode npm run dev. Valide desktop e mobile. Nao commitar.
 ```
+
+---
+
+## R3 — Marketing Instintivo (Variante D: lista interativa + canvas tipografico)
+
+```
+Objetivo: refinar src/components/MarketingInstintivo.tsx. A secao ja e clara
+(#F8F8F8) e ja tem a lista interativa dos 4 humanos a esquerda. O problema: o
+painel da direita e um slab escuro (#1a1c1d) com imagens null, cujo fallback e
+uma letra a 4 por cento de opacidade (invisivel). Ao trocar de humano, nada muda
+na direita. Vamos substituir esse painel morto por um CANVAS TIPOGRAFICO
+claro-nativo que exibe a frase do humano ativo em grande. Manter a copy exata.
+
+--------------------------------------------------------------------
+CORRECOES OBRIGATORIAS (entram independente do resto)
+--------------------------------------------------------------------
+1) ELIMINAR o slab escuro #1a1c1d e todo o .mi-human-image-panel / image-slot /
+   image-fallback. A direita passa a ser claro-nativa (sem bloco escuro, sem
+   sombra pesada).
+2) LEGIBILIDADE dos nomes inativos: subir de rgba(14,16,17,0.25) para
+   rgba(14,16,17,0.4), para que os QUATRO nomes sejam escaneaveis como conjunto
+   (a tese e "um sistema de QUATRO humanos"). O ativo continua #0E1011 com o
+   filete lateral em var(--accent) e o translateX atual.
+3) TRAVAR O PULO VERTICAL: o grid deve usar align-items: start (nao center), e o
+   canvas da direita deve ter min-height reservada para a MAIOR frase, para nao
+   redimensionar ao trocar de humano. Remover a expansao da frase DENTRO do botao
+   (grid-template-rows 0fr->1fr): a frase agora vive so na direita.
+
+--------------------------------------------------------------------
+COLUNA ESQUERDA (lista dos 4 humanos) fica assim
+--------------------------------------------------------------------
+- Somente os 4 nomes (Fundador, Time, Produto, Consumidor) em Anantason Expanded,
+  empilhados, com o filete lateral e o destaque do ativo ja existentes.
+- Sem a frase dentro do botao (ela migrou para o canvas). Isto tambem elimina a
+  mudanca de altura que causava o pulo.
+- Manter hover/foco/clique e a navegacao por teclado (setas) ja implementados.
+  Um ativo por vez; default = Fundador (index 0).
+
+--------------------------------------------------------------------
+COLUNA DIREITA (canvas tipografico, substitui o painel morto)
+--------------------------------------------------------------------
+Para o humano ATIVO, o canvas exibe, de baixo de uma camada para outra:
+- FUNDO: o NOME do humano ativo em versao GIGANTE e fantasma, como textura
+  (Anantason Expanded, cor rgba(14,16,17,0.05), posicionado atras, aria-hidden).
+  Ex.: "FUNDADOR" enorme e apagado. Da presenca e peso ao canvas sem bloco escuro,
+  e torna a troca de humano visivelmente dramatica.
+- KICKER: rotulo serif italico "(fundador)" em rgba(14,16,17,0.5), pequeno.
+- FRASE (o heroi do canvas): a frase do humano em Open Sauce One, grande,
+  clamp(26px, 3vw, 44px), cor #0E1011, line-height ~1.25, max-width ~520px.
+  Frases (manter exatamente, sem reescrever):
+    Fundador: "Uma visao, um incomodo, uma conviccao sobre o que o mundo precisa."
+    Time: "Carrega a cultura viva da empresa todos os dias."
+    Produto: "Nascido da intencao de resolver, transformar ou criar valor."
+    Consumidor: "Movido por desejos que muitas vezes precedem a razao."
+  ENFASE tipografica (nao muda a copy): destacar UMA expressao-chave de cada frase
+  em serif italico (Anantason Expanded Italic), no mesmo espirito do Manifesto,
+  para criar coerencia entre as secoes editoriais. Sugestao de trecho a destacar:
+    Fundador: "conviccao"; Time: "cultura viva"; Produto: "criar valor";
+    Consumidor: "desejos". Cor do destaque #0E1011 (nao usar laranja aqui; o
+    acento fica so no filete do item ativo na esquerda).
+- INDICE: "01 / 04" pequeno, monospace ou serif italico, rgba(14,16,17,0.4),
+  num canto do canvas, atualizando com o humano ativo.
+
+TRANSICAO ao trocar de humano:
+- Crossfade + leve deslize vertical (~12px) da camada de texto (kicker+frase+indice),
+  ~0.4 a 0.5s ease. O nome fantasma do fundo troca junto, com leve escala.
+- O canvas tem role="tabpanel" ligado a aba ativa e aria-live="polite".
+- prefers-reduced-motion: troca instantanea, sem fade nem deslize, nome fantasma
+  estatico.
+
+--------------------------------------------------------------------
+LAYOUT E RESPONSIVO
+--------------------------------------------------------------------
+- Desktop: manter grid ~1.1fr / 1fr, gap ~64 a 80px, align-items: start. Canvas
+  ancorado no topo, alinhado ao primeiro nome da lista.
+- Mobile: empilhar (lista em cima, canvas embaixo). Sem hover: tocar um nome
+  atualiza o canvas logo abaixo. Default ativo = Fundador. Nome fantasma menor no
+  mobile para nao vazar; sem overflow horizontal.
+- O fecho "Marketing, no fundo, e o estudo da evolucao humana." permanece como o
+  maior momento tipografico da secao, centralizado, com bastante respiro acima.
+
+Rode npm run dev. Valide desktop e mobile. Nao commitar.
+```
