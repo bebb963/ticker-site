@@ -250,7 +250,7 @@ export default function OMapa() {
         color: '#0E1011',
         position: 'relative',
         overflow: 'hidden',
-        padding: '128px 0 120px',
+        padding: '128px 24px 120px',
         backgroundImage: 'linear-gradient(rgba(14, 16, 17, 0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(14, 16, 17, 0.015) 1px, transparent 1px)',
         backgroundSize: '40px 40px'
       }}
