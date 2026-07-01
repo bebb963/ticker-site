@@ -378,3 +378,90 @@ LAYOUT E RESPONSIVO
 
 Rode npm run dev. Valide desktop e mobile. Nao commitar.
 ```
+
+---
+
+## R4 — Como Olhamos (Alternativa A: videos reais, refinados)
+
+```
+Objetivo: refinar src/components/ComoOlhamos.tsx (fundo escuro). A secao mostra
+4 tiles de video de imersao (Bastidores, Imersao, Campo, Escritorio). Hoje os
+videos e posters apontados NAO existem, entao a secao renderiza 4 caixas escuras
+vazias. Vamos: (1) refinar o tratamento dos tiles, (2) sair do registro "reels"
+9:16, (3) resolver o estado de descanso, e (4) garantir estado interino digno ate
+os videos reais existirem. Manter a copy exata.
+
+--------------------------------------------------------------------
+MUDANCAS DE REGISTRO E ESTADO (entram independente do asset)
+--------------------------------------------------------------------
+1) SAIR DO 9:16 "REELS": mudar o aspect-ratio dos tiles de 9/16 para 4/5
+   (retrato editorial, menos "social", mais documental/cinematografico). 3/4 e
+   aceitavel. Manter os 4 tiles em fileira no desktop.
+2) ESTADO DE DESCANSO (nunca uma caixa escura chapada):
+   - Todo tile SEMPRE tem um poster (imagem real) cobrindo o fundo. Enquanto o
+     video nao toca, ve-se o poster, nao o #1a1c1d.
+   - Trocar o overlay chapado rgba(0,0,0,0.4) por um GRADIENTE ancorado na base
+     (transparente no topo -> rgba(0,0,0,0.6) embaixo), so para dar legibilidade
+     ao rotulo. A imagem NAO fica escurecida por inteiro.
+   - Dar aos tiles uma moldura sutil para lerem como objetos sobre o fundo escuro:
+     borda 1px rgba(255,255,255,0.08) e border-radius mantido.
+3) ROTULO: tratar como kicker (Bastidores / Imersao / Campo / Escritorio) com um
+   indice pequeno "01..04" em serif italico. Nao e o heroi, e apoio.
+4) HOVER/PLAY refinado:
+   - Desktop: no hover, o video toca e o gradiente/rotulo suavizam; leve zoom
+     (scale 1.03) e a moldura acende de leve. Ao sair, pausa e volta ao poster.
+   - Mobile: play ao entrar na viewport (IntersectionObserver ja existe), com o
+     poster como estado inicial.
+   - prefers-reduced-motion: NAO dar autoplay; mostrar sempre o poster estatico.
+
+--------------------------------------------------------------------
+ESTADO INTERINO (ate os videos reais existirem)
+--------------------------------------------------------------------
+- NUNCA renderizar um tile como caixa vazia. Se um clipe .mp4 ainda nao existe,
+  o tile mostra apenas o POSTER (imagem estatica real) daquele tema.
+- Enquanto nem posters proprios existirem, usar temporariamente imagens reais ja
+  presentes em /public como poster (ex.: captacao.jpg, mosaic_1..4.png,
+  hero_brand_image.png), tratadas de forma coerente. Marcar no codigo com
+  // TODO poster/video real por tile. O objetivo e que a secao esteja SEMPRE
+  apresentavel, mesmo antes da producao dos videos.
+
+--------------------------------------------------------------------
+ESPECIFICACAO DOS ASSETS A PRODUZIR (deliverable do cliente)
+--------------------------------------------------------------------
+Documentar no codigo (comentario no topo dos TILES) e aqui, para orientar a
+producao dos 4 clipes de imersao real:
+- Conteudo: cenas reais e documentais. Sugestao por tile:
+  Bastidores (making-of do trabalho), Imersao (uma imersao de Mapa acontecendo),
+  Campo (pesquisa/observacao em campo), Escritorio (o time em operacao).
+- Formato: MP4 (codec H.264), SEM audio (faixa de audio removida para reduzir peso).
+- Proporcao: enquadrar em 4:5 (retrato). Lado menor >= 1080px.
+- Duracao: 6 a 12s, com corte que faca loop suave (comeco e fim proximos, ou leve
+  fade). loop, muted, playsInline.
+- Peso: leves (idealmente < 2MB por clipe); sao 4 e podem tocar juntos. preload
+  metadata; so carregam/tocam no hover (desktop) ou na viewport (mobile).
+- Cor: mesma pegada de cor entre os 4 (documental, leve dessaturacao/quentes, na
+  identidade do site), enquadramento consistente.
+- Poster: para CADA clipe, exportar um still JPG (primeiro frame ou frame curado),
+  mesma proporcao, otimizado.
+- Nomes de arquivo (bater com o codigo):
+  /public/videos/como-olhamos-1.mp4 .. como-olhamos-4.mp4
+  /public/images/como-olhamos-1.jpg .. como-olhamos-4.jpg
+
+--------------------------------------------------------------------
+LAYOUT E RESPONSIVO
+--------------------------------------------------------------------
+- Desktop: 4 tiles em fileira (grid 4 colunas), gap ~16px, aspect 4/5.
+- Tablet: 2 x 2. Mobile: 2 x 2 (gap menor). Sem overflow horizontal.
+- Cabecalho da secao (label, statement, apoio) inalterado na copy.
+
+ACESSIBILIDADE:
+- Cada tile de video: muted, playsInline, poster obrigatorio, e um titulo textual
+  visivel (o rotulo). Video decorativo com o significado ancorado pelo rotulo.
+- Respeitar prefers-reduced-motion (poster estatico, sem autoplay).
+
+Rode npm run dev. Valide desktop e mobile. Nao commitar.
+```
+
+> Pendencia para implementar R4 (Alternativa A): produzir os 4 clipes reais + 4
+> posters conforme a especificacao acima. Ate la, a secao roda com posters
+> interinos (imagens reais ja existentes em /public), nunca com caixas vazias.
