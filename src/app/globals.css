@@ -149,6 +149,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Compensa o header fixo ao navegar por âncoras (#mapa, #fases, etc.) */
+  scroll-padding-top: 96px;
   -webkit-text-size-adjust: 100%;
   tab-size: 4;
   line-height: 1.5;
@@ -499,6 +501,10 @@ fieldset {
   padding-bottom: 4px;
   cursor: pointer;
   transition: opacity 0.2s ease, border-color 0.2s ease;
+  /* Zera o fundo/borda padrão do UA quando usado em <button> */
+  background: none;
+  border: none;
+  color: inherit;
 }
 .cta-primary {
   border-bottom: 2px solid var(--accent);
@@ -4029,16 +4035,22 @@ a, button, [role="button"] {
 .co-tile {
   position: relative;
   aspect-ratio: 9/16;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
-  background: #1a1c1d;
+  background: linear-gradient(160deg, #202325 0%, #16181A 55%, #0D0E0F 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
   cursor: pointer;
   transform: translateZ(0); /* Hardware acceleration */
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+}
+.co-tile:hover {
+  transform: translateY(-6px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 30px 50px -25px rgba(0, 0, 0, 0.8);
 }
 .co-tile-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(14, 16, 17, 0.4);
+  background: linear-gradient(180deg, rgba(14, 16, 17, 0) 45%, rgba(14, 16, 17, 0.75) 100%);
   display: flex;
   align-items: flex-end;
   padding: 24px;
@@ -4046,10 +4058,22 @@ a, button, [role="button"] {
   pointer-events: none;
 }
 .co-tile-label {
-  font-family: 'Open Sauce One', sans-serif;
-  font-weight: 600;
-  font-size: clamp(16px, 1.8vw, 24px);
+  font-family: 'Anantason Expanded', sans-serif;
+  font-weight: 500;
+  font-size: clamp(16px, 1.8vw, 22px);
+  letter-spacing: 0.3px;
   color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.co-tile-label::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
 }
 
 @media (max-width: 1024px) {
@@ -5033,18 +5057,43 @@ a, button, [role="button"] {
 }
 
 .mi-human-image-fallback {
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #1a1c1d;
+  overflow: hidden;
+  background: radial-gradient(120% 100% at 50% 0%, #212426 0%, #16181A 55%, #0D0E0F 100%);
 }
-.mi-human-image-fallback span {
+.mi-human-image-fallback::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(circle at 50% 45%, black 30%, transparent 75%);
+  mask-image: radial-gradient(circle at 50% 45%, black 30%, transparent 75%);
+}
+.mi-fb-initial {
+  position: absolute;
   font-family: 'Anantason Expanded', sans-serif;
-  font-size: clamp(80px, 10vw, 160px);
+  font-size: clamp(140px, 18vw, 260px);
   font-weight: 500;
-  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.05);
+  user-select: none;
+}
+.mi-fb-name {
+  position: relative;
+  z-index: 1;
+  font-family: 'Anantason Expanded Italic', serif;
+  font-style: italic;
+  font-size: clamp(20px, 2vw, 28px);
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.5);
   user-select: none;
 }
 

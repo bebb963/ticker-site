@@ -121,7 +121,8 @@ export default function MarketingInstintivo() {
                     />
                   ) : (
                     <div className="mi-human-image-fallback">
-                      <span>{human.label.charAt(0)}</span>
+                      <span className="mi-fb-initial">{human.label.charAt(0)}</span>
+                      <span className="mi-fb-name">{human.label}</span>
                     </div>
                   )}
                 </div>
