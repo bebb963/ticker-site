@@ -2594,7 +2594,8 @@ fieldset {
     align-items: center;
     gap: 12px;
     padding: 32px 24px 24px;
-    background: #0E1011;
+    background: transparent; /* Removido fundo preto sólido */
+    z-index: 20;
   }
 }
 .hero-logos-track {
@@ -2624,12 +2625,13 @@ fieldset {
   .hero-bubble {
     width: calc(50% - 6px);
     flex-shrink: 0;
-    padding: 10px 12px;
+    padding: 12px 12px 12px 18px; /* Ajuste fino de padding */
     gap: 4px;
     border-radius: 100px;
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     justify-content: space-between;
+    align-items: center;
   }
   .hero-bubble-label {
     display: none;
@@ -2641,6 +2643,8 @@ fieldset {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 1; /* Força alinhamento vertical */
+    transform: translateY(-0.5px); /* Micro-ajuste do baseline */
   }
   .hero-bubble-icon {
     width: 22px;

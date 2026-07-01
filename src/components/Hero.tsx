@@ -61,10 +61,11 @@ export default function Hero() {
           background: '#0E1011',
           display: 'flex',
           flexDirection: 'column',
+          justifyContent: 'flex-end',
         }}
       >
         {/* Vídeo de fundo — Desktop (horizontal) */}
-        <div className="hero-video-desktop" style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
+        <div className="hero-video-desktop" style={{ position: 'absolute', inset: 0, zIndex: 1, overflow: 'hidden' }}>
           <video
             ref={desktopVideoRef}
             autoPlay={shouldPlay}
@@ -97,7 +98,7 @@ export default function Hero() {
         </div>
 
         {/* Vídeo de fundo — Mobile (vertical) */}
-        <div className="hero-video-mobile" style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
+        <div className="hero-video-mobile" style={{ position: 'absolute', inset: 0, zIndex: 1, overflow: 'hidden' }}>
           <video
             ref={mobileVideoRef}
             autoPlay={shouldPlay}
@@ -233,6 +234,8 @@ export default function Hero() {
         {/* Faixa de logos dos clientes */}
         <div
           style={{
+            position: 'relative',
+            zIndex: 10,
             flexShrink: 0,
             borderTop: '1px solid rgba(255,255,255,0.1)',
             padding: '20px 0',
