@@ -144,7 +144,7 @@ Rode npm run dev. Nao commitar.
 
 ---
 
-## R2 — Premissa (Alternativa B: fundo claro + data-viz conceitual "potencial")
+## R2 — Premissa (Alternativa B: fundo claro + data-viz de vias/estradas que se ampliam)
 
 ```
 Objetivo: refinar src/components/Premissa.tsx. Duas mudancas: (1) recolorir de
@@ -170,54 +170,120 @@ PARTE 1: RECOLORIR PARA CLARO
 --------------------------------------------------------------------
 PARTE 2: DATA-VIZ CONCEITUAL (coluna direita, substitui o placeholder)
 --------------------------------------------------------------------
-CONCEITO: "potencial realizado hoje versus potencial latente". A tese do texto e
-que a maioria das empresas explora so PARTE do potencial. A viz mostra uma curva
-de crescimento onde apenas o primeiro trecho esta "preenchido" (o que ja se
-explora) e o restante e "fantasma" (o potencial latente que a Ticker ajuda a
-estruturar e ampliar). Deve parecer ANALITICA e medida, nunca decorativa.
+CONCEITO (vale para as duas variantes): "estruturar e ampliar as vias de gerar
+receita". A tese do texto e que a maioria das empresas cresce por POUCAS vias
+estreitas (explora so parte do potencial). Ao estruturar, essas vias se
+MULTIPLICAM e se ALARGAM, virando varias frentes amplas de receita. A viz e a
+metafora de estradas/caminhos que se abrem. Narrativa amarrada na copy:
+  poucas vias estreitas = "explora apenas parte do potencial";
+  vias se abrindo e validando = "estruturamos e validamos os canais";
+  rede ampla de avenidas = "ampliar a capacidade de gerar resultado".
 
-GEOMETRIA (construir em SVG inline, vetorial, nao imagem):
-- Um retangulo de area util (viewBox proporcional, ex.: 0 0 500 500), com respiro
-  interno. Eixos implicitos: horizontal = tempo/maturidade, vertical = resultado.
-- Uma CURVA ascendente (path Bezier suave) que sobe da base-esquerda ao topo-direita.
-- Uma linha vertical fina marcando "hoje" a cerca de 35 por cento da largura.
-- AREA sob a curva ATE a linha "hoje": preenchida com rgba(14,16,17,0.06) (solido
-  discreto) = "o que ja se explora".
-- AREA sob a curva DEPOIS da linha "hoje": apenas contorno tracejado
-  rgba(14,16,17,0.15), sem preenchimento = "potencial latente".
-- O TRECHO da curva antes de "hoje" em #0E1011 (solido). O TRECHO da curva depois
-  de "hoje" em var(--accent) #FF5A00 = o vetor de crescimento que a Ticker desbloqueia.
-- Micro-rotulos em serif italico, cor rgba(14,16,17,0.5), pequenos:
-  "hoje" junto a linha vertical; "potencial" no fim da curva a direita.
-  NAO usar numeros/porcentagens (mantem o carater conceitual e honesto, sem
-  sugerir um dado especifico que nao existe).
-- Base de referencia (eixo X) como filete 1px rgba(14,16,17,0.12).
+IMPORTANTE (coerencia com a seca O Mapa): a seca "O Mapa" ja usa uma ROTA UNICA
+sinuosa com 8 paradas numeradas. A Premissa NAO pode parecer a mesma coisa. Aqui
+a linguagem e MULTIPLICIDADE e LARGURA (muitas frentes se abrindo), NUNCA uma
+rota unica com pinos numerados. E uma viz nao interativa: so anima no reveal.
 
-ANIMACAO (no scroll-reveal, uma unica vez ao entrar na viewport):
-- A curva se DESENHA da esquerda para a direita (stroke-dashoffset), ~0.8s ease-out.
-- A area solida "sobe" (mask/clip crescendo) junto com o trecho solido da curva.
-- O trecho laranja (potencial latente) e o rotulo "potencial" aparecem POR ULTIMO,
-  com leve atraso, reforcando a ideia de "para onde ainda da pra crescer".
-- Em prefers-reduced-motion: renderizar o estado FINAL estatico, sem desenho.
+>>> IMPLEMENTAR AS DUAS VARIANTES (A e B) PARA COMPARAR NA PRATICA <<<
+Implemente as duas e deixe uma constante no topo do componente para alternar:
+  const VIZ_VARIANT: 'A' | 'B' = 'A'
+Renderize a variante A ou B conforme a constante. Assim da para trocar uma linha,
+rodar, comparar as duas ao vivo e decidir. Comece com 'A', valide, depois 'B'.
 
-ESTILO E GUARDA-CHUVAS (para nao virar enfeite):
-- Estetica editorial e limpa, muita area negativa, tracos finos. Referencia mental:
-  grafico de relatorio premium, nao dashboard colorido nem infografico generico.
+PRINCIPIOS COMPARTILHADOS (as duas variantes obedecem):
+- Construir em SVG inline, vetorial, nao imagem. viewBox proporcional (ex.: 0 0 500 500).
+- Estetica editorial e limpa, MUITA area negativa. Referencia mental: mapa/diagrama
+  premium de relatorio, nao infografico generico nem dashboard colorido.
 - Sem sombras pesadas, sem gradientes chamativos, sem 3D, sem icones decorativos.
-- O laranja aparece APENAS no trecho de crescimento latente (um unico uso).
-- A viz deve "ler" o conceito em 1 segundo mesmo sem os rotulos.
+- O laranja #FF5A00 aparece SO nas frentes/vias NOVAS (as recem-abertas), um uso
+  contido. As vias "de hoje" ficam em #0E1011 solido; vias intermediarias em tons
+  de rgba(14,16,17,0.35 a 0.6).
+- A viz deve "ler" o conceito (poucas vias -> muitas vias amplas) em 1 segundo,
+  mesmo sem os rotulos.
 
-LAYOUT E RESPONSIVO:
+ANIMACAO (comum, no scroll-reveal, uma unica vez ao entrar na viewport):
+- O movimento e SEMPRE de abertura/expansao da esquerda para a direita, ~0.8 a 1s
+  ease-out. As vias "de hoje" aparecem primeiro; as novas frentes (laranja) surgem
+  POR ULTIMO, com leve atraso, reforcando "ao estruturar, novas frentes se abrem".
+- Em prefers-reduced-motion: renderizar o estado FINAL estatico, sem animacao.
+
+LAYOUT E RESPONSIVO (comum):
 - Desktop: grid-split 50/50, texto a esquerda ancorado no topo da coluna, viz
   centralizada na coluna direita, aspect-ratio 1/1, max-width ~500px.
 - Mobile: empilhar (texto em cima, viz embaixo), viz com aspect-ratio ~4/3 ou 1/1,
   sem overflow horizontal, largura 100 por cento com respiro lateral de 24px.
 
-ACESSIBILIDADE:
+ACESSIBILIDADE (comum):
 - O SVG recebe role="img" e aria-label:
-  "Grafico conceitual: o potencial ja explorado hoje e menor que o potencial
-  latente que a Ticker ajuda a estruturar e ampliar."
+  "Grafico conceitual: as poucas vias de receita de hoje se multiplicam e se
+  alargam em varias frentes quando a Ticker estrutura o negocio."
 - Elementos puramente decorativos com aria-hidden.
+
+====================================================================
+VARIANTE A: VIAS QUE SE RAMIFICAM EM LEQUE
+====================================================================
+GEOMETRIA:
+- Uma via unica entra pela ESQUERDA (o negocio hoje) e se BIFURCA progressivamente
+  em varias avenidas que se abrem em leque para a DIREITA (as frentes de receita).
+- Sugestao: 1 via vira 2, que viram 4 ou 5 pontas ao chegar na borda direita.
+- A via inicial e as primeiras ramificacoes em #0E1011 (o que ja se explora); as
+  ramificacoes mais novas/externas em var(--accent) #FF5A00 (frentes desbloqueadas).
+
+RESOLVER O CONTRA (nao pode parecer fluxograma/organograma):
+- Usar SOMENTE curvas Bezier organicas. NUNCA angulos retos nem conectores em
+  cotovelo (o que grita "fluxograma").
+- As vias tem LARGURA de estrada (stroke-width ~6 a 14px, com linecap arredondado),
+  nunca linhas de 1px.
+- As bifurcacoes sao forquilhas em Y suaves, com juncao arredondada. SEM nos, SEM
+  caixas, SEM bolinhas nos pontos de divisao, SEM rotulos dentro de caixas.
+- Fluxo horizontal esquerda->direita sobre um plano (paisagem). NUNCA arvore de
+  cima para baixo.
+- Assimetria proposital: curvaturas, angulos e comprimentos das ramificacoes
+  ligeiramente diferentes entre si, para parecer estrada natural, nao diagrama
+  mecanico e simetrico.
+- Detalhe que "diz estrada": uma linha central tracejada MUITO sutil (marcacao de
+  pista, dash pequeno) correndo por dentro das avenidas principais. Isto le como
+  rodovia na hora e mata o ar de fluxograma. Cor da marcacao: rgba(255,255,255,0.5)
+  sobre a via preta; rgba(255,255,255,0.7) sobre a via laranja.
+- Opcional (se ficar elegante): leve perspectiva, vias afinando de leve rumo a um
+  ponto de fuga a direita, sensacao de paisagem/horizonte.
+- Micro-rotulos serif italico rgba(14,16,17,0.5), so 2: "hoje" junto a entrada
+  unica a esquerda; "novas frentes" junto ao leque a direita. Sem numeros.
+
+ANIMACAO A:
+- A via unica se desenha da esquerda (stroke-dashoffset). Ao chegar nas
+  bifurcacoes, cada ramo se estende em sequencia. As pontas laranja (novas frentes)
+  se desenham por ultimo.
+
+====================================================================
+VARIANTE B: FAIXAS QUE SE ALARGAM E SE MULTIPLICAM
+====================================================================
+GEOMETRIA:
+- Poucas faixas estreitas a ESQUERDA (ex.: 2 faixas) que, ao avancar para a
+  DIREITA, se ALARGAM (formato trapezoidal, abrindo) E aumentam em NUMERO
+  (ex.: chegam a 5 faixas). Captura os dois sentidos de "ampliar": mais frentes
+  (numero) e mais capacidade (largura/vazao).
+- As faixas "de hoje" (as 2 iniciais que atravessam) em #0E1011 e tons de cinza;
+  as 2 ou 3 faixas NOVAS que surgem no meio do caminho em var(--accent) #FF5A00.
+
+RESOLVER O CONTRA (nao pode parecer "so listras"):
+- As faixas precisam VISIVELMENTE alargar da esquerda para a direita (trapezios que
+  abrem), com direcao/fluxo claro. Nao sao retangulos paralelos estaticos.
+- GAPS claros e visiveis entre as faixas, para lerem como avenidas SEPARADAS, nunca
+  como um bloco preenchido continuo.
+- Variar levemente largura e tom de cada faixa (nao listras identicas nem espacadas
+  de forma mecanica). Assimetria sutil.
+- ANCORAR o significado com 2 micro-rotulos serif italico rgba(14,16,17,0.5):
+  "hoje" no inicio estreito (esquerda) e "frentes de receita" no fim largo (direita).
+  Estes rotulos sao obrigatorios na variante B (sem eles, viram listras sem sentido).
+- Dar sensacao de movimento: leve afinamento/ponta ou seta sutil ao fim de cada
+  faixa, sugerindo que a via segue para a direita.
+- Opcional: uma linha central tracejada sutil por dentro de cada faixa (mesma
+  marcacao de pista da variante A) para reforcar a leitura de "via", nao "barra".
+
+ANIMACAO B:
+- As 2 faixas de hoje aparecem primeiro, ja atravessando. Conforme o reveal avanca,
+  o conjunto "abre" (alarga) e as faixas novas (laranja) surgem no meio, por ultimo.
 
 --------------------------------------------------------------------
 PARTE 3: COSTURA PARA A PROXIMA SECAO
